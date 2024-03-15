@@ -1,46 +1,47 @@
 package a_shablony;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class ITunesRandomMoviePicker {
-    public void main(String[] args) throws IOException {
-////        RandomMoviePicker moviePicker = new RandomMoviePicker();
+    public static void main(String[] args) throws IOException {
 //        RandomMoviePicker moviePicker = new RandomMoviePicker();
-//        Movie[] movies = moviePicker.getRandomMovieNames();
-//        System.out.println("Chose film to watch: ");
-//        for (int i = 0; i < movies.length; i++) {
-//            int number = i + 1;
-//            System.out.println(number + ": " + movies[i].name + "(" + movies[i].year + ")");
-//        }
-//        System.out.print("Film number: ");
-//        Scanner scanner = new Scanner(System.in);
-//        int chosenNumber = scanner.nextInt();
-//        int chosenIndex = chosenNumber - 1;
-//        ITunesMoviePlayer player = new ITunesMoviePlayer();
-//        player.playMovie(String.valueOf(movies[chosenIndex].name));
+        RandomMoviePicker moviePicker = new RandomMoviePicker();
+        Movie[] movies = moviePicker.getRandomMovieNames();
+        System.out.println("Chose film to watch: ");
+        for (int i = 0; i < movies.length; i++) {
+            int number = i + 1;
+            System.out.println(number + ": " + movies[i].name + "(" + movies[i].year + ")");
+        }
+        System.out.print("Film number: ");
+        Scanner scanner = new Scanner(System.in);
+        int chosenNumber = scanner.nextInt();
+        int chosenIndex = chosenNumber - 1;
+        ITunesMoviePlayer player = new ITunesMoviePlayer();
+        player.playMovie(String.valueOf(movies[chosenIndex].name));
     }
 }
 /*public */class RandomMoviePicker {
-//    PageDownloader downloader = new PageDownloader();
-//
-//    Movie[] getRandomMovieNames() {
-//        String url = "https://randommer.io/random-movies";
-//        String page = downloader.downloadWebPage(url);
-//
-//        Movie[] movies = new Movie[16];
-//        int endIndex = 0;
-//
-//        for (int i = 0; i < 16; i++) {
-//            int captionIndex = page.indexOf("<div class=caption", endIndex);
-//            int startIndex = captionIndex + 22;
-//            endIndex = page.indexOf("</div>", startIndex);
-//            String movieName = page.substring(startIndex, endIndex);
-//            String nameWithoutYear = movieName.substring(0, movieName.length() - 6);
-//            String year = movieName.substring(movieName.length() - 5, movieName.length() - 1);
-//            movies[i] = new Movie(nameWithoutYear, year);
-//        }
-//        return movies;
-//    }
+    PageDownloader downloader = new PageDownloader();
+
+    Movie[] getRandomMovieNames() {
+        String url = "https://randommer.io/random-movies";
+        String page = downloader.downloadWebPage(url);
+
+        Movie[] movies = new Movie[16];
+        int endIndex = 0;
+
+        for (int i = 0; i < 16; i++) {
+            int captionIndex = page.indexOf("<div class=caption", endIndex);
+            int startIndex = captionIndex + 22;
+            endIndex = page.indexOf("</div>", startIndex);
+            String movieName = page.substring(startIndex, endIndex);
+            String nameWithoutYear = movieName.substring(0, movieName.length() - 6);
+            String year = movieName.substring(movieName.length() - 5, movieName.length() - 1);
+            movies[i] = new Movie(nameWithoutYear, year);
+        }
+        return movies;
+    }
 }
 
     /*private */class Movie {
