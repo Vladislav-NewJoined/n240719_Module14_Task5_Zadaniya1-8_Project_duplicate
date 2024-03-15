@@ -1,4 +1,4 @@
-package a_Shablony;
+package a_shablony;
 
 import java.awt.*;
 import java.io.*;

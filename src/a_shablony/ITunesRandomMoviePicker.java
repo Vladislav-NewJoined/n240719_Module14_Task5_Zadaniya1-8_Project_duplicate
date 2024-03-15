@@ -1,7 +1,6 @@
-package a_Shablony;
+package a_shablony;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class ITunesRandomMoviePicker {
     public void main(String[] args) throws IOException {

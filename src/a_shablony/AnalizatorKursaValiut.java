@@ -1,4 +1,4 @@
-package a_Shablony;
+package a_shablony;
 
 import java.io.*;
 import java.net.URL;
@@ -141,10 +141,10 @@ public class AnalizatorKursaValiut {
         int urlEnd = pageNasa.lastIndexOf("}");
         String urlPhoto = pageNasa.substring(urlBegin + 6, urlEnd - 1);
         try (InputStream in = new URL(urlPhoto).openStream()) {
-            Files.copy(in, Paths.get("src/a_Shablony/new.jpg"));
+            Files.copy(in, Paths.get("src/a_shablony/new.jpg"));
         }
 
-        System.out.println("\n" + "Картинка сохранена в файле src/a_Shablony/new.jpg");
+        System.out.println("\n" + "Картинка сохранена в файле src/a_shablony/new.jpg");
 
         int explanationBegin = pageNasa.lastIndexOf("explanation");
         int explanationEnd = pageNasa.lastIndexOf("hdurl");

@@ -1,4 +1,4 @@
-package a_Shablony;
+package a_shablony;
 
 import java.io.BufferedReader;
 import java.io.IOException;

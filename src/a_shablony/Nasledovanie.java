@@ -1,4 +1,4 @@
-package a_Shablony;
+package a_shablony;
 
 // источник: Animal Dog eat sleep  https://youtu.be/28NP_V2yc60
 public class Nasledovanie {

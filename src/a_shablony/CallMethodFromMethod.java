@@ -1,4 +1,4 @@
-package a_Shablony;
+package a_shablony;
 
 //// источник: https://www.youtube.com/watch?v=7FsDj1Otco8
 //// все уроки: https://www.youtube.com/playlist?list=PLVfMKQXDAhGVWEKi2wKx4y-yNLk7QKam3
