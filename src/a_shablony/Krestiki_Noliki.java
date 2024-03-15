@@ -1,22 +1,20 @@
-package task4_6_1;
+package a_shablony;
 
-import java.io.IOException;
 import java.util.Scanner;
 
-public class Task4_6_1 {
-    public static void main(String[] args) throws IOException {
+public class Krestiki_Noliki {
+    public static void main(String[] args) {
         System.out.println("""
-                Задание:\s
-                Модуль 4. Наследование. Задание №6:\s
-                    1. Доработайте крестики-нолики; создайте исключение, которое будете бросать при неверном
-                       вводе пользователя\s
+            Задание:\s
+            Модуль 3. Основы ООП. Задание №10:\s
+                1. Напишите сами крестики-нолики, не подглядывая в наш код.\s
 
-                Решение:\s""");
+            Решение:\s""");
 
-                X0Game game = new X0Game();
-                game.play();
-            }
-        }
+        X0Game game = new X0Game();
+        game.play();
+    }
+}
 
 class FieldXO {
     char[][] field;
