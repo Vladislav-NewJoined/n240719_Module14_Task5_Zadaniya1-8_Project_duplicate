@@ -82,6 +82,7 @@ public class Task4_6_2 {
                     2. Доработайте калькулятор: при неверном вводе выбрасывайте исключение\s
 
                 Решение:\s""");
+
         System.out.println("Пишем калькулятор с обработкой исключений: ");
 
         Scanner scanner = new Scanner(System.in);
