@@ -1,19 +1,18 @@
 package a_shablony;
 
 import java.io.*;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class AnalizatorKursaValiut {
     public static void main(String[] args) throws IOException, ParseException {
-        String originalString = downloadWebPage("https://cbr.ru/scripts/XML_dynamic.asp?date_req1=12/11/2021&date_req2=12/11/2021&VAL_NM_RQ=R01235");
-
-        BufferedReader buffered = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("""
             Задание:\s
             Модуль 1. Тема 1. Кейс 1. «Анализатор курса валют».
@@ -25,7 +24,9 @@ public class AnalizatorKursaValiut {
 
             Решение:\s""");
 
-        System.out.println("Введите в следующей строке исходную дату с разделителем '/' и нажмите Enter, пример: 14/02/2020");
+        BufferedReader buffered = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Введите в следующей строке исходную дату с разделителем '/' и нажмите Enter, " +
+                "пример: 14/02/2020");
         String originalDate = buffered.readLine();  // Start date
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Calendar c = Calendar.getInstance();
@@ -99,39 +100,47 @@ public class AnalizatorKursaValiut {
         }
 
         System.out.println();
-
+        DecimalFormat df = new DecimalFormat("0.000");
+        df.setRoundingMode(RoundingMode.DOWN);
         if (courseDouble1 == 0 || courseDouble2 == 0 || courseDouble3 == 0) {
-            System.out.println("Имеются даты с отсутствующим курсом. Повторите программу и введите другую дату.");
+            System.out.println("Имеются даты с отсутствующим курсом. Повторите программу и введите " +
+                    "другую дату.");
         } else {
             if (courseDouble3 > courseDouble2) {
                 System.out.print("Курс вырос на ");
-                System.out.println(courseDouble3 - courseDouble2 + "\n");
+                System.out.println(df.format(courseDouble3 - courseDouble2) + "\n");
             } else {
                 if (courseDouble3 < courseDouble2) {
                     System.out.print("Курс снизился на ");
-                    System.out.println(courseDouble2 - courseDouble3 + "\n");
+                    System.out.println(df.format(courseDouble2 - courseDouble3) + "\n");
                 }
             }
             boolean courseDouble1Max = courseDouble1 > courseDouble2 && courseDouble1 > courseDouble3;
             boolean courseDouble2Max = courseDouble2 > courseDouble1 && courseDouble2 > courseDouble3;
             if (courseDouble1Max) {
-                System.out.println("Максимальный курс: " + courseDouble1 + "; " + "Приходится на дату: " + originalDate);
+                System.out.println("Максимальный курс: " + courseDouble1 + "; " + "Приходится на дату: "
+                        + originalDate);
             } else {
                 if (courseDouble2Max) {
-                    System.out.println("Максимальный курс: " + courseDouble2 + "; " + "Приходится на дату: " + oneDayBeforeDate);
+                    System.out.println("Максимальный курс: " + courseDouble2 + "; " + "Приходится на дату: "
+                            + oneDayBeforeDate);
                 } else {
-                    System.out.println("Максимальный курс: " + courseDouble3 + "; " + "Приходится на дату: " + oneDayAfterDate);
+                    System.out.println("Максимальный курс: " + courseDouble3 + "; " + "Приходится на дату: "
+                            + oneDayAfterDate);
                 }
             }
             boolean courseDouble1Min = courseDouble1 < courseDouble2 && courseDouble1 < courseDouble3;
             boolean courseDouble2Min = courseDouble2 < courseDouble1 && courseDouble2 < courseDouble3;
             if (courseDouble1Min) {
-                System.out.println("Минимальный курс: " + courseDouble1 + "; " + "Приходится на дату: " + originalDate);
+                System.out.println("Минимальный курс: " + courseDouble1 + "; " + "Приходится на дату: "
+                        + originalDate);
             } else {
                 if (courseDouble2Min) {
-                    System.out.println("Минимальный курс: " + courseDouble2 + "; " + "Приходится на дату: " + oneDayBeforeDate);
+                    System.out.println("Минимальный курс: " + courseDouble2 + "; " + "Приходится на дату: "
+                            + oneDayBeforeDate);
                 } else {
-                    System.out.println("Минимальный курс: " + courseDouble3 + "; " + "Приходится на дату: " + oneDayAfterDate);
+                    System.out.println("Минимальный курс: " + courseDouble3 + "; " + "Приходится на дату: "
+                            + oneDayAfterDate);
                 }
             }
         }
