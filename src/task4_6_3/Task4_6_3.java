@@ -27,6 +27,15 @@ class NoCurrencyExchangeRateException extends Exception {
 
 public class Task4_6_3 {
     public static void main(String[] args) throws IOException, ParseException, InvalidInputException {
+        System.out.println("""
+                Задание:\s
+                Модуль 4. Наследование. Задание №6:\s
+                    3. Аналогичным образом, доработайте запрос курса валют на дату: при некорректном
+                       вводе бросайте исключение. При отсутствии курса валют в ответе, бросайте другое
+                        исключение.\s
+
+                Решение:\s""");
+
         try {
             BufferedReader buffered = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Реализуем код с обработкой исключений.");
