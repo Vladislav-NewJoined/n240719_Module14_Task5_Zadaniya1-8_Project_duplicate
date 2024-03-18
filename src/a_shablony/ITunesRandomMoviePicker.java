@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
+// В видеоуроке про это здесь: Модуль 4. Наследование, Задание 2. Конструкторы. мин 18 50.
+
 public class ITunesRandomMoviePicker {
     public static void main(String[] args) throws IOException {
         RandomMoviePicker moviePicker = new RandomMoviePicker();
