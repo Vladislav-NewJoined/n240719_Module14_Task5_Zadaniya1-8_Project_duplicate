@@ -49,6 +49,7 @@ class RandomMoviePicker {
 }
 
 class Movie {
+
     public int year;
     public int name;
 
