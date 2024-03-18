@@ -9,6 +9,8 @@ import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+// В видеоуроке про это здесь: Модуль 4. Наследование, Задание 2. Конструкторы. мин 18 50.
+
 public class ITunesMoviePlayer {
 //    // источник: https://www.javatpoint.com/how-to-open-a-file-in-java
 //    void playMovie(String searchRequest) throws IOException {
