@@ -13,7 +13,13 @@ import java.nio.file.StandardCopyOption;
 // источник: https://www.youtube.com/watch?v=SginvSUGGoI  от: Илья Ландар , как прикрепить картинку в html
 public class Task4_7_7 {
     public static void main(String[] args) {
-        System.out.println("Задание:\s\nМодуль 4. Наследование. Задание №7:\s\n7. Доработайте скачивальщик снимков NASA, чтобы в нем не было ни одного throws\n(пройдитесь прям поиском по файлу). Throws придётся заменить на try catch.\n\nРешение:\s");
+        System.out.println("""
+                Задание:\s
+                Модуль 4. Наследование. Задание №7:\s
+                    7. Доработайте скачивальщик снимков NASA, чтобы в нем не было ни одного throws
+                       (пройдитесь прям поиском по файлу). Throws придётся заменить на try catch.\s
+
+                Решение:\s""");
 
         BufferedReader buffered = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Введите дату с разделителем '-' и нажмите Enter, пример: 2023-02-01: ");
@@ -31,7 +37,6 @@ public class Task4_7_7 {
             int urlEnd = currentCodeItself.lastIndexOf("}");
             String urlOfCurrentPhoto = currentCodeItself.substring(urlBegin + 8, urlEnd - 1);
             System.out.println(urlOfCurrentPhoto);
-            System.out.println();
             try (InputStream in = new URL(urlOfCurrentPhoto).openStream()) {
                 Files.copy(in, Paths.get("src\\task4_7_7\\NASA_Photos_Of_Month\\image" + ".png"), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException exception) {
