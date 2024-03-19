@@ -1,16 +1,16 @@
-package task4_8_1;
+package task4_8_2;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Task4_8_1 {
+public class Task4_8_2 {
     public static void main(String[] args) {
         System.out.println("""
                 Задание:\s
                 Модуль 4. Наследование. Задание №8:\s
-                    1. Пользователь вводит 5 названий файлов. Они могут повторяться. Сохраните в каждый
-                       из файл названия ВСЕХ 5 файлов, используйте try with resources\s
+                    2. Пользователь вводит 5 названий файлов. Сохраните в каждый из файл названия ВСЕХ
+                       5 файлов, используйте try.. catch..finally\s
 
                 Решение:\s""");
 
@@ -22,13 +22,23 @@ public class Task4_8_1 {
             }
 
             for (String filename : filenames) {
-                try (FileWriter writer = new FileWriter("src/task4_8_1/" + filename + ".txt")) {
+                FileWriter writer = null;
+                try {
+                    writer = new FileWriter("src/task4_8_2/" + filename + ".txt");
                     for (String name : filenames) {
                         writer.write(name + "\n");
                     }
                     System.out.println("Файл " + filename + ".txt успешно создан.");
                 } catch (IOException e) {
                     System.out.println("Ошибка при записи в файл " + filename + ".txt: " + e.getMessage());
+                } finally {
+                    try {
+                        if (writer != null) {
+                            writer.close();
+                        }
+                    } catch (IOException e) {
+                        System.out.println("Ошибка при закрытии файла " + filename + ".txt: " + e.getMessage());
+                    }
                 }
             }
         }
