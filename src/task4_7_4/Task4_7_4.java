@@ -4,6 +4,14 @@ import java.util.Scanner;
 
 public class Task4_7_4 {
     public static void main(String[] args) {
+        System.out.println("""
+                Задание:\s
+                Модуль 4. Наследование. Задание №7:\s
+                    4. Доработайте калькулятор. Если пользователь ввел неверное значение, просто дайте ему
+                       ввести еще раз. (Пока он не введёт корректно)\s
+
+                Решение:\s""");
+
         Scanner scanner = new Scanner(System.in);
         double num1;
         char operation;
