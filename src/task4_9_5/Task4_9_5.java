@@ -5,7 +5,7 @@ public class Task4_9_5 {
         System.out.println("""
                 Задание:\s
                 Модуль 4. Наследование. Задание №9:\s
-                    5. Нарисуйте иерархию классов exception и runtime exception до самого начала\s
+                    5. Нарисуйте иерархию классов exception и runtime exception до самого начала.\s
 
                 Решение:\s""");
 
