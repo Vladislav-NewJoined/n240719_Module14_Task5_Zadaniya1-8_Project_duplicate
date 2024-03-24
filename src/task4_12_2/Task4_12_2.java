@@ -27,11 +27,8 @@ public class Task4_12_2 {
                 переопределения.
                 \s""");
 
-//        System.out.println("Animal makes a sound");
-        Animal animal = new Animal();
-        animal.makeSound();
         Dog dog = new Dog();
-//        dog.makeSound();
+        dog.makeSound();
     }
 }
 
@@ -44,6 +41,7 @@ class Animal {
 class Dog extends Animal {
     @Override
     public void makeSound() {
+        super.makeSound();
         System.out.println("Dog barks");
     }
 }
