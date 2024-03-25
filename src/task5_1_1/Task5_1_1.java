@@ -42,12 +42,15 @@ public class Task5_1_1 {
         System.out.println();
 
         // Пример использования CharCodeDecoder
+        System.out.println("Исходная фраза: SOS Hello");
+
+        // Пример использования CharCodeDecoder
         CharCodeDecoder charCodeDecoder = new CharCodeDecoder();
         String charCodeEncodedPhrase = charCodeDecoder.encode("Hello");
-        System.out.println("Закодированная строка: " + charCodeEncodedPhrase);
+        System.out.println("Зашифрованная фраза: " + charCodeEncodedPhrase);
 
-        String charCodeDecodedPhrase = charCodeDecoder.decode("72 101 108 108 111");
-        System.out.println("Декодированная строка: " + charCodeDecodedPhrase);
+        String charCodeDecodedPhrase = charCodeDecoder.decode(charCodeEncodedPhrase);
+        System.out.println("Дешифрованная фраза: " + charCodeDecodedPhrase);
     }
 }
 
@@ -114,20 +117,161 @@ class MorseCodeDecoder implements Decoder {
     }
 }
 
-
 class CharCodeDecoder implements Decoder {
     @Override
     public String encode(String source) {
-        // Реализация преобразования символа в его код символа
-        return "CharCodeEncodedString"; // замените на логику преобразования символа в код символа
+        StringBuilder encodedString = new StringBuilder();
+        for (int i = 0; i < source.length(); i++) {
+            char ch = source.charAt(i);
+            encodedString.append((int) ch).append(" ");
+        }
+        return encodedString.toString().trim();
     }
 
     @Override
     public String decode(String encoded) {
-        // Реализация преобразования кода символа в символ
-        return "CharCodeDecodedString"; // замените на логику преобразования кода символа в символ
+        StringBuilder decodedString = new StringBuilder();
+        String[] parts = encoded.split(" ");
+        for (String part : parts) {
+            int code = Integer.parseInt(part);
+            char ch = (char) code;
+            decodedString.append(ch);
+        }
+        return decodedString.toString();
     }
 }
+
+
+
+//// ПРИМЕР 10 работает без char
+//import java.util.HashMap;
+//import java.util.Map;
+//
+//public class Task5_1_1 {
+//    public static void main(String[] args) {
+//        System.out.println("""
+//                Задание:\s
+//                Модуль 5. Интерфейсы, абстрактные классы, статические методы. Задание №1:\s
+//                    1. Сделайте интерфейс Decoder. В нем два метода String encode(String source) и
+//                       String decode(String encoded). Реализуйте этот интерфейс: пусть класс меняет
+//                       русские символы на цифры и латиницу (ш на w, г на r и так далее), и наоборот.
+//                       Сделайте ещё одну реализацию Decoder: он будет шифровать и дешифровать азбуку
+//                       морзе. Еще одну реализацию: он будет менять символ на код символа (который
+//                       можно получить как (int)str.charAt ). Доработать ConsoleTableWriter, чтобы
+//                       длина левой колонки была одинаковой для всех строк и равна длине самой большой\s
+//
+//                Решение:\s""");
+//
+//        // Пример использования RussianLettersDecoder
+//        RussianLettersDecoder russianLettersDecoder = new RussianLettersDecoder();
+//        String originalPhrase = "Дешифрование русских символов";
+//        System.out.println("Исходная фраза: " + originalPhrase);
+//
+//        String encodedPhrase = russianLettersDecoder.encode(originalPhrase);
+//        System.out.println("Зашифрованная фраза: " + encodedPhrase);
+//
+//        String decodedPhrase = russianLettersDecoder.decode(encodedPhrase);
+//        System.out.println("Дешифрованная фраза: " + decodedPhrase);
+//        System.out.println();
+//
+//        // Пример использования MorseCodeDecoder
+//        MorseCodeDecoder morseCodeDecoder = new MorseCodeDecoder();
+//        String morseEncodedPhrase = morseCodeDecoder.encode("SOS");
+//        System.out.println("Исходная фраза для конвертации в азбуку Морзе: SOS");
+//        System.out.println("Зашифрованная фраза в азбуке Морзе: " + morseEncodedPhrase);
+//
+//        String morseDecodedPhrase = morseCodeDecoder.decode(morseEncodedPhrase);
+//        System.out.println("Дешифрованная фраза из азбуки Морзе: " + morseDecodedPhrase);
+//        System.out.println();
+//
+//        // Пример использования CharCodeDecoder
+//        CharCodeDecoder charCodeDecoder = new CharCodeDecoder();
+//        String charCodeEncodedPhrase = charCodeDecoder.encode("Hello");
+//        System.out.println("Закодированная строка: " + charCodeEncodedPhrase);
+//
+//        String charCodeDecodedPhrase = charCodeDecoder.decode("72 101 108 108 111");
+//        System.out.println("Декодированная строка: " + charCodeDecodedPhrase);
+//    }
+//}
+//
+//interface Decoder {
+//    String encode(String source);
+//    String decode(String encoded);
+//}
+//
+//class RussianLettersDecoder implements Decoder {
+//    @Override
+//    public String encode(String source) {
+//        return source.replaceAll("ш", "w")
+//                .replaceAll("г", "R")
+//                .replaceAll("ф", "f")
+//                .replaceAll("Д", "D")
+//                .replaceAll("р", "r");
+//        // Добавляем другие замены по аналогии
+//    }
+//
+//    @Override
+//    public String decode(String encoded) {
+//        return encoded.replaceAll("w", "ш")
+//                .replaceAll("R", "г")
+//                .replaceAll("f", "ф")
+//                .replaceAll("D", "Д")
+//                .replaceAll("r", "р");
+//        // Добавляем другие замены по аналогии
+//    }
+//}
+//
+//class MorseCodeDecoder implements Decoder {
+//    private static final Map<String, String> morseAlphabet = new HashMap<>();
+//    static {
+//        morseAlphabet.put("S", "...");
+//        morseAlphabet.put("O", "---");
+//        morseAlphabet.put(" ", " ");
+//    }
+//
+//    @Override
+//    public String encode(String source) {
+//        // Логика для шифрования в азбуке Морзе
+//        StringBuilder morseCode = new StringBuilder();
+//        for (int i = 0; i < source.length(); i++) {
+//            String letter = String.valueOf(source.charAt(i)).toUpperCase();
+//            morseCode.append(morseAlphabet.get(letter)).append(" ");
+//        }
+//        return morseCode.toString().trim();
+//    }
+//
+//    @Override
+//    public String decode(String encoded) {
+//        // Логика для дешифрования из азбуки Морзе
+//        StringBuilder decodedString = new StringBuilder();
+//        String[] parts = encoded.split(" ");
+//        for (String part : parts) {
+//            for (Map.Entry<String, String> entry : morseAlphabet.entrySet()) {
+//                if (entry.getValue().equals(part)) {
+//                    decodedString.append(entry.getKey());
+//                    break;
+//                }
+//            }
+//        }
+//        return decodedString.toString();
+//    }
+//}
+//
+//class CharCodeDecoder implements Decoder {
+//    @Override
+//    public String encode(String source) {
+//        // Реализация преобразования символа в его код символа
+//        return "CharCodeEncodedString"; // замените на логику преобразования символа в код символа
+//    }
+//
+//    @Override
+//    public String decode(String encoded) {
+//        // Реализация преобразования кода символа в символ
+//        return "CharCodeDecodedString"; // замените на логику преобразования кода символа в символ
+//    }
+//}
+//// КОНЕЦ ПРИМЕРА 10
+
 
 
 
