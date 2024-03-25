@@ -30,10 +30,6 @@ public class Task5_1_1 {
         String decodedPhrase = russianLettersDecoder.decode(encodedPhrase);
         System.out.println("Дешифрованная фраза: " + decodedPhrase);
         System.out.println();
-        // Пример использования MorseCodeDecoder
-//        MorseCodeDecoder morseCodeDecoder = new MorseCodeDecoder();
-//        String morseEncodedPhrase = morseCodeDecoder.encode("SOS");
-//        System.out.println("Зашифрованная азбука Морзе: " + morseEncodedPhrase);
 
         // Пример использования MorseCodeDecoder
         MorseCodeDecoder morseCodeDecoder = new MorseCodeDecoder();
@@ -44,11 +40,6 @@ public class Task5_1_1 {
         String morseDecodedPhrase = morseCodeDecoder.decode(morseEncodedPhrase);
         System.out.println("Дешифрованная фраза из азбуки Морзе: " + morseDecodedPhrase);
         System.out.println();
-
-
-
-//        String morseDecodedPhrase = morseCodeDecoder.decode(morseEncodedPhrase);
-//        System.out.println("Дешифрованная азбука Морзе: " + morseDecodedPhrase);
 
         // Пример использования CharCodeDecoder
         CharCodeDecoder charCodeDecoder = new CharCodeDecoder();
@@ -140,7 +131,7 @@ class CharCodeDecoder implements Decoder {
 
 
 
-
+//// ПРИМЕР 10
 //public class Task5_1_1 {
 //    public static void main(String[] args) {
 //        System.out.println("""
@@ -238,6 +229,7 @@ class CharCodeDecoder implements Decoder {
 //        return "CharCodeDecodedString"; // замените на логику преобразования кода символа в символ
 //    }
 //}
+//// КОНЕЦ ПРИМЕРА 10
 
 
 
