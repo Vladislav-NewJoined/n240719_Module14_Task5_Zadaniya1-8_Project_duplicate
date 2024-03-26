@@ -1,8 +1,8 @@
-package task5_2_1;
+package a_shablony_FileInformation;
 
 import java.io.File;
 
-public class Task5_2_1 {
+public class A_shablony_FileInformation {
     public static void main(String[] args) {
         System.out.println("""
                 Задание:\s
@@ -12,11 +12,11 @@ public class Task5_2_1 {
 
                 Решение:\s""");
 
-        FileInformation fileInformation = new FileInformation("text.txt", "src\\task5_2_1", 1000);
-//        fileInformation.init("text.txt", "src\\task5_2_1", 1000);
+        FileInformation fileInformation = new FileInformation("text.txt", "src\\a_shablony_FileInformation", 1000);
+//        fileInformation.init("text.txt", "src\\a_shablony_FileInformation", 1000);
         fileInformation.fileName = "text.txt";
         fileInformation.size = 1000;
-        fileInformation.absolutePath = "src\\task5_2_1";
+        fileInformation.absolutePath = "src\\a_shablony_FileInformation";
 
     }
 }
