@@ -1,7 +1,5 @@
 package task5_2_1;
 
-import java.io.File;
-
 public class Task5_2_1 {
     public static void main(String[] args) {
         System.out.println("""
@@ -13,10 +11,7 @@ public class Task5_2_1 {
                 Решение:\s""");
 
         FileInformation fileInformation = new FileInformation("text.txt", "src\\task5_2_1", 1000);
-        fileInformation.fileName = "text.txt";
-        fileInformation.size = 1000;
-        fileInformation.absolutePath = "src\\task5_2_1";
-
+        System.out.println(fileInformation.toString());
     }
 }
 
@@ -29,6 +24,11 @@ class FileInformation {
         this.fileName = inputFileName;
         this.absolutePath = inputAbsolutePath;
         this.size = inputSize;
+    }
+
+    @Override
+    public String toString() {
+        return "File Name: " + fileName + "\nAbsolute Path: " + absolutePath + "\nSize: " + size;
     }
 }
 
