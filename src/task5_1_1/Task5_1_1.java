@@ -1,7 +1,9 @@
 package task5_1_1;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Task5_1_1 {
@@ -23,10 +25,8 @@ public class Task5_1_1 {
         RussianLettersDecoder russianLettersDecoder = new RussianLettersDecoder();
         String originalPhrase = "Дешифрование русских символов";
         System.out.println("Исходная фраза: " + originalPhrase);
-
         String encodedPhrase = russianLettersDecoder.encode(originalPhrase);
         System.out.println("Зашифрованная фраза: " + encodedPhrase);
-
         String decodedPhrase = russianLettersDecoder.decode(encodedPhrase);
         System.out.println("Дешифрованная фраза: " + decodedPhrase);
         System.out.println();
@@ -36,21 +36,25 @@ public class Task5_1_1 {
         String morseEncodedPhrase = morseCodeDecoder.encode("SOS");
         System.out.println("Исходная фраза для конвертации в азбуку Морзе: SOS");
         System.out.println("Зашифрованная фраза в азбуке Морзе: " + morseEncodedPhrase);
-
         String morseDecodedPhrase = morseCodeDecoder.decode(morseEncodedPhrase);
         System.out.println("Дешифрованная фраза из азбуки Морзе: " + morseDecodedPhrase);
         System.out.println();
 
         // Пример использования CharCodeDecoder
-        System.out.println("Исходная фраза: SOS Hello");
-
-        // Пример использования CharCodeDecoder
+        System.out.println("Исходная фраза: Hello");
         CharCodeDecoder charCodeDecoder = new CharCodeDecoder();
         String charCodeEncodedPhrase = charCodeDecoder.encode("Hello");
-        System.out.println("Зашифрованная фраза: " + charCodeEncodedPhrase);
-
+        System.out.println("Зашифрованная фраза в кодах символов char: " + charCodeEncodedPhrase);
         String charCodeDecodedPhrase = charCodeDecoder.decode(charCodeEncodedPhrase);
-        System.out.println("Дешифрованная фраза: " + charCodeDecodedPhrase);
+        System.out.println("Дешифрованная фраза из символов char в буквы: " + charCodeDecodedPhrase);
+        System.out.println();
+
+        // Доработка ConsoleTableWriter
+        ConsoleTableWriter consoleTableWriter = new ConsoleTableWriter();
+        consoleTableWriter.addRow(new String[]{"Исходная фраза для класса ConsoleTableWriter", originalPhrase});
+        consoleTableWriter.addRow(new String[]{"Зашифрованная фраза из класса ConsoleTableWriter", encodedPhrase});
+        consoleTableWriter.addRow(new String[]{"Дешифрованная фраза из класса ConsoleTableWriter", decodedPhrase});
+        consoleTableWriter.print();
     }
 }
 
@@ -141,6 +145,24 @@ class CharCodeDecoder implements Decoder {
     }
 }
 
+class ConsoleTableWriter {
+    List<String[]> rows = new ArrayList<>();
+
+    public void addRow(String[] row) {
+        rows.add(row);
+    }
+
+    public void print() {
+        int maxLength = 0;
+        for (String[] row : rows) {
+            maxLength = Math.max(row[0].length(), maxLength);
+        }
+
+        for (String[] row : rows) {
+            System.out.printf("%-" + maxLength + "s : %s%n", row[0], row[1]);
+        }
+    }
+}
 
 
 //// ПРИМЕР 10 работает без char
