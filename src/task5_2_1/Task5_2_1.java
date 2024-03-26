@@ -13,7 +13,6 @@ public class Task5_2_1 {
                 Решение:\s""");
 
         FileInformation fileInformation = new FileInformation("text.txt", "src\\task5_2_1", 1000);
-//        fileInformation.init("text.txt", "src\\task5_2_1", 1000);
         fileInformation.fileName = "text.txt";
         fileInformation.size = 1000;
         fileInformation.absolutePath = "src\\task5_2_1";
@@ -26,17 +25,10 @@ class FileInformation {
     String absolutePath;
     long size;
 
-    //    void init(String inputFileName, String inputAbsolutePath, long inputSize) {
     FileInformation(String inputFileName, String inputAbsolutePath, long inputSize) {
         this.fileName = inputFileName;
         this.absolutePath = inputAbsolutePath;
         this.size = inputSize;
-    }
-
-    FileInformation(File inputFile) {
-        this.absolutePath = inputFile.getAbsolutePath();
-        this.fileName = inputFile.getName();
-        this.size = inputFile.length();
     }
 }
 
