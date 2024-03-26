@@ -43,7 +43,7 @@ class FileInformation {
 
 
 
-//// ПРИМЕР 2
+//// ПРИМЕР 2 , взято из репозитория
 //import java.io.File;
 //
 //public class Task5_2_1 {
