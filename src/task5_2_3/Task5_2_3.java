@@ -25,5 +25,3 @@ class CustomString {
         return "Это тестовая строка.";
     }
 }
-
-
