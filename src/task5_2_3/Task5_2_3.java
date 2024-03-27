@@ -24,11 +24,6 @@ class CustomString {
     public String toString() {
         return "Это тестовая строка.";
     }
-
-    public static void main(String[] args) {
-        CustomString customString = new CustomString();
-        System.out.println(customString.toString());
-    }
 }
 
 
