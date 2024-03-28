@@ -1,12 +1,9 @@
 package task5_2_6;
 
 import java.io.IOException;
-import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class Task5_2_6 {
     public static void main(String[] args) throws IOException {
@@ -18,52 +15,32 @@ public class Task5_2_6 {
 
                 Решение:\s""");
 
-        MainClass mainClass = new MainClass();
-        mainClass.playSong("Rick Ross");
-    }
-}
-
-class MainClass {
-    void playSong(String searchRequest) throws IOException {
-        playSongInternal(searchRequest, 1);
+        Task5_2_6 task = new Task5_2_6();
+        String searchResult = task.playSong("Rick Ross");
+        System.out.println(searchResult);
     }
 
-    void playSong(String searchRequest, int limit) throws IOException {
-        playSongInternal(searchRequest, limit);
+    static String playSong(String searchRequest) throws IOException {
+        return playSongInternal(searchRequest, 1);
     }
 
-    private void playSongInternal(String searchRequest, int limit) throws IOException {
+    private static String playSongInternal(String searchRequest, int limit) throws IOException {
         String url = buildUrl(searchRequest, limit);
         String page = downloadWebPage(url);
 
         String artistName = getTag(page, "artistName");
         String trackName = getTag(page, "trackName");
-        String previewUrl = getTag(page, "previewUrl");
-        System.out.println(artistName + " - " + trackName);
-        try (InputStream in = new URL(previewUrl).openStream()) {
-            Files.copy(in, Paths.get(trackName + ".m4a"));
-        }
-        System.out.println("Downloaded!");
-
-        if (!Desktop.isDesktopSupported()) //check if Desktop is supported by Platform or not
-        {
-            System.out.println("File opening not supported");
-            return;
-        }
-
-        Desktop desktop = Desktop.getDesktop();
-        File file = new File(trackName + ".m4a");
-        desktop.open(file); //opens the specified file
+        return toString(artistName, trackName);
     }
 
-    private String getTag(String page, String tagName) {
+    private static String getTag(String page, String tagName) {
         int start = page.indexOf(tagName) + tagName.length() + 3;
         int end = page.indexOf("\"", start);
         String value = page.substring(start, end);
         return value;
     }
 
-    private String buildUrl(String searchRequest, int limit) {
+    private static String buildUrl(String searchRequest, int limit) {
         String term = searchRequest.replaceAll(" ", "+");
         String itunesApi = "https://itunes.apple.com/search?term=";
         String limitParam = "&limit=1" + limit;
@@ -88,12 +65,183 @@ class MainClass {
         }
         return result.toString();
     }
+
+    public static String toString(String artist, String track) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<artist>").append(artist).append("</artist>").append("\n");
+        sb.append("<track>").append(track).append("</track>");
+        return sb.toString();
+    }
 }
 
 
 
 
+//// ПРИМЕР 6
+//import java.io.IOException;
+//import java.io.*;
+//import java.net.URL;
+//import java.net.URLConnection;
+//
+//public class Task5_2_6 {
+//    public static void main(String[] args) throws IOException {
+//        System.out.println("""
+//                Задание:\s
+//                Модуль 5. Интерфейсы, абстрактные классы, статические методы. Задание №2:\s
+//                    6. Сделайте метод toString у класса ITunesSong, который возвращает информацию в
+//                       формате xml: <artist>Rick Ross</artist>… и так далее.\s
+//
+//                Решение:\s""");
+//
+//        playSong("Rick Ross");
+//    }
+//
+//    static void playSong(String searchRequest) throws IOException {
+//        playSongInternal(searchRequest, 1);
+//    }
+//
+//    private static void playSongInternal(String searchRequest, int limit) throws IOException {
+//        String url = buildUrl(searchRequest, limit);
+//        String page = downloadWebPage(url);
+//
+//        String artistName = getTag(page, "artistName");
+//        String trackName = getTag(page, "trackName");
+//        String previewUrl = getTag(page, "previewUrl");
+//        System.out.println(artistName);
+//        System.out.println(trackName);
+//    }
+//
+//    private static String getTag(String page, String tagName) {
+//        int start = page.indexOf(tagName) + tagName.length() + 3;
+//        int end = page.indexOf("\"", start);
+//        String value = page.substring(start, end);
+//        return value;
+//    }
+//
+//    private static String buildUrl(String searchRequest, int limit) {
+//        String term = searchRequest.replaceAll(" ", "+");
+//        String itunesApi = "https://itunes.apple.com/search?term=";
+//        String limitParam = "&limit=1" + limit;
+//        String mediaParam = "&media=music";
+//        StringBuilder builder = new StringBuilder();
+//        builder.append(itunesApi);
+//        builder.append(term);
+//        builder.append(limitParam);
+//        builder.append(mediaParam);
+//        return builder.toString();
+//    }
+//
+//    static String downloadWebPage(String url) throws IOException {
+//        StringBuilder result = new StringBuilder();
+//        String line;
+//        URLConnection urlConnection = new URL(url).openConnection();
+//        try (InputStream is = urlConnection.getInputStream();
+//             BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+//            while ((line = br.readLine()) != null) {
+//                result.append(line);
+//            }
+//        }
+//        return result.toString();
+//    }
+//}
+//// КОНЕЦ ПРИМЕРА 6
 
+
+
+
+//// ПРИМЕР 5
+//import java.io.IOException;
+//import java.awt.*;
+//import java.io.*;
+//import java.net.URL;
+//import java.net.URLConnection;
+//import java.nio.file.Files;
+//import java.nio.file.Paths;
+//
+//public class Task5_2_6 {
+//    public static void main(String[] args) throws IOException {
+//        System.out.println("""
+//                Задание:\s
+//                Модуль 5. Интерфейсы, абстрактные классы, статические методы. Задание №2:\s
+//                    6. Сделайте метод toString у класса ITunesSong, который возвращает информацию в
+//                       формате xml: <artist>Rick Ross</artist>… и так далее.\s
+//
+//                Решение:\s""");
+//
+//        playSong("Rick Ross");
+//    }
+//
+//    static void playSong(String searchRequest) throws IOException {
+//        playSongInternal(searchRequest, 1);
+//    }
+//
+//    void playSong(String searchRequest, int limit) throws IOException {
+//        playSongInternal(searchRequest, limit);
+//    }
+//
+//    private static void playSongInternal(String searchRequest, int limit) throws IOException {
+//        String url = buildUrl(searchRequest, limit);
+//        String page = downloadWebPage(url);
+//
+//        String artistName = getTag(page, "artistName");
+//        String trackName = getTag(page, "trackName");
+//        String previewUrl = getTag(page, "previewUrl");
+//        System.out.println(artistName + " - " + trackName);
+//        try (InputStream in = new URL(previewUrl).openStream()) {
+//            Files.copy(in, Paths.get(trackName + ".m4a"));
+//        }
+//        System.out.println("Downloaded!");
+//
+//        if (!Desktop.isDesktopSupported()) //check if Desktop is supported by Platform or not
+//        {
+//            System.out.println("File opening not supported");
+//            return;
+//        }
+//
+//        Desktop desktop = Desktop.getDesktop();
+//        File file = new File(trackName + ".m4a");
+//        desktop.open(file); //opens the specified file
+//    }
+//
+//    private static String getTag(String page, String tagName) {
+//        int start = page.indexOf(tagName) + tagName.length() + 3;
+//        int end = page.indexOf("\"", start);
+//        String value = page.substring(start, end);
+//        return value;
+//    }
+//
+//    private static String buildUrl(String searchRequest, int limit) {
+//        String term = searchRequest.replaceAll(" ", "+");
+//        String itunesApi = "https://itunes.apple.com/search?term=";
+//        String limitParam = "&limit=1" + limit;
+//        String mediaParam = "&media=music";
+//        StringBuilder builder = new StringBuilder();
+//        builder.append(itunesApi);
+//        builder.append(term);
+//        builder.append(limitParam);
+//        builder.append(mediaParam);
+//        return builder.toString();
+//    }
+//
+//    static String downloadWebPage(String url) throws IOException {
+//        StringBuilder result = new StringBuilder();
+//        String line;
+//        URLConnection urlConnection = new URL(url).openConnection();
+//        try (InputStream is = urlConnection.getInputStream();
+//             BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+//            while ((line = br.readLine()) != null) {
+//                result.append(line);
+//            }
+//        }
+//        return result.toString();
+//    }
+//}
+//// КОНЕЦ ПРИМЕРА 5
+
+
+
+
+//// ПРИМЕР 4
 //import java.io.IOException;
 //
 //public class Task5_2_6 {
@@ -143,6 +291,8 @@ class MainClass {
 //        System.out.println(song2);
 //    }
 //}
+//// КОНЕЦ ПРИМЕРА 4
+
 
 
 
