@@ -74,7 +74,3 @@ public class Task5_2_7 {
         return sb.toString();
     }
 }
-
-
-
-
