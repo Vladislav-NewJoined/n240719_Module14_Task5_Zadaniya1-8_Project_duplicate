@@ -1,9 +1,7 @@
 package task5_2_4;
 
-import java.io.IOException;
-
 public class Task5_2_4 {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         System.out.println("""
                 Задание:\s
                 Модуль 5. Интерфейсы, абстрактные классы, статические методы. Задание №2:\s
