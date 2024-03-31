@@ -1,9 +1,5 @@
 package task5_3_8;
 
-
-
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +18,7 @@ public class Task5_3_8 {
 
                 Решение:\s""");
 
-        RandomMoviePicker5 moviePicker = new RandomMoviePicker5();
+        RandomMoviePicker moviePicker = new RandomMoviePicker();
         ITunesProduct[] movies = moviePicker.getRandomMovieNames();
         System.out.println("Films to watch: ");
         for (int i = 0; i < movies.length; i++) {
@@ -59,7 +55,7 @@ public class Task5_3_8 {
     }
 }
 
-class RandomMoviePicker5 {
+class RandomMoviePicker {
     PageDownloader downloader = new PageDownloader();
 
     ITunesProduct[] getRandomMovieNames() {
@@ -142,7 +138,7 @@ class PageDownloader {
 //
 //                Решение:\s""");
 //
-//        RandomMoviePicker5 moviePicker = new RandomMoviePicker5();
+//        RandomMoviePicker moviePicker = new RandomMoviePicker();
 //        ITunesProduct[] movies = moviePicker.getRandomMovieNames();
 //        System.out.println("Films to watch: ");
 //        for (int i = 0; i < movies.length; i++) {
@@ -169,7 +165,7 @@ class PageDownloader {
 //    }
 //}
 //
-//class RandomMoviePicker5 {
+//class RandomMoviePicker {
 //    PageDownloader downloader = new PageDownloader();
 //
 //    ITunesProduct[] getRandomMovieNames() {
@@ -249,7 +245,7 @@ class PageDownloader {
 //
 //                Решение:\s""");
 //
-//        RandomMoviePicker5 moviePicker = new RandomMoviePicker5();
+//        RandomMoviePicker moviePicker = new RandomMoviePicker();
 //        ITunesProduct[] movies = moviePicker.getRandomMovieNames();
 //        System.out.println("Films to watch: ");
 //        for (int i=0; i<movies.length; i++) {
@@ -259,7 +255,7 @@ class PageDownloader {
 //    }
 //}
 //
-//class RandomMoviePicker5 {
+//class RandomMoviePicker {
 //    PageDownloader downloader = new PageDownloader();
 //
 //    ITunesProduct[] getRandomMovieNames() {
@@ -335,7 +331,7 @@ class PageDownloader {
 //        do {
 //            System.out.println("Please choose a film to watch:");
 //
-//            RandomMoviePicker5 moviePicker = new RandomMoviePicker5();
+//            RandomMoviePicker moviePicker = new RandomMoviePicker();
 //            ITunesProduct[] movies = moviePicker.getRandomMovieNames();
 //            for (int i = 0; i < movies.length; i++) {
 //                int number = i + 1;
@@ -350,7 +346,7 @@ class PageDownloader {
 //    }
 //}
 //
-//class RandomMoviePicker5 {
+//class RandomMoviePicker {
 //    PageDownloader downloader = new PageDownloader();
 //
 //    ITunesProduct[] getRandomMovieNames() {
@@ -518,7 +514,7 @@ class PageDownloader {
 //
 //                Решение:\s""");
 //
-//        RandomMoviePicker5 moviePicker = new RandomMoviePicker5();
+//        RandomMoviePicker moviePicker = new RandomMoviePicker();
 //        ITunesProduct[] movies = moviePicker.getRandomMovieNames();
 //        System.out.println("Choose film to watch: ");
 ////        System.out.println(Arrays.toString(movies));
@@ -536,7 +532,7 @@ class PageDownloader {
 //    }
 //}
 //
-//class RandomMoviePicker5 {
+//class RandomMoviePicker {
 //    PageDownloader downloader = new PageDownloader();
 //
 //    ITunesProduct[] getRandomMovieNames() {
