@@ -3,7 +3,7 @@ package task5_3_8;
 
 
 
-//// ПРИМЕР 6
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,10 +41,20 @@ public class Task5_3_8 {
                 int number = i + 1;
                 System.out.println(number + ": " + movies2[i].name + "(" + movies2[i].year + ")");
             }
+
+            // Compare the movies arrays
+            System.out.println("Checking for coincidences between movies:");
+            for (ITunesProduct movie1 : movies) {
+                for (ITunesProduct movie2 : movies2) {
+                    if (movie1.name.equals(movie2.name) && movie1.year.equals(movie2.year)) {
+                        System.out.println("Coincidence found: " + movie1.name + "(" + movie1.year + ")");
+                    }
+                }
+            }
         } else if (userInput.equals("no")) {
-            System.out.println("Exiting program.");
+            System.out.println("Program closed.");
         } else {
-            System.out.println("Invalid input. Exiting program.");
+            System.out.println("Invalid input. Program closed.");
         }
     }
 }
@@ -106,8 +116,117 @@ class PageDownloader {
         return result.toString(); // goto 13 line
     }
 }
-//// КОНЕЦ ПРИМЕРА 6
 
+
+
+
+
+
+
+//// ПРИМЕР 6 _работает для создания 2-го массива. Осталось сравнить массивы
+//import java.io.BufferedReader;
+//import java.io.IOException;
+//import java.io.InputStream;
+//import java.io.InputStreamReader;
+//import java.net.URL;
+//import java.net.URLConnection;
+//
+//public class Task5_3_8 {
+//    public static void main(String[] args) throws IOException {
+//        System.out.println("""
+//                Задание:\s
+//                Модуль 5. Интерфейсы, абстрактные классы, статические методы. Задание №3:\s
+//                    8. Доработайте медиабраузер iTunes: он будет сохранять все найденные результаты в массив,
+//                       далее давай пользователю возможность поискать еще раз; но скрывая повторяющиеся
+//                       результаты (сверяясь с массивом)\s
+//
+//                Решение:\s""");
+//
+//        RandomMoviePicker5 moviePicker = new RandomMoviePicker5();
+//        ITunesProduct[] movies = moviePicker.getRandomMovieNames();
+//        System.out.println("Films to watch: ");
+//        for (int i = 0; i < movies.length; i++) {
+//            int number = i + 1;
+//            System.out.println(number + ": " + movies[i].name + "(" + movies[i].year + ")");
+//        }
+//
+//        System.out.println("Continue the selection? 'yes' or 'no'");
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//        String userInput = reader.readLine();
+//
+//        if (userInput.equals("yes")) {
+//            ITunesProduct[] movies2 = moviePicker.getRandomMovieNames();
+//            System.out.println("Additional films to watch: ");
+//            for (int i = 0; i < movies2.length; i++) {
+//                int number = i + 1;
+//                System.out.println(number + ": " + movies2[i].name + "(" + movies2[i].year + ")");
+//            }
+//        } else if (userInput.equals("no")) {
+//            System.out.println("Exiting program.");
+//        } else {
+//            System.out.println("Invalid input. Exiting program.");
+//        }
+//    }
+//}
+//
+//class RandomMoviePicker5 {
+//    PageDownloader downloader = new PageDownloader();
+//
+//    ITunesProduct[] getRandomMovieNames() {
+//        String url = "https://randommer.io/random-movies";
+//        String page = downloader.downloadWebPage(url);
+//
+//        ITunesProduct[] movies = new ITunesProduct[16];
+//        int endIndex = 0;
+//        for (int i = 0; i < 16; i++) {
+//            int captionIndex = page.indexOf("<div class=\"caption\"", endIndex);
+//            int startIndex = captionIndex + 52;
+//            endIndex = page.indexOf("</div>", startIndex) - 28;
+//            String movieName = page.substring(startIndex, endIndex);
+//            String nameWithoutYear = movieName.substring(0, movieName.length() - 6);
+//            String year = movieName.substring(movieName.length() - 5, movieName.length() - 1);
+//            movies[i] = new ITunesProduct(nameWithoutYear, year);
+//        }
+//        return movies;
+//    }
+//}
+//
+//class ITunesProduct {
+//    String name;
+//    String year;
+//    String artistName;
+//    String collectionName;
+//    String previewUrl;
+//    String country;
+//
+//    ITunesProduct(String inputName, String inputYear) {
+//        this.name = inputName;
+//        this.year = inputYear;
+//    }
+//}
+//
+//class PageDownloader {
+//    public String downloadWebPage(String url) {
+//        StringBuilder result = new StringBuilder();
+//        String line;
+//        URLConnection urlConnection = null;
+//        try {
+//            urlConnection = new URL(url).openConnection();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        try (InputStream is = urlConnection.getInputStream();
+//             BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+//            while ((line = br.readLine()) != null) {
+//                result.append(line);
+//            }
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return result.toString(); // goto 13 line
+//    }
+//}
+//// КОНЕЦ ПРИМЕРА 6
 
 
 
