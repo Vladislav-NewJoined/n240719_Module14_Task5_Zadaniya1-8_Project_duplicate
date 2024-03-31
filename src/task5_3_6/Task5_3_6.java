@@ -1,7 +1,6 @@
 package task5_3_6;
 
 import java.io.IOException;
-import java.io.File;
 
 public class Task5_3_6 {
     public static void main(String[] args) throws IOException {
