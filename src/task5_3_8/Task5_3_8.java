@@ -91,6 +91,10 @@ class PageDownloader {
 class ITunesProduct {
     String name;
     String year;
+    String artistName;
+    String collectionName;
+    String previewUrl;
+    String country;
 
     ITunesProduct(String inputName, String inputYear) {
         this.name = inputName;
