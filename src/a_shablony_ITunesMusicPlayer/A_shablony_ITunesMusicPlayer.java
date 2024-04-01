@@ -40,7 +40,7 @@ class MainClass {
 //        System.out.println(page);
         System.out.println(artistName + " - " + trackName);
         try (InputStream in = new URL(previewUrl).openStream()) {
-            Files.copy(in, Paths.get(trackName + ".m4a"));
+            Files.copy(in, Paths.get("src\\a_shablony_ITunesMusicPlayer\\" + trackName + ".m4a"));
         }
         System.out.println("Downloaded!");
 
@@ -52,7 +52,7 @@ class MainClass {
         }
 
         Desktop desktop = Desktop.getDesktop();
-        File file = new File(trackName + ".m4a");
+        File file = new File("src\\a_shablony_ITunesMusicPlayer\\" + trackName + ".m4a");
         desktop.open(file); //opens the specified file
     }
 

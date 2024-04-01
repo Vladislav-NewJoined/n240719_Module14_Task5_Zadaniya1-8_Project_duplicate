@@ -14,6 +14,13 @@ import java.nio.file.Paths;
 // мин 27 03 ITunesMusicPlayer Модуль1 Тема3 Урок 8. Перегрузка методов
 
 public class ITunesMusicPlayer {
+    public static void main(String[] args) throws IOException {
+        PreITunesMusicPlayer mainClass = new PreITunesMusicPlayer();
+        mainClass.playSong("Rick Ross");
+    }
+}
+
+class PreITunesMusicPlayer {
     void playSong(String searchRequest) throws IOException {
         playSongInternal(searchRequest, 1);
     }
@@ -33,7 +40,7 @@ public class ITunesMusicPlayer {
 //        System.out.println(page);
         System.out.println(artistName + " - " + trackName);
         try (InputStream in = new URL(previewUrl).openStream()) {
-            Files.copy(in, Paths.get(trackName + ".m4a"));
+            Files.copy(in, Paths.get("src/a_shablony/" + trackName + ".m4a"));
         }
         System.out.println("Downloaded!");
 
@@ -45,7 +52,7 @@ public class ITunesMusicPlayer {
         }
 
         Desktop desktop = Desktop.getDesktop();
-        File file = new File(trackName + ".m4a");
+        File file = new File("src/a_shablony/" + trackName + ".m4a");
         desktop.open(file); //opens the specified file
     }
 
