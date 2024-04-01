@@ -40,7 +40,7 @@ interface NewsInterface {
 
             System.out.println("Запрашиваем новости по категории '" + category + "':");
             System.out.println("Полученные по запросу новости:\n" + response.toString());
-            System.out.println("\n" + "Интернет-ресурс на который делается API запрос: " + url);
+            System.out.println("\n" + "Интернет-ресурс, на который делается API запрос: " + url);
         } catch (Exception e) {
             e.printStackTrace();
         }
