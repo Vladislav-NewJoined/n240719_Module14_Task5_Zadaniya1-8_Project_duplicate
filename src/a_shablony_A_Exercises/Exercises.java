@@ -1,32 +1,35 @@
 package a_shablony_A_Exercises;
 
-import java.io.IOException;
-
 public class Exercises {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         System.out.println("""
-                Задание:\s
-                Модуль 5. ...:\s
-                    1. ...\s
-
                 Решение:\s""");
-
-        System.out.println("""
-                \nSome text.\s""");
 
         Helper helper = new Helper(); // Создаем объект класса Helper
         String greeting = helper.getHello(); // Вызываем метод getHello() и сохраняем результат в переменную
         System.out.println(greeting); // Выводим результат на экран
+
+        Helper2 helper2 = new Helper2(); // Создаем объект класса Helper2
+        helper2.method2("", ""); // Вызываем метод method2()
+        System.out.println(helper2.getHello); // Выводим результат на экран
     }
 }
 
 // Класс, содержащий метод, возвращающий строку
 class Helper {
     public String getHello() {
-        return "Hello, World!";
+        return "Привет из класса Helper!";
     }
 }
 
+class Helper2 {
+    String getHello;
+
+    public void method2(String parameter1, String parameter2) {
+        getHello = "Привет из класса Helper2!"; // Инициализация переменной getHello в методе
+
+    }
+}
 
 
 
