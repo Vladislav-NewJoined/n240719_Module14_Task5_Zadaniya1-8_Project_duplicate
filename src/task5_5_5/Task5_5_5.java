@@ -1,4 +1,4 @@
-package task5_5_2;
+package task5_5_5;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,15 +8,15 @@ abstract class SongLyrics {
     protected abstract String getLyrics(String song);
 }
 
-public class Task5_5_2 {
+public class Task5_5_5 {
     public static void main(String[] args) throws IOException {
         System.out.println("""
                 Задание:\s
                 Модуль 5. Интерфейсы, абстрактные классы, статические методы. Задание №5:\s
-                    2. Создайте файл в формате: Название песни: текст песни, и так много песен
+                    5. Создайте файл в формате: Название песни: текст песни, и так много песен
                        (можете разделять разные песни пустыми строками, или другим способом)
                        Создайте наследника - FileSongLyrics, который ищет в файле по названию
-                       песни, и если находит, возвращает текст песни.\s
+                        песни, и если находит, возвращает текст песни.\s
 
                 Решение:\s""");
         System.out.println("В файл src/task5_5_2/SongLyrics.txt в тестовом режиме записаны" +
