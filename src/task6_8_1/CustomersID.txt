@@ -1,2 +1,2 @@
 Email: x@gmail.com
-Password: password1
+Password: pass1
