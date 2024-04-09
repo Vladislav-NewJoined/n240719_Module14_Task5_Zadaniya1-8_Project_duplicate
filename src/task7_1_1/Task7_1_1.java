@@ -49,19 +49,19 @@ public class Task7_1_1 {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Введите первое число, например '5,3': ");
+        System.out.print("Введите первое число, например '5,37': ");
         double num1 = scanner.nextDouble();
 
-        System.out.print("Введите второе число, например '5,3': ");
+        System.out.print("Введите второе число, например '2,1': ");
         double num2 = scanner.nextDouble();
 
-        System.out.println("Выберите номер операции, например '3': ");
+        System.out.println("Выберите операцию: ");
         System.out.println("1. Сложение (+)");
         System.out.println("2. Вычитание (-)");
         System.out.println("3. Умножение (*)");
         System.out.println("4. Деление (/)");
 
-        System.out.print("Введите номер операции: ");
+        System.out.print("Введите номер операции, например '3': ");
         int operation = scanner.nextInt();
 
         // Создание экземпляра калькулятора
