@@ -56,7 +56,6 @@ public class Task7_7_1 {
 
         IntStream intStream1 = IntStream.of(student1.mark1, student1.mark2, student1.mark3, student1.mark4);
         IntStream intStream2 = IntStream.of(student1.mark5, student1.mark6, student1.mark7, student1.mark8);
-        /*System.out.println("SUM: " + IntStream.of(student1.mark1, 30, 50, 70, 90, 100).sum());*/
 
         double avg1 = intStream1.average().getAsDouble();
         double avg2 = intStream2.average().getAsDouble();
