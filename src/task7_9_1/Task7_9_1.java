@@ -70,7 +70,7 @@ public class Task7_9_1 {
 // Способ 6 конец
 
 // Способ 7
-        System.out.println("Способ 7 ");
+        System.out.println("Способ 7");
         Stream<StudentsAge> studentStream7 = studentsAge.stream();
         System.out.println("Результат группировки при помощи mapping (рост, соответствующий возрасту): " + studentStream7.collect(Collectors.groupingBy(StudentsAge::getAge, Collectors.mapping(StudentsAge::getHeight, Collectors.toList()))));
         System.out.println(); // перенос строки
