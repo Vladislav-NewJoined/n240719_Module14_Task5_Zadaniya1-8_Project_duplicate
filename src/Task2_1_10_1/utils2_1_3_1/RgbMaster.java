@@ -1,4 +1,4 @@
-package task7_10_1;
+package Task2_1_10_1.utils2_1_3_1;
 // лямбда начинается на мин 10 43
 
 import Task2_1_10_1.functions.ImageOperation;
