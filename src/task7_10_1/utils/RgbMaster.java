@@ -1,7 +1,7 @@
-package Task2_1_10_1.utils2_1_3_1;
+package task7_10_1.utils;
 // лямбда начинается на мин 10 43
 
-import Task2_1_10_1.functions.ImageOperation;
+import task7_10_1.functions.ImageOperation;
 
 import java.awt.image.BufferedImage;
 
@@ -27,7 +27,7 @@ public class RgbMaster {
 
     public void changeImage(ImageOperation operation) throws Exception {
         for (int i = 0; i < pixels.length; i++) {
-            float[] pixel = ImageUtils.rgbIntToArray(pixels[i]);
+            float[] pixel = task7_10_1.utils.ImageUtils.rgbIntToArray(pixels[i]);
             float[] newPixel = operation.execute(pixel);
             pixels[i] = ImageUtils.arrayToRgbInt(newPixel);
         }

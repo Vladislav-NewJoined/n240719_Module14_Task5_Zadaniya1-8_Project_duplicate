@@ -1,11 +1,11 @@
-package Task2_1_10_1;
+package task7_10_1;
 
-import Task2_1_10_1.utils2_1_3_1.ImageUtils;
-import Task2_1_10_1.utils2_1_3_1.RgbMaster;
+import task7_10_1.utils.ImageUtils;
+import task7_10_1.utils.RgbMaster;
 
 import java.awt.image.BufferedImage;
 
-public class Task2_1_10_1 {
+public class Task7_10_1 {
     public static void main(String[] args) throws Exception {
         System.out.println("""
                 Задание:\s
@@ -19,14 +19,14 @@ public class Task2_1_10_1 {
                     только синий компонент пикселей
                     сепия
 
-                Решение:
-                Изображения после обрботки смотреть в файле:  Images2_1_10_1\s\n""");
+                Решение:\s""");
 
-        final BufferedImage image1 = ImageUtils.getImage("src/Task2_1_10_1/Images2_1_10_1/Picture_Mountain_Lake.png");
-        final BufferedImage image2 = ImageUtils.getImage("src/Task2_1_10_1/Images2_1_10_1/Picture_Mountain_Lake.png");
-        final BufferedImage image3 = ImageUtils.getImage("src/Task2_1_10_1/Images2_1_10_1/Picture_Mountain_Lake.png");
-        final BufferedImage image4 = ImageUtils.getImage("src/Task2_1_10_1/Images2_1_10_1/Picture_Mountain_Lake.png");
-        final BufferedImage image5 = ImageUtils.getImage("src/Task2_1_10_1/Images2_1_10_1/Picture_Mountain_Lake.png");
+        System.out.println("Изображения после обработки смотрите в папке 'Images' с именами 'cloned_Picture_...'");
+        final BufferedImage image1 = ImageUtils.getImage("src/Task7_10_1/Images/Picture_Mountain_Lake.png");
+        final BufferedImage image2 = ImageUtils.getImage("src/Task7_10_1/Images/Picture_Mountain_Lake.png");
+        final BufferedImage image3 = ImageUtils.getImage("src/Task7_10_1/Images/Picture_Mountain_Lake.png");
+        final BufferedImage image4 = ImageUtils.getImage("src/Task7_10_1/Images/Picture_Mountain_Lake.png");
+        final BufferedImage image5 = ImageUtils.getImage("src/Task7_10_1/Images/Picture_Mountain_Lake.png");
 
 
         // Способ 1. Применён фильтр: монохромный.
@@ -38,7 +38,7 @@ public class Task2_1_10_1 {
             rgb[2] = mean;
             return rgb;
         });
-        ImageUtils.saveImage(rgbMaster1.getImage(), "src/Task2_1_10_1/Images2_1_10_1/cloned_Picture_Mountain_Lake1.png");
+        ImageUtils.saveImage(rgbMaster1.getImage(), "src/Task7_10_1/Images/cloned_Picture_Mountain_Lake1.png");
         System.out.println("Выполнен Способ 1. Применён фильтр: монохромный.");
         // Способ 1. Применён фильтр: монохромный. Конец
 
@@ -46,7 +46,7 @@ public class Task2_1_10_1 {
         // Способ 2. Применён фильтр: только красный компонент пикселей
         final RgbMaster rgbMaster2 = new RgbMaster(image2);
         rgbMaster2.changeImage(FilterOperation::onlyRed);
-        ImageUtils.saveImage(rgbMaster2.getImage(), "src/Task2_1_10_1/Images2_1_10_1/cloned_Picture_Mountain_Lake2.png");
+        ImageUtils.saveImage(rgbMaster2.getImage(), "src/Task7_10_1/Images/cloned_Picture_Mountain_Lake2.png");
         System.out.println("Выполнен Способ 2. Применён фильтр: только красный компонент пикселей.");
         // Способ 2. Применён фильтр: только красный компонент пикселей. Конец
 
@@ -54,7 +54,7 @@ public class Task2_1_10_1 {
         // Способ 3. Применён фильтр: только зеленый компонент пикселей
         final RgbMaster rgbMaster3 = new RgbMaster(image3);
         rgbMaster3.changeImage(FilterOperation::onlyGreen);
-        ImageUtils.saveImage(rgbMaster3.getImage(), "src/Task2_1_10_1/Images2_1_10_1/cloned_Picture_Mountain_Lake3.png");
+        ImageUtils.saveImage(rgbMaster3.getImage(), "src/Task7_10_1/Images/cloned_Picture_Mountain_Lake3.png");
         System.out.println("Выполнен Способ 3. Применён фильтр: только зеленый компонент пикселей.");
         // Способ 3. Применён фильтр: только зеленый компонент пикселей. Конец
 
@@ -62,16 +62,15 @@ public class Task2_1_10_1 {
         // Способ 4. Применён фильтр: только синий компонент пикселей
         final RgbMaster rgbMaster4 = new RgbMaster(image4);
         rgbMaster4.changeImage(FilterOperation::onlyBlue);
-        ImageUtils.saveImage(rgbMaster4.getImage(), "src/Task2_1_10_1/Images2_1_10_1/cloned_Picture_Mountain_Lake4.png");
+        ImageUtils.saveImage(rgbMaster4.getImage(), "src/Task7_10_1/Images/cloned_Picture_Mountain_Lake4.png");
         System.out.println("Выполнен Способ 4. Применён фильтр: только синий компонент пикселей.");
         // Способ 4. Применён фильтр: только синий компонент пикселей. Конец
 
 
         // Способ 5. Применён фильтр: сепия
         final RgbMaster rgbMaster5 = new RgbMaster(image5);
-        rgbMaster5.changeImage(FilterOperation::/*greyScale *//**//**//**//*onlyRed*//**//* onlyGreen *//*
-                onlyBlue */sepia);
-        ImageUtils.saveImage(rgbMaster5.getImage(), "src/Task2_1_10_1/Images2_1_10_1/cloned_Picture_Mountain_Lake5.png");
+        rgbMaster5.changeImage(FilterOperation::sepia);
+        ImageUtils.saveImage(rgbMaster5.getImage(), "src/Task7_10_1/Images/cloned_Picture_Mountain_Lake5.png");
         System.out.println("Выполнен Способ 5. Применён фильтр: сепия.");
         // Способ 5. Применён фильтр: сепия. Конец
 
