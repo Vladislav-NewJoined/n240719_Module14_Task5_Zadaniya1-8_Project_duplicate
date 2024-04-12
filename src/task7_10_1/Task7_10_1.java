@@ -8,7 +8,7 @@ import task7_10_1.FilterOperation;
 import java.awt.image.BufferedImage;
 
 public class Task7_10_1 {
-//    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 //        System.out.println("""
 //                Задание:\s
 //                Модуль 7. Взаимодействие с API. Задание №10. Проект:\s
@@ -75,7 +75,7 @@ public class Task7_10_1 {
 //        System.out.println("Выполнен Способ 5. Применён фильтр: сепия.");
 //        // Способ 5. Применён фильтр: сепия. Конец
 //
-//    }
+    }
 }
 
 
