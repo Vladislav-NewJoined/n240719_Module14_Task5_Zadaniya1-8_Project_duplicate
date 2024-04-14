@@ -16,7 +16,6 @@ public class Task8_1_2 {
 }
 
 class NewThread extends Thread {
-
     @Override
     public void run() {
         super.run();

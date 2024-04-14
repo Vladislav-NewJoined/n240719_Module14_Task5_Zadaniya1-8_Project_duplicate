@@ -9,7 +9,7 @@ public class Task8_1_3 {
 
                 Решение:\s""");
 
-
+        System.out.println("Создаём экземпляр класса и запускаем новый поток");
         System.out.println("СПОСОБ 1:");
         System.out.println("Main thread started (Способ 1)...");
         for (int i = 0; i < 3; i++) {
@@ -34,7 +34,6 @@ public class Task8_1_3 {
 }
 
 class MyThreadLogic implements Runnable {
-
     @Override
     public void run() {
         System.out.println("Способ 1");
