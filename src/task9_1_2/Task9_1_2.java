@@ -1,7 +1,7 @@
 package task9_1_2;
 
 public class Task9_1_2 {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         System.out.println("""
                 Задание:\s
                 Модуль 9. UI и использование готовых SDK. Задание №1:\s
