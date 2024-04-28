@@ -8,7 +8,6 @@
     <artifactId>Draft240101</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <dependencies>
         <dependency>
             <groupId>org.telegram</groupId>
