@@ -112,8 +112,9 @@ public class Bot extends TelegramLongPollingBot {
         }
             keyboardRows.add(row);
         }
+        replyKeyboardMarkup.setKeyboard(keyboardRows);
         replyKeyboardMarkup.setOneTimeKeyboard(true);
-        sendPhoto.setReplyMarkup();
+        sendPhoto.setReplyMarkup(replyKeyboardMarkup);
         sendPhoto.setChatId(chatId);
         InputFile newFile = new InputFile();
         newFile.setMedia(new File(localPath));
