@@ -90,9 +90,9 @@ public class Bot extends TelegramLongPollingBot {
 
     private static void processingImage(String fileName) throws Exception {
         ///
-        final BufferedImage image = task9_4_1.utils.ImageUtils.getImage(fileName);
-//        final BufferedImage image = ImageUtils.getImage("src/main/java/task9_4_1/logoJAVA.jpg");
-        final task9_4_1.utils.RgbMaster rgbMaster = new RgbMaster(image);
+        final BufferedImage image = task9_5_1.utils.ImageUtils.getImage(fileName);
+//        final BufferedImage image = ImageUtils.getImage("src/main/java/task9_5_1/logoJAVA.jpg");
+        final task9_5_1.utils.RgbMaster rgbMaster = new task9_5_1.utils.RgbMaster(image);
         rgbMaster.changeImage(FilterOperation::greyScale);
         ImageUtils.saveImage(rgbMaster.getImage(),"src/main/java/task9_5_1/cloned_image.jpg");
     }
