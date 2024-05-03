@@ -170,7 +170,7 @@ import task9_4_1.utils.RgbMaster;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
-        import java.net.URL;
+import java.net.URL;
 
 public class Bot extends TelegramLongPollingBot {
     @Override
@@ -231,8 +231,8 @@ public class Bot extends TelegramLongPollingBot {
 
     private static void processingImage(String fileName) throws Exception {
         ///
-        final BufferedImage image = task9_5_1.utils.ImageUtils.getImage(fileName);
-//        final BufferedImage image = ImageUtils.getImage("src/main/java/task9_5_1/logoJAVA.jpg");
+        final BufferedImage image = task9_4_1.utils.ImageUtils.getImage(fileName);
+//        final BufferedImage image = ImageUtils.getImage("src/main/java/task9_4_1/logoJAVA.jpg");
         final RgbMaster rgbMaster = new RgbMaster(image);
         rgbMaster.changeImage(FilterOperation::greyScale);
         ImageUtils.saveImage(rgbMaster.getImage(),"src/main/java/task9_4_1/cloned_image.jpg");

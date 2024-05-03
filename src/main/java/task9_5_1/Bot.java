@@ -1,21 +1,23 @@
 package task9_5_1;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.GetFile;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.api.objects.PhotoSize;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import task9_5_1.functions.FilterOperation;
-import task9_5_1.utils.ImageUtils;
-import task9_5_1.utils.RgbMaster;
+import task9_4_1.functions.FilterOperation;
+import task9_4_1.utils.ImageUtils;
+import task9_4_1.utils.RgbMaster;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
-        import java.net.URL;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Bot extends TelegramLongPollingBot {
@@ -32,15 +34,48 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        final String localFileName = "src/main/java/task9_5_1/" + "cloned_image.jpg";
+//        final String localFileName = "src/main/java/task9_5_1/" + "received_image.jpeg";
         Message message = update.getMessage();
-        String localFileName = "src/main/java/task9_5_1/cloned_image.jpg";
-        final String chatId = message.getChatId().toString();
+//        String response = message.getFrom().getId().toString();
+        PhotoSize photoSize = message.getPhoto().get(0);
+        final String fileId = photoSize.getFileId();
+        try {
+            final org.telegram.telegrambots.meta.api.objects.File file = sendApiMethod(new GetFile(fileId));
+            final String imageUrl = "https://api.telegram.org/file/bot" + getBotToken() + "/" + file.getFilePath();
+            saveImage(imageUrl, localFileName);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
+        ///
+        try {
+            processingImage(localFileName);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+        ///
+//        System.out.println(message.getText());
         SendPhoto sendPhoto = new SendPhoto();
-        sendPhoto.setChatId(chatId);
-        InputFile newFile = new InputFile(new File(localFileName));
+        sendPhoto.setChatId(message.getChatId().toString());
+        InputFile newFile = new InputFile();
+        newFile.setMedia(new File(localFileName));
         sendPhoto.setPhoto(newFile);
         sendPhoto.setCaption("Edited image");
+
+//        SendMessage sendMessage = new SendMessage();
+//        sendMessage.setChatId(message.getChatId().toString());
+//        sendMessage.setText("Your message: " + response);
+        try {
+//            execute(sendMessage);
+            execute(sendPhoto);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
 
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         replyKeyboardMarkup.setResizeKeyboard(true);
@@ -75,9 +110,9 @@ public class Bot extends TelegramLongPollingBot {
     // ДОБАВИЛ ИЗ ПРИМЕРА 3
     private static void processingImage(String fileName) throws Exception {
         ///
-        final BufferedImage image = ImageUtils.getImage(fileName);
-//        final BufferedImage image = ImageUtils.getImage("src/main/java/task9_5_1/logoJAVA.jpg");
-        final RgbMaster rgbMaster = new RgbMaster(image);
+        final BufferedImage image = task9_4_1.utils.ImageUtils.getImage(fileName);
+//        final BufferedImage image = ImageUtils.getImage("src/main/java/task9_4_1/logoJAVA.jpg");
+        final task9_4_1.utils.RgbMaster rgbMaster = new RgbMaster(image);
         rgbMaster.changeImage(FilterOperation::greyScale);
         ImageUtils.saveImage(rgbMaster.getImage(),"src/main/java/task9_5_1/cloned_image.jpg");
     }
@@ -123,8 +158,7 @@ public class Bot extends TelegramLongPollingBot {
 
 
 
-
-//// ПРИМЕР 4 ПРИСЫЛАЕТ, НО ФОТО НЕ ТО
+//// ПРИМЕР 4 ПРИСЫЛАЕТ C КНОПКАМИ, НО ФОТО НЕ ТО
 //import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 //import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 //import org.telegram.telegrambots.meta.api.objects.InputFile;
