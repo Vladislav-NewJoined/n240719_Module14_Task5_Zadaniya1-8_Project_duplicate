@@ -33,9 +33,6 @@ public class RgbMaster {
             float[] newPixel = operation.execute(pixel);
             pixels[i] = ImageUtils.arrayToRgbInt(newPixel);
         }
-//        final int type = hasAlphaChannel ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB;
-//        image = new BufferedImage(width, height, type);
         image.setRGB(0, 0, width, height, pixels, 0, width);
     }
-
 }
