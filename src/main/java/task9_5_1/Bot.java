@@ -11,9 +11,9 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import task9_4_1.functions.FilterOperation;
-import task9_4_1.utils.ImageUtils;
-import task9_4_1.utils.RgbMaster;
+import task9_5_1.functions.FilterOperation;
+import task9_5_1.utils.ImageUtils;
+import task9_5_1.utils.RgbMaster;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
