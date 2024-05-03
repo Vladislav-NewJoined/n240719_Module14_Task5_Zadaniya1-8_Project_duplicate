@@ -19,7 +19,8 @@ public class Task9_5_1 {
             Решение:\s""");
 
         System.out.println("Отредактированное изображение сохранено в файле 'cloned_image.jpg' в папке: " +
-                "`src/main/java/task9_5_1`.");
+                "`src/main/java/task9_5_1`. А также кнопки появились под сообщением в Telegram боте. Снимок " +
+                "экрана сохранён в файле 'buttonsInTelegramBot.jpg' в папке: `src/main/java/task9_5_1`.");
 
 //        final BufferedImage image = ImageUtils.getImage("src/main/java/task9_4_1/logoJAVA.jpg");
 //        final RgbMaster rgbMaster = new RgbMaster(image);
