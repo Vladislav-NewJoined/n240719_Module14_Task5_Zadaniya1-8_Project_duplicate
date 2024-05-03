@@ -35,9 +35,7 @@ public class Bot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         final String localFileName = "src/main/java/task9_5_1/" + "cloned_image.jpg";
-//        final String localFileName = "src/main/java/task9_5_1/" + "received_image.jpeg";
         Message message = update.getMessage();
-//        String response = message.getFrom().getId().toString();
         PhotoSize photoSize = message.getPhoto().get(0);
         final String fileId = photoSize.getFileId();
         try {
@@ -59,7 +57,6 @@ public class Bot extends TelegramLongPollingBot {
 
 
         ///
-//        System.out.println(message.getText());
         SendPhoto sendPhoto = new SendPhoto();
         sendPhoto.setChatId(message.getChatId().toString());
         InputFile newFile = new InputFile();
@@ -67,11 +64,7 @@ public class Bot extends TelegramLongPollingBot {
         sendPhoto.setPhoto(newFile);
         sendPhoto.setCaption("Edited image");
 
-//        SendMessage sendMessage = new SendMessage();
-//        sendMessage.setChatId(message.getChatId().toString());
-//        sendMessage.setText("Your message: " + response);
         try {
-//            execute(sendMessage);
             execute(sendPhoto);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
@@ -93,21 +86,8 @@ public class Bot extends TelegramLongPollingBot {
         replyKeyboardMarkup.setKeyboard(keyboard);
         sendPhoto.setReplyMarkup(replyKeyboardMarkup);
 
-        try {
-            execute(sendPhoto);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
     }
 
-
-
-
-
-
-
-
-    // ДОБАВИЛ ИЗ ПРИМЕРА 3
     private static void processingImage(String fileName) throws Exception {
         ///
         final BufferedImage image = task9_4_1.utils.ImageUtils.getImage(fileName);
@@ -134,7 +114,6 @@ public class Bot extends TelegramLongPollingBot {
         SendPhoto sendPhoto = new SendPhoto();
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
-//        keyboardRows.add(new KeyboardRow());
         for (int i = 0; i < 3; i++) {
             KeyboardRow row = new KeyboardRow();
             for (int j = 0; j < 3; j++) {
@@ -153,7 +132,6 @@ public class Bot extends TelegramLongPollingBot {
         sendPhoto.setPhoto(newFile);
         return sendPhoto;
     }
-
 }
 
 
