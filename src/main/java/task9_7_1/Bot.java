@@ -176,6 +176,21 @@ public class Bot extends TelegramLongPollingBot {
         ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
         Method[] methods = someClass.getMethods();
         int columnCount = 3;
+        int rowsCount = methods.length / columnCount + ((methods.length % columnCount == 0) ? 0 : 1);
+        for (int rowIndex = 0; rowIndex < rowsCount; rowIndex++) {
+            KeyboardRow row = new KeyboardRow();
+            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+                int index = rowIndex * columnCount + columnIndex;
+                if (index >= methods.length) continue;
+                Method method = methods[rowIndex * columnCount + columnIndex];
+                KeyboardButton keyboardButton = new KeyboardButton(method.getName());
+                row.add(keyboardButton);
+            }
+            keyboardRows.add(row);
+        }
+        replyKeyboardMarkup.setKeyboard(keyboardRows);
+        replyKeyboardMarkup.setOneTimeKeyboard(true);
+        return replyKeyboardMarkup;
     }
 }
 
