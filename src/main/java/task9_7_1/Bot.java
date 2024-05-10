@@ -18,23 +18,23 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
 
-import static task9_5_1.utils.PhotoMessageUtils.processingImage;
+import static task9_7_1.utils.PhotoMessageUtils.processingImage;
 
 public class Bot extends TelegramLongPollingBot {
 
     @Override
-    public String getBotUsername() {
-        return "my_gfjhfghfjhgfjhgfghfhgfjf_bot"; // Название вашего бота
+//    public String getBotUsername() { return "my_gfjhfghfjhgfjhgfghfhgfjf_bot"; // Название вашего бота
+    public String getBotUsername() { return "hkjhgkjfdgdfgfgdyou_Bot"; // Название вашего бота
     }
 
     @Override
-    public String getBotToken() {
-        return "6750924950:AAGOE5XBnuJDlNIKHYq61S7bMupKXhKRZZo"; // Токен вашего бота
+//    public String getBotToken() { return "6750924950:AAGOE5XBnuJDlNIKHYq61S7bMupKXhKRZZo"; // Токен вашего бота
+    public String getBotToken() { return "6488095456:AAEpQj-SUQO1MA4wosjrxBsvYMfp_WXwckE"; // Токен вашего бота
     }
 
     @Override
     public void onUpdateReceived(Update update) {
-        final String localFileName = "src/main/java/task9_5_1/" + "cloned_image.jpg";
+        final String localFileName = "src/main/java/task9_7_1/" + "cloned_image.jpg";
         Message message = update.getMessage();
         PhotoSize photoSize = message.getPhoto().get(0);
         final String fileId = photoSize.getFileId();
@@ -91,7 +91,7 @@ public class Bot extends TelegramLongPollingBot {
             for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
                 if (rowIndex == 0 && columnIndex == 0) {
                     try {
-                        Class<?> filterOperationClass = Class.forName("task9_5_1.functions.FilterOperation");
+                        Class<?> filterOperationClass = Class.forName("task9_7_1.functions.FilterOperation");
                         String methodName = "greyScale";
                         Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
                         float[] rgbArray = new float[3]; // Creating an RGB array
@@ -104,7 +104,7 @@ public class Bot extends TelegramLongPollingBot {
 
                 } else if (rowIndex == 0 && columnIndex == 1) {
                     try {
-                        Class<?> filterOperationClass = Class.forName("task9_5_1.functions.FilterOperation");
+                        Class<?> filterOperationClass = Class.forName("task9_7_1.functions.FilterOperation");
                         String methodName = "onlyRed";
                         Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
                         float[] rgbArray = new float[3]; // Creating an RGB array
@@ -117,7 +117,7 @@ public class Bot extends TelegramLongPollingBot {
 
                 } else if (rowIndex == 0 && columnIndex == 2) {
                     try {
-                        Class<?> filterOperationClass = Class.forName("task9_5_1.functions.FilterOperation");
+                        Class<?> filterOperationClass = Class.forName("task9_7_1.functions.FilterOperation");
                         String methodName = "onlyGreen";
                         Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
                         float[] rgbArray = new float[3]; // Creating an RGB array
@@ -130,7 +130,7 @@ public class Bot extends TelegramLongPollingBot {
 
                 } else if (rowIndex == 1 && columnIndex == 0) {
                     try {
-                        Class<?> filterOperationClass = Class.forName("task9_5_1.functions.FilterOperation");
+                        Class<?> filterOperationClass = Class.forName("task9_7_1.functions.FilterOperation");
                         String methodName = "onlyBlue";
                         Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
                         float[] rgbArray = new float[3]; // Creating an RGB array
@@ -143,7 +143,7 @@ public class Bot extends TelegramLongPollingBot {
 
                 } else if (rowIndex == 1 && columnIndex == 1) {
                     try {
-                        Class<?> filterOperationClass = Class.forName("task9_5_1.functions.FilterOperation");
+                        Class<?> filterOperationClass = Class.forName("task9_7_1.functions.FilterOperation");
                         String methodName = "sepia";
                         Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
                         float[] rgbArray = new float[3]; // Creating an RGB array

@@ -3,7 +3,7 @@ package task9_7_1;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.generics.BotSession;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-import task9_5_1.Bot;
+//import task9_7_1.Bot;
 
 public class Task9_7_1 {
     public static void main(String[] args) throws Exception {
@@ -17,6 +17,9 @@ public class Task9_7_1 {
             Решение:\s""");
 
         System.out.println("В Telegram боте созданы .");
+
+        TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
+        BotSession botSession = api.registerBot(new Bot());
 
     }
 }
