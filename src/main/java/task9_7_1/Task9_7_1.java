@@ -3,7 +3,6 @@ package task9_7_1;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.generics.BotSession;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-//import task9_7_1.Bot;
 
 public class Task9_7_1 {
     public static void main(String[] args) throws Exception {
