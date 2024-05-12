@@ -2,6 +2,7 @@ package task9_7_1;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -11,12 +12,15 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import task9_7_1.commands.AppBotCommand;
+import task9_7_1.commands.BotCommonCommands;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import static task9_7_1.utils.PhotoMessageUtils.processingImage;
 
@@ -35,7 +39,36 @@ public class Bot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         final String localFileName = "src/main/java/task9_7_1/" + "cloned_image.jpg";
+
+
+
+
+
+        // Записано из видеоурока
         Message message = update.getMessage();
+        String chatId = message.getChatId().toString();
+        try {
+            String response = runCommand(message.getText());
+            SendMessage sendMessage = new SendMessage();
+            sendMessage.setChatId(chatId);
+            sendMessage.setText(response);
+            execute(sendMessage);
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
+
+
         PhotoSize photoSize = message.getPhoto().get(0);
         final String fileId = photoSize.getFileId();
         try {
@@ -170,6 +203,44 @@ public class Bot extends TelegramLongPollingBot {
         sendPhoto.setPhoto(newFile);
         return sendPhoto;
     }
+
+
+    // Записано из видеоурока
+    private String runCommand(String text) throws InvocationTargetException, IllegalAccessException {
+        Method[] classMethods = BotCommonCommands.class.getDeclaredMethods();
+
+        for (Method method : classMethods) {
+            if (method.isAnnotationPresent(AppBotCommand.class)) {
+                AppBotCommand command = method.getAnnotation(AppBotCommand.class);
+                if (command.name().equals(text)) {
+                    return (String) method.invoke(null);
+                }
+            }
+        }
+        return null;
+    }
+
+
+
+
+
+
+
+    // Записано из видеоурока
+    private List<org.telegram.telegrambots.meta.api.objects.File> getFilesByMessage(Message message) {
+        List<PhotoSize> photoSizes = message.getPhoto();
+        ArrayList<org.telegram.telegrambots.meta.api.objects.File> files = new ArrayList<>();
+        for (PhotoSize photoSize : photoSizes) {
+            final String fileId = photoSize.getFileId();
+            try {
+                files.add(sendApiMethod(new GetFile(fileId)));
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }
 
 
