@@ -7,10 +7,12 @@ import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.PhotoSize;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import task9_7_1.commands.AppBotCommand;
 import task9_7_1.functions.FilterOperation;
 
 import java.io.*;
@@ -115,12 +117,37 @@ public class Bot extends TelegramLongPollingBot {
         return replyKeyboardMarkup;
     }
 
+    private ArrayList<KeyboardRow> getKeyboardRow(Class someClass) {
+        Method[] classMethods = someClass.getMethods();
+        ArrayList<AppBotCommand> commands = new ArrayList<>();
+        for (Method method : classMethods) {
+            if (method.isAnnotationPresent(AppBotCommand.class)) {
+                commands.add(method.getAnnotation(AppBotCommand.class));
+            }
+        }
+        ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
+        int columnCount = 3;
+        int rowsCount = commands.size() / columnCount + ((commands.size() % columnCount == 0) ? 0 : 1);
+        for (int rowIndex = 0; rowIndex < rowsCount; rowIndex++) {
+            KeyboardRow row = new KeyboardRow();
+            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+                int index = rowIndex * columnCount + columnIndex;
+                if (index >= commands.size()) continue;
+                AppBotCommand command = commands.get(rowIndex * columnCount + columnIndex);
+                KeyboardButton keyboardButton = new KeyboardButton(command.name());
+                row.add(keyboardButton);
+            }
+            keyboardRows.add(row);
+        }
+        return keyboardRows;
+    }
+
 }
 
 
 
 
-//// ПРИМЕР 4 _Создались кнопки, как У ПРЕПОДАВАТЕЛЯ!!! В 5 СТРОК, 3 СТОЛБЦА!!!
+//// ПРИМЕР 4 _Создались кнопки, как У ПРЕПОДАВАТЕЛЯ!!! В 5 СТРОК, В 3 СТОЛБЦА!!!
 //import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 //import org.telegram.telegrambots.meta.api.methods.GetFile;
 //import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
