@@ -11,6 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import task9_7_1.functions.FilterOperation;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -83,16 +84,48 @@ public class Bot extends TelegramLongPollingBot {
     private SendPhoto preparePhotoMessage(String localPath, String chatId) {
         SendPhoto sendPhoto = new SendPhoto();
 
-        // Удалить создание клавиатуры с кнопками фильтров
-        // и оставить только отправку изображения без кнопок
+        sendPhoto.setReplyMarkup(getKeyboard(FilterOperation.class));
         sendPhoto.setChatId(chatId);
         InputFile newFile = new InputFile();
         newFile.setMedia(new File(localPath));
         sendPhoto.setPhoto(newFile);
-        sendPhoto.setCaption("Choose a filter:");
-
         return sendPhoto;
+
+
+
+//        // Удалить создание клавиатуры с кнопками фильтров
+//        // и оставить только отправку изображения без кнопок
+//        sendPhoto.setChatId(chatId);
+//        InputFile newFile = new InputFile();
+//        newFile.setMedia(new File(localPath));
+//        sendPhoto.setPhoto(newFile);
+//        sendPhoto.setCaption("Choose a filter:");
+//
+//        return sendPhoto;
     }
+
+    private ReplyKeyboardMarkup getKeyboard(Class someClass) {
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
+        Method[] methods = someClass.getMethods();
+        int columnCount = 3;
+        int rowsCount = methods.length / columnCount + ((methods.length % columnCount == 0) ? 0 : 1);
+        for (int rowIndex = 0; rowIndex < rowsCount; rowIndex++) {
+            KeyboardRow row = new KeyboardRow();
+            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+                int index = rowIndex * columnCount + columnIndex;
+                if (index >= methods.length) continue;
+                Method method = methods[rowIndex * columnCount + columnIndex];
+                KeyboardButton keyboardButton = new KeyboardButton(method.getName());
+                row.add(keyboardButton);
+            }
+            keyboardRows.add(row);
+        }
+        replyKeyboardMarkup.setKeyboard(keyboardRows);
+        replyKeyboardMarkup.setOneTimeKeyboard(true);
+        return replyKeyboardMarkup;
+    }
+
 }
 
 
