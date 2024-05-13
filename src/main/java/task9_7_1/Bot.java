@@ -128,6 +128,7 @@ public class Bot extends TelegramLongPollingBot {
 
 
 
+
 //// ПРИМЕР _Создались две кнопки, НО ОЧЕНЬ БОЛЬШИЕ ПО ВЫСОТЕ!    _17 10 - мин на видеоуроке
 //import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 //import org.telegram.telegrambots.meta.api.methods.GetFile;
