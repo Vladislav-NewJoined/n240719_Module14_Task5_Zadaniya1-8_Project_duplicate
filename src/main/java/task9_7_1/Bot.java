@@ -13,6 +13,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import task9_7_1.commands.AppBotCommand;
+import task9_7_1.commands.BotCmmonCommands;
 import task9_7_1.functions.FilterOperation;
 
 import java.io.*;
@@ -85,8 +86,7 @@ public class Bot extends TelegramLongPollingBot {
 
     private SendPhoto preparePhotoMessage(String localPath, String chatId) {
         SendPhoto sendPhoto = new SendPhoto();
-
-        sendPhoto.setReplyMarkup(getKeyboard(FilterOperation.class));
+        sendPhoto.setReplyMarkup(getKeyboard());
         sendPhoto.setChatId(chatId);
         InputFile newFile = new InputFile();
         newFile.setMedia(new File(localPath));
@@ -95,29 +95,18 @@ public class Bot extends TelegramLongPollingBot {
 
     }
 
-    private ReplyKeyboardMarkup getKeyboard(Class someClass) {
+    private ReplyKeyboardMarkup getKeyboard() {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
-        Method[] methods = someClass.getMethods();
-        int columnCount = 3;
-        int rowsCount = methods.length / columnCount + ((methods.length % columnCount == 0) ? 0 : 1);
-        for (int rowIndex = 0; rowIndex < rowsCount; rowIndex++) {
-            KeyboardRow row = new KeyboardRow();
-            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
-                int index = rowIndex * columnCount + columnIndex;
-                if (index >= methods.length) continue;
-                Method method = methods[rowIndex * columnCount + columnIndex];
-                KeyboardButton keyboardButton = new KeyboardButton(method.getName());
-                row.add(keyboardButton);
-            }
-            keyboardRows.add(row);
-        }
-        replyKeyboardMarkup.setKeyboard(keyboardRows);
+        ArrayList<KeyboardRow> allKeyboardRows = new ArrayList<>();
+        allKeyboardRows.addAll(getKeyboardRows(BotCmmonCommands.class));
+        allKeyboardRows.addAll(getKeyboardRows(FilterOperation.class));
+
+        replyKeyboardMarkup.setKeyboard(allKeyboardRows);
         replyKeyboardMarkup.setOneTimeKeyboard(true);
         return replyKeyboardMarkup;
     }
 
-    private ArrayList<KeyboardRow> getKeyboardRow(Class someClass) {
+    private ArrayList<KeyboardRow> getKeyboardRows(Class someClass) {
         Method[] classMethods = someClass.getMethods();
         ArrayList<AppBotCommand> commands = new ArrayList<>();
         for (Method method : classMethods) {
