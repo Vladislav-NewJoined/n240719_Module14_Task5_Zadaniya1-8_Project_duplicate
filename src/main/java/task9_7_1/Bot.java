@@ -2,6 +2,7 @@ package task9_7_1;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -17,6 +18,7 @@ import task9_7_1.functions.FilterOperation;
 import task9_7_1.utils.PhotoMessageUtils;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
@@ -67,6 +69,15 @@ public class Bot extends TelegramLongPollingBot {
         PhotoSize photoSize = message.getPhoto().get(0);
         final String fileId = photoSize.getFileId();
         try {
+            String response = runCommand(message.getText());
+            SendMessage sendMessage = new SendMessage();
+            sendMessage.setText(response);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        try {
             final org.telegram.telegrambots.meta.api.objects.File file = execute(new GetFile(fileId));
             final String imageUrl = "https://api.telegram.org/file/bot" + getBotToken() + "/" + file.getFilePath();
             saveImage(imageUrl, localFileName);
@@ -92,6 +103,27 @@ public class Bot extends TelegramLongPollingBot {
             execute(sendPhoto);
         } catch (TelegramApiException e) {
             e.printStackTrace();
+        }
+    }
+
+
+    private String runCommand(String text) throws InvocationTargetException, IllegalAccessException {
+        Method[] classMethods = BotCmmonCommands.class.getDeclaredMethods(); // заменим getMethods() на getDeclaredMethods()
+//        ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+
+        for (Method method : classMethods) {
+            if (method.isAnnotationPresent(AppBotCommand.class)) {
+                AppBotCommand command = method.getAnnotation(AppBotCommand.class);
+                if (command.name().equals(text)) {
+                    return (String) method.invoke(null);
+                }
+
+//                AppBotCommand annotation = method.getAnnotation(AppBotCommand.class);
+//                KeyboardButton button = new KeyboardButton();
+//                button.setText(annotation.name());
+//                row.add(button);
+            }
         }
     }
 
