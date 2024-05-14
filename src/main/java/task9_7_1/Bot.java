@@ -18,6 +18,7 @@ import task9_7_1.functions.FilterOperation;
 import task9_7_1.utils.PhotoMessageUtils;
 
 import java.io.*;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -26,7 +27,27 @@ import java.util.List;
 
 import static task9_7_1.utils.PhotoMessageUtils.processingImage;
 
+
+
+import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
+
+import task9_7_1.commands.BotCmmonCommands;
+import task9_7_1.commands.AppBotCommand;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+
 public class Bot extends TelegramLongPollingBot {
+
+    Class[] commandClasses = new Class[] {BotCmmonCommands.class};
 
     @Override
     public String getBotUsername() {
@@ -44,13 +65,7 @@ public class Bot extends TelegramLongPollingBot {
         String chatId = message.getChatId().toString();
 
         String response = null;
-        try {
-            response = runCommand(message.getText());
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        response = runCommand(message.getText());
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
         sendMessage.setText(response);
@@ -62,7 +77,7 @@ public class Bot extends TelegramLongPollingBot {
     }
 
 
-    private String runCommand(String text) throws InvocationTargetException, IllegalAccessException {
+    private String runCommand(String text) {
         BotCmmonCommands commands = new BotCmmonCommands();
         Method[] classMethods = commands.getClass().getDeclaredMethods();
 
@@ -80,7 +95,6 @@ public class Bot extends TelegramLongPollingBot {
             }
         }
         return "Unknown command";
-
     }
 
     private void saveImage(String url, String fileName) throws IOException {
@@ -119,7 +133,7 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     private ArrayList<KeyboardRow> getKeyboardRows(Class someClass) {
-        Method[] classMethods = someClass.getDeclaredMethods(); // заменим getMethods() на getDeclaredMethods()
+        Method[] classMethods = someClass.getDeclaredMethods();
         ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
         KeyboardRow row = new KeyboardRow();
 
@@ -129,13 +143,178 @@ public class Bot extends TelegramLongPollingBot {
                 KeyboardButton button = new KeyboardButton();
                 button.setText(annotation.name());
                 row.add(button);
+
+                if (annotation.showInKeyboard()) {  // Check if method should be displayed in keyboard
+                    KeyboardRow helpRow = new KeyboardRow();
+                    KeyboardButton helpButton = new KeyboardButton("/help");
+                    helpRow.add(helpButton);
+                    keyboardRows.add(helpRow);
+                }
             }
         }
+
         keyboardRows.add(row);
         return keyboardRows;
     }
 
 }
+
+
+
+
+//// ПРИМЕР 9 _35 35 мин на видео У НАС ПОЛУЧИЛОСЬ ВЫВЕСТИ HEEEELP, а у нас НЕ ПОЛУЧИЛОСЬ
+//import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+//import org.telegram.telegrambots.meta.api.methods.GetFile;
+//import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+//import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+//import org.telegram.telegrambots.meta.api.objects.InputFile;
+//import org.telegram.telegrambots.meta.api.objects.Message;
+//import org.telegram.telegrambots.meta.api.objects.PhotoSize;
+//import org.telegram.telegrambots.meta.api.objects.Update;
+//import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+//import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
+//import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
+//import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+//import task9_7_1.commands.AppBotCommand;
+//import task9_7_1.commands.BotCmmonCommands;
+//import task9_7_1.functions.FilterOperation;
+//import task9_7_1.utils.PhotoMessageUtils;
+//
+//import java.io.*;
+//        import java.lang.reflect.Constructor;
+//import java.lang.reflect.InvocationTargetException;
+//import java.lang.reflect.Method;
+//import java.net.URL;
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//
+//public class Bot extends TelegramLongPollingBot {
+//
+//    Class[] commandClasses = new Class[] {BotCmmonCommands.class};
+//
+//    @Override
+//    public String getBotUsername() {
+//        return "qytewqwww_Bot"; // Название вашего бота
+//    }
+//
+//    @Override
+//    public String getBotToken() {
+//        return "7057416920:AAEzJF-2L8i8GdyLnkqMThUyyXk6BQOdoAk"; // Токен вашего бота
+//    }
+//
+//    @Override
+//    public void onUpdateReceived(Update update) {
+//        Message message = update.getMessage();
+//        String chatId = message.getChatId().toString();
+//
+//        String response = null;
+//        try {
+//            response = runCommand(message.getText());
+//        } catch (InvocationTargetException e) {
+//            throw new RuntimeException(e);
+//        } catch (IllegalAccessException e) {
+//            throw new RuntimeException(e);
+//        } catch (NoSuchMethodException e) {
+//            throw new RuntimeException(e);
+//        } catch (InstantiationException e) {
+//            throw new RuntimeException(e);
+//        }
+//        SendMessage sendMessage = new SendMessage();
+//        sendMessage.setChatId(chatId);
+//        sendMessage.setText(response);
+//        try {
+//            execute(sendMessage);
+//        } catch (TelegramApiException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//
+//    private String runCommand(String text) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException {
+//        for (int i = 0; i < commandClasses.length; i++) {
+//            Constructor<Class> constructor =
+//                    Class.class.getDeclaredConstructor();
+//
+//            constructor.setAccessible(true);
+//            Class<?> ourInstance = constructor.newInstance();
+//            Method[] classMethods = ourInstance.getClass().getDeclaredMethods();
+//
+//            for (Method method : classMethods) {
+//                if (method.isAnnotationPresent(AppBotCommand.class)) {
+//                    AppBotCommand annotation = method.getAnnotation(AppBotCommand.class);
+//                    if (annotation.name().equals(text)) {
+//                        try {
+//                            method.setAccessible(true);
+//                            return (String) method.invoke(ourInstance);
+//                        } catch (IllegalAccessException | InvocationTargetException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }
+//            }
+//
+//        }
+//        BotCmmonCommands commands = new BotCmmonCommands();
+//        return "Unknown command";
+//
+//    }
+//
+//    private void saveImage(String url, String fileName) throws IOException {
+//        URL urlModel = new URL(url);
+//        InputStream inputStream = urlModel.openStream();
+//        OutputStream outputStream = new FileOutputStream(fileName);
+//        byte[] b = new byte[2048];
+//        int length;
+//        while ((length = inputStream.read(b)) != -1) {
+//            outputStream.write(b, 0, length);
+//        }
+//        inputStream.close();
+//        outputStream.close();
+//    }
+//
+//    private SendPhoto preparePhotoMessage(String localPath, String chatId) {
+//        SendPhoto sendPhoto = new SendPhoto();
+//        sendPhoto.setReplyMarkup(getKeyboard());
+//        sendPhoto.setChatId(chatId);
+//        InputFile newFile = new InputFile();
+//        newFile.setMedia(new File(localPath));
+//        sendPhoto.setPhoto(newFile);
+//        return sendPhoto;
+//
+//    }
+//
+//    private ReplyKeyboardMarkup getKeyboard() {
+//        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+//        ArrayList<KeyboardRow> allKeyboardRows = new ArrayList<>();
+//        allKeyboardRows.addAll(getKeyboardRows(BotCmmonCommands.class));
+//        allKeyboardRows.addAll(getKeyboardRows(FilterOperation.class));
+//
+//        replyKeyboardMarkup.setKeyboard(allKeyboardRows);
+//        replyKeyboardMarkup.setOneTimeKeyboard(true);
+//        return replyKeyboardMarkup;
+//    }
+//
+//    private ArrayList<KeyboardRow> getKeyboardRows(Class someClass) {
+//        Method[] classMethods = someClass.getDeclaredMethods(); // заменим getMethods() на getDeclaredMethods()
+//        ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
+//        KeyboardRow row = new KeyboardRow();
+//
+//        for (Method method : classMethods) {
+//            if (method.isAnnotationPresent(AppBotCommand.class)) {
+//                AppBotCommand annotation = method.getAnnotation(AppBotCommand.class);
+//                KeyboardButton button = new KeyboardButton();
+//                button.setText(annotation.name());
+//                row.add(button);
+//            }
+//        }
+//        keyboardRows.add(row);
+//        return keyboardRows;
+//    }
+//
+//}
+//// КОНЕЦ ПРИМЕРА 9
 
 
 
