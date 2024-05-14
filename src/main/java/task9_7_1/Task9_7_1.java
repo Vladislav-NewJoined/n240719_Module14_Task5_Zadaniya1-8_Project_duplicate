@@ -5,9 +5,9 @@ import org.telegram.telegrambots.meta.generics.BotSession;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 // Создан Telegram бот:
-// botName: javatestbot
-// userName: @my_gfjhfghfjhgfjhgfghfhgfjf_bot  или  my_gfjhfghfjhgfjhgfghfhgfjf_bot
-// token: 6750924950:AAGOE5XBnuJDlNIKHYq61S7bMupKXhKRZZo
+// botName: MyTestBot_001
+// userName: @qytewqwww_Bot  или  qytewqwww_Bot
+// token: 7057416920:AAEzJF-2L8i8GdyLnkqMThUyyXk6BQOdoAk
 
 public class Task9_7_1 {
     public static void main(String[] args) throws Exception {
