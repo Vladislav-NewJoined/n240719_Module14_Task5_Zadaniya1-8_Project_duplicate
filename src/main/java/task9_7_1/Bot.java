@@ -137,7 +137,7 @@ public class Bot extends TelegramLongPollingBot {
 
 
 
-//// ПРИМЕР 10 _Всё отлично работает. Приходят в ответ сообщения на команды /hello, /bye и /help. Переход
+//// ПРИМЕР 10 _Итог по видео 07. Всё отлично работает. Приходят в ответ сообщения на команды /hello, /bye и /help. Переход
 //// к следующему видео: 08
 //import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 //import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
