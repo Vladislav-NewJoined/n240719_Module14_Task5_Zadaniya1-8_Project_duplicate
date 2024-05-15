@@ -1,6 +1,7 @@
 package task9_7_1.utils;
 
 import task9_7_1.functions.FilterOperation;
+import task9_7_1.functions.ImageOperation;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -38,7 +39,7 @@ public class PhotoMessageUtils {
             outputStream.close();
     }
 
-    public static void processingImage(String fileName) throws Exception {
+    public static void processingImage(String fileName, ImageOperation operation) throws Exception {
         final BufferedImage image = ImageUtils.getImage(fileName);
         final RgbMaster rgbMaster = new RgbMaster(image);
         rgbMaster.changeImage(FilterOperation::greyScale);

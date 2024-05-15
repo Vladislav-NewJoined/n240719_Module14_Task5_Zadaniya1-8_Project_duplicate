@@ -33,6 +33,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Bot extends TelegramLongPollingBot {
@@ -52,17 +53,35 @@ public class Bot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
-        String chatId = message.getChatId().toString();
-
         SendMessage responseTextMessage = runCommonCommand(message);
-        if (responseTextMessage!=null) {
+        if (responseTextMessage != null) {
             try {
                 execute(responseTextMessage);
-                return;
             } catch (TelegramApiException e) {
                 throw new RuntimeException(e);
             }
+            return;
         }
+
+        try {
+            SendMediaGroup responseMediaMessage = runPhotoFilter(message);
+            if (responseMediaMessage != null) {
+                execute(responseMediaMessage);
+                return;
+            }
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+
+//        String chatId = message.getChatId().toString();
+//
+//        if (responseTextMessage!=null) {
+//            try {
+//                return;
+//            } catch (TelegramApiException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
 
 //        try {
 //            ArrayList<String> photoPaths = new ArrayList<>(PhotoMessageUtils.savePhotos(getFilesByMessage(message), getBotToken()));
@@ -121,7 +140,8 @@ public class Bot extends TelegramLongPollingBot {
         ImageOperation operation = FilterOperation::greyScale;
         List<File> files = getFilesByMessage(message);
         try {
-            List<String> paths = PhotoMessageUtils.savePhotos(files, getBotToken());
+//            List<String> paths = PhotoMessageUtils.savePhotos(files, getBotToken());
+            List<String> paths = PhotoMessageUtils.savePhotos(Arrays.asList(java.io.File.listRoots()), getBotToken());
             String chatId = message.getChatId().toString();
             return preparePhotoMessage(paths, operation, chatId);
 
@@ -189,7 +209,8 @@ public class Bot extends TelegramLongPollingBot {
     for (String path : localPaths) {
             InputMedia inputMedia = new InputMediaPhoto();
             PhotoMessageUtils.processingImage(path, operation);
-            inputMedia.setNewMediaFile(new java.io.File(path));
+            inputMedia.setMedia(new java.io.File(path), "path");
+//            inputMedia.setNewMediaFile(new java.io.File(path));
             medias.add(inputMedia);
         }
         mediaGroup.setMedias(medias);
