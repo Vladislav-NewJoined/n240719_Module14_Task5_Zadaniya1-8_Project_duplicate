@@ -3,6 +3,7 @@ package task9_7_1;
 //// _Создались три кнопки и одно изображение обрабатывает
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -41,6 +42,9 @@ public class Bot extends TelegramLongPollingBot {
         final String localFileName = "src/main/java/task9_7_1/" + "cloned_image.jpg";
         Message message = update.getMessage();
         PhotoSize photoSize = message.getPhoto().get(0);
+        String chatId = message.getChatId().toString();
+        String response = null;
+        response = runCommand(message.getText());
         final String fileId = photoSize.getFileId();
         try {
             final org.telegram.telegrambots.meta.api.objects.File file = execute(new GetFile(fileId));
@@ -69,6 +73,36 @@ public class Bot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
         e.printStackTrace();
         }
+
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId);
+        sendMessage.setText(response);
+
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String runCommand(String text) {
+        BotCommonCommands commands = new BotCommonCommands();
+        Method[] classMethods = commands.getClass().getDeclaredMethods();
+
+        for (Method method : classMethods) {
+            if (method.isAnnotationPresent(AppBotCommand.class)) {
+                AppBotCommand annotation = method.getAnnotation(AppBotCommand.class);
+                if (annotation.name().equals(text)) {
+                    try {
+                        method.setAccessible(true);
+                        return (String) method.invoke(commands);
+                    } catch (IllegalAccessException | InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return "Unknown command";
     }
 
     private void saveImage(String url, String fileName) throws IOException {
