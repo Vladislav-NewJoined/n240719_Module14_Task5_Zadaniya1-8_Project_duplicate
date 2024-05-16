@@ -1,6 +1,5 @@
 package task9_7_1;
 
-//// _Создались три кнопки и одно изображение обрабатывает
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -18,7 +17,7 @@ import task9_7_1.commands.BotCommonCommands;
 import task9_7_1.functions.FilterOperation;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
+        import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,23 +26,35 @@ import static task9_7_1.utils.PhotoMessageUtils.processingImage;
 
 public class Bot extends TelegramLongPollingBot {
 
+    Class[] commandClasses = new Class[] {BotCommonCommands.class};
+
     @Override
     public String getBotUsername() {
-        return "qytewqwww_Bot"; // Название вашего бота
+        return "jhyvfhek_bot"; // Название вашего бота
     }
 
     @Override
     public String getBotToken() {
-        return "7057416920:AAEzJF-2L8i8GdyLnkqMThUyyXk6BQOdoAk"; // Токен вашего бота
+        return "7066205045:AAGzacbZfn8y-dOJ1NnWJHRH9HdPxYQpFPU"; // Токен вашего бота
     }
 
     @Override
     public void onUpdateReceived(Update update) {
-        final String localFileName = "src/main/java/task9_7_1/" + "cloned_image.jpg";
         Message message = update.getMessage();
-        PhotoSize photoSize = message.getPhoto().get(0);
         String chatId = message.getChatId().toString();
+
         String response = null;
+        response = runCommand(message.getText());
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId);
+        sendMessage.setText(response);
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+        final String localFileName = "src/main/java/task9_7_1/" + "cloned_image.jpg";
+        PhotoSize photoSize = message.getPhoto().get(0);
         response = runCommand(message.getText());
         final String fileId = photoSize.getFileId();
         try {
@@ -61,6 +72,7 @@ public class Bot extends TelegramLongPollingBot {
         }
 
         SendPhoto sendPhoto = preparePhotoMessage(localFileName, message.getChatId().toString());
+        SendPhoto sendPhoto2 = preparePhotoMessage2(localFileName, message.getChatId().toString());
         ///
         sendPhoto.setChatId(message.getChatId().toString());
         InputFile newFile = new InputFile();
@@ -71,10 +83,9 @@ public class Bot extends TelegramLongPollingBot {
         try {
             execute(sendPhoto);
         } catch (TelegramApiException e) {
-        e.printStackTrace();
+            e.printStackTrace();
         }
 
-        SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
         sendMessage.setText(response);
 
@@ -83,6 +94,8 @@ public class Bot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
+
+
     }
 
     private String runCommand(String text) {
@@ -126,20 +139,29 @@ public class Bot extends TelegramLongPollingBot {
         newFile.setMedia(new File(localPath));
         sendPhoto.setPhoto(newFile);
         return sendPhoto;
+
     }
 
-    private ReplyKeyboardMarkup getKeyboard() {  // две кнопки
+    private SendPhoto preparePhotoMessage2(String localFileName, String chatId) {
+        SendPhoto sendPhoto2 = new SendPhoto();
+        sendPhoto2.setPhoto(new InputFile(new File(localFileName)));
+        sendPhoto2.setChatId(chatId);
+        return sendPhoto2;
+    }
+
+    private ReplyKeyboardMarkup getKeyboard() {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        ArrayList<KeyboardRow> allKeyboardRows = new ArrayList<>();  // 2 кнопки
-        allKeyboardRows.addAll(getKeyboardRows(BotCommonCommands.class)); // 2 кнопки
-        allKeyboardRows.addAll(getKeyboardRows(FilterOperation.class)); // 2 кнопки
+        ArrayList<KeyboardRow> allKeyboardRows = new ArrayList<>();
+        allKeyboardRows.addAll(getKeyboardRows(BotCommonCommands.class));
+        allKeyboardRows.addAll(getKeyboardRows(FilterOperation.class));
+
         replyKeyboardMarkup.setKeyboard(allKeyboardRows);
         replyKeyboardMarkup.setOneTimeKeyboard(true);
         return replyKeyboardMarkup;
     }
 
     private ArrayList<KeyboardRow> getKeyboardRows(Class someClass) {
-        Method[] classMethods = someClass.getDeclaredMethods(); // заменим getMethods() на getDeclaredMethods()
+        Method[] classMethods = someClass.getDeclaredMethods();
         ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
         KeyboardRow row = new KeyboardRow();
 
@@ -149,13 +171,191 @@ public class Bot extends TelegramLongPollingBot {
                 KeyboardButton button = new KeyboardButton();
                 button.setText(annotation.name());
                 row.add(button);
+
+                if (annotation.showInKeyboard()) {  // Check if method should be displayed in keyboard
+                    KeyboardRow helpRow = new KeyboardRow();
+                    KeyboardButton helpButton = new KeyboardButton("/help");
+                    helpRow.add(helpButton);
+                    keyboardRows.add(helpRow);
+                }
             }
         }
+
         keyboardRows.add(row);
         return keyboardRows;
     }
 
 }
+
+
+
+
+//// ПРИМЕР 14 _Совместил создание кнопок и обработку изображений. Не работает. Изображение обрабатывает,
+//// но команды не выполняет. _Совместил с ПРИМЕРОМ 10, там отвечает на команды.
+//// В следующем примере надо исправлять.
+//// _Создались три кнопки (они не обрабатываются) и одно изображение обрабатывает
+//import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+//import org.telegram.telegrambots.meta.api.methods.GetFile;
+//import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+//import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+//import org.telegram.telegrambots.meta.api.objects.InputFile;
+//import org.telegram.telegrambots.meta.api.objects.Message;
+//import org.telegram.telegrambots.meta.api.objects.PhotoSize;
+//import org.telegram.telegrambots.meta.api.objects.Update;
+//import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+//import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
+//import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
+//import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+//import task9_7_1.commands.AppBotCommand;
+//import task9_7_1.commands.BotCommonCommands;
+//import task9_7_1.functions.FilterOperation;
+//
+//import java.io.*;
+//        import java.lang.reflect.InvocationTargetException;
+//import java.lang.reflect.Method;
+//import java.net.URL;
+//import java.util.ArrayList;
+//
+//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//
+//public class Bot extends TelegramLongPollingBot {
+//
+//    @Override
+//    public String getBotUsername() {
+//        return "qytewqwww_Bot"; // Название вашего бота
+//    }
+//
+//    @Override
+//    public String getBotToken() {
+//        return "7057416920:AAEzJF-2L8i8GdyLnkqMThUyyXk6BQOdoAk"; // Токен вашего бота
+//    }
+//
+//    @Override
+//    public void onUpdateReceived(Update update) {
+//        final String localFileName = "src/main/java/task9_7_1/" + "cloned_image.jpg";
+//        Message message = update.getMessage();
+//        PhotoSize photoSize = message.getPhoto().get(0);
+//        String chatId = message.getChatId().toString();
+//        String response = null;
+//        response = runCommand(message.getText());
+//        final String fileId = photoSize.getFileId();
+//        try {
+//            final org.telegram.telegrambots.meta.api.objects.File file = execute(new GetFile(fileId));
+//            final String imageUrl = "https://api.telegram.org/file/bot" + getBotToken() + "/" + file.getFilePath();
+//            saveImage(imageUrl, localFileName);
+//        } catch (TelegramApiException | IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        try {
+//            processingImage(localFileName);
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        SendPhoto sendPhoto = preparePhotoMessage(localFileName, message.getChatId().toString());
+//        ///
+//        sendPhoto.setChatId(message.getChatId().toString());
+//        InputFile newFile = new InputFile();
+//        newFile.setMedia(new File(localFileName));
+//        sendPhoto.setPhoto(newFile);
+//        sendPhoto.setCaption("cloned_image");
+//
+//        try {
+//            execute(sendPhoto);
+//        } catch (TelegramApiException e) {
+//            e.printStackTrace();
+//        }
+//
+//        SendMessage sendMessage = new SendMessage();
+//        sendMessage.setChatId(chatId);
+//        sendMessage.setText(response);
+//
+//        try {
+//            execute(sendMessage);
+//        } catch (TelegramApiException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    private String runCommand(String text) {
+//        BotCommonCommands commands = new BotCommonCommands();
+//        Method[] classMethods = commands.getClass().getDeclaredMethods();
+//
+//        for (Method method : classMethods) {
+//            if (method.isAnnotationPresent(AppBotCommand.class)) {
+//                AppBotCommand annotation = method.getAnnotation(AppBotCommand.class);
+//                if (annotation.name().equals(text)) {
+//                    try {
+//                        method.setAccessible(true);
+//                        return (String) method.invoke(commands);
+//                    } catch (IllegalAccessException | InvocationTargetException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }
+//        return "Unknown command";
+//    }
+//
+//    private void saveImage(String url, String fileName) throws IOException {
+//        URL urlModel = new URL(url);
+//        InputStream inputStream = urlModel.openStream();
+//        OutputStream outputStream = new FileOutputStream(fileName);
+//        byte[] b = new byte[2048];
+//        int length;
+//        while ((length = inputStream.read(b)) != -1) {
+//            outputStream.write(b, 0, length);
+//        }
+//        inputStream.close();
+//        outputStream.close();
+//    }
+//
+//    private SendPhoto preparePhotoMessage(String localPath, String chatId) {
+//        SendPhoto sendPhoto = new SendPhoto();
+//        sendPhoto.setReplyMarkup(getKeyboard()); // Это две кнопки
+//        sendPhoto.setChatId(chatId);
+//        InputFile newFile = new InputFile();
+//        newFile.setMedia(new File(localPath));
+//        sendPhoto.setPhoto(newFile);
+//        return sendPhoto;
+//    }
+//
+//    private ReplyKeyboardMarkup getKeyboard() {  // две кнопки
+//        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+//        ArrayList<KeyboardRow> allKeyboardRows = new ArrayList<>();  // 2 кнопки
+//        allKeyboardRows.addAll(getKeyboardRows(BotCommonCommands.class)); // 2 кнопки
+//        allKeyboardRows.addAll(getKeyboardRows(FilterOperation.class)); // 2 кнопки
+//        replyKeyboardMarkup.setKeyboard(allKeyboardRows);
+//        replyKeyboardMarkup.setOneTimeKeyboard(true);
+//        return replyKeyboardMarkup;
+//    }
+//
+//    private ArrayList<KeyboardRow> getKeyboardRows(Class someClass) {
+//        Method[] classMethods = someClass.getDeclaredMethods(); // заменим getMethods() на getDeclaredMethods()
+//        ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
+//        KeyboardRow row = new KeyboardRow();
+//
+//        for (Method method : classMethods) {
+//            if (method.isAnnotationPresent(AppBotCommand.class)) {
+//                AppBotCommand annotation = method.getAnnotation(AppBotCommand.class);
+//                KeyboardButton button = new KeyboardButton();
+//                button.setText(annotation.name());
+//                row.add(button);
+//
+//                if (annotation.showInKeyboard()) {  // Check if method should be displayed in keyboard
+//                    KeyboardRow helpRow = new KeyboardRow();
+//                    KeyboardButton helpButton = new KeyboardButton("/help");
+//                    helpRow.add(helpButton);
+//                    keyboardRows.add(helpRow);
+//                }
+//            }
+//        }
+//        keyboardRows.add(row);
+//        return keyboardRows;
+//    }
+//}
+//// КОНЕЦ ПРИМЕРА 14
 
 
 

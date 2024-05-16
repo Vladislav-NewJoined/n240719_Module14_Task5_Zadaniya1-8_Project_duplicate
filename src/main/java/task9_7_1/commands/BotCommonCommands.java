@@ -1,19 +1,21 @@
 package task9_7_1.commands;
 
+import task9_7_1.commands.AppBotCommand;
+
 public class BotCommonCommands {
 
     @AppBotCommand(name = "/hello", description = "when request hello", showInHelp = true)
-    String hello() {
+    public String hello() {
         return "Hello, User";
     }
 
     @AppBotCommand(name = "/bye", description = "when request bye", showInHelp = true)
-    String bye() {
+    public String bye() {
         return "Good bye, User";
     }
 
     @AppBotCommand(name = "/help", description = "when request help", showInKeyboard = true)
-    String help() {
+    public String help() {
         return "HEEEELP";
     }
 }

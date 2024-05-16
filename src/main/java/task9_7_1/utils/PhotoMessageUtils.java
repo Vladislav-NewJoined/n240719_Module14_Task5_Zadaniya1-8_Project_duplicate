@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-
+import task9_7_1.commands.BotCommonCommands;
 
 public class PhotoMessageUtils {
     public static List<String> savePhotos(List<File> files, String botToken) throws IOException {
@@ -46,7 +46,6 @@ public class PhotoMessageUtils {
         rgbMaster.changeImage(FilterOperation::greyScale);
         ImageUtils.saveImage(rgbMaster.getImage(), fileName);
     }
-
 }
 
 
