@@ -12,15 +12,22 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
+import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
+import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
+
 import task9_7_1.commands.AppBotCommand;
 import task9_7_1.commands.BotCommonCommands;
 import task9_7_1.functions.FilterOperation;
+import task9_7_1.functions.ImageOperation;
+import task9_7_1.utils.PhotoMessageUtils;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import static task9_7_1.utils.PhotoMessageUtils.processingImage;
 
@@ -30,12 +37,12 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "jhyvfhek_bot"; // Название вашего бота
+        return "gksdlajqwg_Bot_002_bot"; // Название вашего бота
     }
 
     @Override
     public String getBotToken() {
-        return "7066205045:AAGzacbZfn8y-dOJ1NnWJHRH9HdPxYQpFPU"; // Токен вашего бота
+        return "6437590262:AAFNnnNzs1Up1PO3JeDkjOvZ2plUVp_7Ccs"; // Токен вашего бота
     }
 
     @Override
@@ -66,13 +73,15 @@ public class Bot extends TelegramLongPollingBot {
         }
 
         try {
-            processingImage(localFileName);
+            ImageOperation operation2 = FilterOperation::greyScale;
+            processingImage(localFileName, operation2);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
         SendPhoto sendPhoto = preparePhotoMessage(localFileName, message.getChatId().toString());
         SendPhoto sendPhoto2 = preparePhotoMessage2(localFileName, message.getChatId().toString());
+        SendPhoto sendPhoto3 = preparePhotoMessage3(localFileName, message.getChatId().toString());
         ///
         sendPhoto.setChatId(message.getChatId().toString());
         InputFile newFile = new InputFile();
@@ -95,6 +104,15 @@ public class Bot extends TelegramLongPollingBot {
             e.printStackTrace();
         }
 
+        try {
+            SendMediaGroup responseMediaMessage = runPhotoFilter(message);
+            if (responseMediaMessage != null) {
+                execute(responseMediaMessage);
+                return;
+            }
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -117,6 +135,34 @@ public class Bot extends TelegramLongPollingBot {
         }
         return "Команда не из кнопки";
     }
+
+
+    private SendMediaGroup runPhotoFilter(Message message) {
+        ImageOperation operation = FilterOperation::greyScale;
+        List<File> photoSizes = getFilesByMessage(message); // Исправление ошибки
+        try {
+            List<String> paths = PhotoMessageUtils.savePhotos(photoSizes, getBotToken());
+            String chatId = message.getChatId().toString();
+            return preparePhotoMessage(paths, operation, chatId);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private List<File> getFilesByMessage (Message message) {
+        List<PhotoSize> photoSizes = message.getPhoto();
+        ArrayList<File> files = new ArrayList<>();
+        for (PhotoSize photoSize : photoSizes) {
+            final String fileId = photoSize.getFileId();
+            try {
+                files.add(sendApiMethod(new GetFile(fileId)));
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+        }
+        return files;
+    }
+
 
     private void saveImage(String url, String fileName) throws IOException {
         URL urlModel = new URL(url);
@@ -148,6 +194,22 @@ public class Bot extends TelegramLongPollingBot {
         sendPhoto2.setChatId(chatId);
         return sendPhoto2;
     }
+
+    private SendMediaGroup preparePhotoMessage3(List<String> localPaths, ImageOperation operation, String chatId) throws Exception {
+        SendMediaGroup mediaGroup = new SendMediaGroup();
+        ArrayList<InputMedia> medias = new ArrayList<>();
+        for (String path : localPaths) {
+            InputMedia inputMedia = new InputMediaPhoto();
+            PhotoMessageUtils.processingImage(path, operation);
+            inputMedia.setMedia(new java.io.File(path), "path");
+            medias.add(inputMedia);
+        }
+        mediaGroup.setMedias(medias);
+        mediaGroup.setChatId(chatId);
+        return mediaGroup;
+    }
+
+
 
     private ReplyKeyboardMarkup getKeyboard() {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();

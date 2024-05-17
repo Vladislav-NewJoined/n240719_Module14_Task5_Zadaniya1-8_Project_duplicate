@@ -12,8 +12,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import task9_7_1.commands.BotCommonCommands;
-
 public class PhotoMessageUtils {
     public static List<String> savePhotos(List<File> files, String botToken) throws IOException {
         Random random = new Random();
@@ -40,7 +38,7 @@ public class PhotoMessageUtils {
             outputStream.close();
     }
 
-    public static void processingImage(String fileName/*, ImageOperation operation*/) throws Exception {
+    public static void processingImage(String fileName,/*, ImageOperation operation*/ImageOperation operation) throws Exception {
         final BufferedImage image = ImageUtils.getImage(fileName);
         final RgbMaster rgbMaster = new RgbMaster(image);
         rgbMaster.changeImage(FilterOperation::greyScale);
