@@ -19,7 +19,7 @@ public class PhotoMessageUtils {
         Random random = new Random();
         ArrayList<String> paths = new ArrayList<>();
         for (File file: files) {
-            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" /*+ file.getFilePath()*/ + file.getClass();
+            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass();
             final String localFileName = "images/" + new Date().getTime() + random.nextLong() + ".jpeg";
             saveImage(imageUrl, localFileName);
             paths.add(localFileName);
