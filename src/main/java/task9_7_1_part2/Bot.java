@@ -1,4 +1,4 @@
-package task9_7_1;
+package task9_7_1_part2;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
@@ -12,12 +12,11 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import task9_7_1.commands.AppBotCommand;
-import task9_7_1.commands.BotCommonCommands;
-import task9_7_1.functions.FilterOperation;
+import task9_7_1_part2.commands.AppBotCommand;
+import task9_7_1_part2.commands.BotCommonCommands;
+import task9_7_1_part2.functions.FilterOperation;
 
 import java.io.*;
-//import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -32,12 +31,12 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "gksdlajgwg_Bot_002_bot"; // Название вашего бота
+        return "kgazjmticv_002_bot"; // Название вашего бота
     }
 
     @Override
     public String getBotToken() {
-        return "6417807322:AAFdN_5q5Jt7KdjGBxI41rle_qI-1mn25fY"; // Токен вашего бота
+        return "6836351278:AAFBiCCKKkPERrimdzIoRQbSFUQJm1GZ1Ds"; // Токен вашего бота
     }
 
     @Override
@@ -93,7 +92,7 @@ public class Bot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-        final String localFileName = "src/main/java/task9_7_1/" + "cloned_image.jpg";
+        final String localFileName = "src/main/java/task9_7_1_part2/" + "cloned_image.jpg";
         PhotoSize photoSize = message.getPhoto().get(0);
         response = runCommand(message.getText());
         final String fileId = photoSize.getFileId();
@@ -195,10 +194,10 @@ public class Bot extends TelegramLongPollingBot {
 
 
     // TODO Этого метода не было в ИЗНАЧАЛЬНЫХ МЕТОДАХ, НАПИСАН ПОЛНОСТЬЮ ЗАНОВО
-    private List<org.telegram.telegrambots.meta.api.objects.File> getFilesByMessage(Message message) {
+    private List<org.telegram.telegrambots.meta.api.objects.File> getFilesByMessage(Message message) { // TODO Это новое, но пока не стал менять на просто File (или java.io.File)/ в видеоуроке 09 52 мин
 //    private List<org.telegram.telegrambots.meta.api.objects.File> getFilesByMessage(Message message) { // TODO Так было изначально
         List<PhotoSize> photoSizes = message.getPhoto();
-        ArrayList<org.telegram.telegrambots.meta.api.objects.File> files2 = new ArrayList<>();
+        ArrayList<org.telegram.telegrambots.meta.api.objects.File> files2 = new ArrayList<>(); // TODO Это новое, но пока не стал менять на просто File (или java.io.File)/ в видеоуроке 09 52 мин
 //        ArrayList<org.telegram.telegrambots.meta.api.objects.File> files2 = new ArrayList<>(); // TODO Так было изначально
         for (PhotoSize photoSize : photoSizes){
             final String fileId = photoSize.getFileId();
@@ -327,12 +326,12 @@ public class Bot extends TelegramLongPollingBot {
 //
 //    @Override
 //    public String getBotUsername() {
-//        return "gksdlajgwg_Bot_002_bot"; // Название вашего бота
+//        return "kgazjmticv_002_bot"; // Название вашего бота
 //    }
 //
 //    @Override
 //    public String getBotToken() {
-//        return "6417807322:AAFdN_5q5Jt7KdjGBxI41rle_qI-1mn25fY"; // Токен вашего бота
+//        return "6836351278:AAFBiCCKKkPERrimdzIoRQbSFUQJm1GZ1Ds"; // Токен вашего бота
 //    }
 //
 //    @Override
@@ -350,7 +349,7 @@ public class Bot extends TelegramLongPollingBot {
 //        } catch (TelegramApiException e) {
 //            e.printStackTrace();
 //        }
-//        final String localFileName = "src/main/java/task9_7_1/" + "cloned_image.jpg";
+//        final String localFileName = "src/main/java/task9_7_1_part2/" + "cloned_image.jpg";
 //        PhotoSize photoSize = message.getPhoto().get(0);
 //        response = runCommand(message.getText());
 //        final String fileId = photoSize.getFileId();
@@ -503,17 +502,17 @@ public class Bot extends TelegramLongPollingBot {
 //
 //    @Override
 //    public String getBotUsername() {
-//        return "qytewqwww_Bot"; // Название вашего бота
+//        return "kgazjmticv_002_bot"; // Название вашего бота
 //    }
 //
 //    @Override
 //    public String getBotToken() {
-//        return "7057416920:AAEzJF-2L8i8GdyLnkqMThUyyXk6BQOdoAk"; // Токен вашего бота
+//        return "6836351278:AAFBiCCKKkPERrimdzIoRQbSFUQJm1GZ1Ds"; // Токен вашего бота
 //    }
 //
 //    @Override
 //    public void onUpdateReceived(Update update) {
-//        final String localFileName = "src/main/java/task9_7_1/" + "cloned_image.jpg";
+//        final String localFileName = "src/main/java/task9_7_1_part2/" + "cloned_image.jpg";
 //        Message message = update.getMessage();
 //        PhotoSize photoSize = message.getPhoto().get(0);
 //        final String fileId = photoSize.getFileId();

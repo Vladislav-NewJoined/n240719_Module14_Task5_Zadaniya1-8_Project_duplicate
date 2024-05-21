@@ -1,10 +1,13 @@
-package task9_7_1.utils;
+package task9_7_1_part2.utils;
 
 import org.telegram.telegrambots.meta.api.objects.File;
-import task9_7_1.functions.FilterOperation;
+import task9_7_1_part2.functions.FilterOperation;
 
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;

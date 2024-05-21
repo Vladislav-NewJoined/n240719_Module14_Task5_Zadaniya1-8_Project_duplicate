@@ -1,4 +1,4 @@
-package task9_7_1.functions;
+package task9_7_1_part2.functions;
 
 import java.util.Random;
 
