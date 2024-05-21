@@ -2,6 +2,7 @@ package task9_7_1_part2.utils;
 
 import org.telegram.telegrambots.meta.api.objects.File;
 import task9_7_1_part2.functions.FilterOperation;
+import task9_7_1_part2.functions.ImageOperation;
 
 import java.awt.image.BufferedImage;
 import java.io.FileOutputStream;
@@ -20,12 +21,25 @@ public class PhotoMessageUtils {
         ArrayList<String> paths = new ArrayList<>();
         for (File file: files) {
             final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass();
-            final String localFileName = "src/main/java/task9_7_1/" + new Date().getTime() + random.nextLong() + ".jpg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
+            final String localFileName = "src/main/java/task9_7_1_part2/" + new Date().getTime() + random.nextLong() + ".jpg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
 //            final String localFileName = "images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Так было в видеоуроке
             saveImage(imageUrl, localFileName);
             paths.add(localFileName);
         }
-        return paths;
+
+
+
+        // TODO Строки метода из части 1, return такой же
+        Random random2 = new Random();
+        ArrayList<String> paths2 = new ArrayList<>();
+        for (File file: files) {
+            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass();
+            final String localFileName = "src/main/java/task9_7_1_part2/" + new Date().getTime() + random.nextLong() + ".jpg";
+            saveImage(imageUrl, localFileName);
+            paths2.add(localFileName);
+        }
+
+        return paths2;
     }
 
     public static void saveImage(String url, String fileName) throws IOException {
@@ -39,14 +53,38 @@ public class PhotoMessageUtils {
         }
         inputStream.close();
         outputStream.close();
+
+
+
+
     }
 
+    // TODO Новый метод создан,с двойкой в названии
+    public static void processingImage2(String fileName, ImageOperation operation) throws Exception {
+        final BufferedImage image = ImageUtils.getImage(fileName);
+        final RgbMaster rgbMaster = new RgbMaster(image);
+        rgbMaster.changeImage(operation);
+        ImageUtils.saveImage(rgbMaster.getImage(), fileName);
+    }
+
+
+
+
+    // TODO ДАЛЕЕ ВСЕ ИЗНАЧАЛЬНЫЕ МЕТОДЫ
     public static void processingImage(String fileName) throws Exception {
         final BufferedImage image = ImageUtils.getImage(fileName);
         final RgbMaster rgbMaster = new RgbMaster(image);
         rgbMaster.changeImage(FilterOperation::greyScale);
         ImageUtils.saveImage(rgbMaster.getImage(), fileName);
     }
+
+    public static void processingImage(String fileName,/*, ImageOperation operation*/ImageOperation operation) throws Exception {
+        final BufferedImage image = ImageUtils.getImage(fileName);
+        final RgbMaster rgbMaster = new RgbMaster(image);
+        rgbMaster.changeImage(FilterOperation::greyScale);
+        ImageUtils.saveImage(rgbMaster.getImage(), fileName);
+    }
+
 }
 
 
