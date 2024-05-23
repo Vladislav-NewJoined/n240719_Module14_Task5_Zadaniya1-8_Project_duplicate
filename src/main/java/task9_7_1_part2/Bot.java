@@ -108,35 +108,39 @@ public class Bot extends TelegramLongPollingBot {
 //            throw new RuntimeException(e);
 //        }
 //
-////        SendPhoto sendPhoto2 = preparePhotoMessage(localFileName, message.getChatId().toString());
-////        ///
-////        sendPhoto2.setChatId(message.getChatId().toString());
-////        InputFile newFile = new InputFile();
-////        newFile.setMedia(new File(localFileName));
-////        sendPhoto2.setPhoto(newFile);
-////        sendPhoto2.setCaption("cloned_image");
-////
-////        sendMessage.setChatId(chatId);
-////        sendMessage.setText(response);
-////
-////        try {
-////            execute(sendMessage);
-////        } catch (TelegramApiException e) {
-////            e.printStackTrace();
-////        }
+//        SendPhoto sendPhoto2 = preparePhotoMessage(localFileName, message.getChatId().toString());
+//        ///
+//        sendPhoto2.setChatId(message.getChatId().toString());
+//        InputFile newFile = new InputFile();
+//        newFile.setMedia(new File(localFileName));
+//        sendPhoto2.setPhoto(newFile);
+//        sendPhoto2.setCaption("cloned_image");
 //
-////        SendPhoto sendPhoto = preparePhotoMessage2(localFileName, message.getChatId().toString());
-////        ///
-////        sendPhoto.setChatId(message.getChatId().toString());
-////        newFile.setMedia(new File(localFileName));
-////        sendPhoto.setPhoto(newFile);
-////        sendPhoto.setCaption("cloned_image");
-////
-////        try {
-////            execute(sendPhoto);
-////        } catch (TelegramApiException e) {
-////            e.printStackTrace();
-////        }
+//        sendMessage.setChatId(chatId);
+//        sendMessage.setText(response);
+//
+//        try {
+//            execute(sendMessage);
+//        } catch (TelegramApiException e) {
+//            e.printStackTrace();
+//        }
+//
+//        SendPhoto sendPhoto = preparePhotoMessage2(localFileName, message.getChatId().toString());
+//        ///
+//        sendPhoto.setChatId(message.getChatId().toString());
+//        newFile.setMedia(new File(localFileName));
+//        sendPhoto.setPhoto(newFile);
+//        sendPhoto.setCaption("cloned_image");
+//
+//        try {
+//            execute(sendPhoto);
+//        } catch (TelegramApiException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//
+//
 //
 //// Пишу для 7-го Примера
 //        try {
@@ -148,6 +152,26 @@ public class Bot extends TelegramLongPollingBot {
 //        } catch (/*InvocationTargetException | IllegalAccessException | */TelegramApiException e) {
 //            e.printStackTrace();
 //        }
+//    }
+//
+//    private String runCommand(String text)/* throws InvocationTargetException, IllegalAccessException*/ {
+//        BotCommonCommands commands = new BotCommonCommands();
+//        Method[] classMethods = commands.getClass().getDeclaredMethods();
+//
+//        for (Method method : classMethods) {
+//            if (method.isAnnotationPresent(AppBotCommand.class)) {
+//                AppBotCommand annotation = method.getAnnotation(AppBotCommand.class);
+//                if (annotation.name().equals(text)) {
+//                    try {
+//                        method.setAccessible(true);
+//                        return (String) method.invoke(commands);
+//                    } catch (IllegalAccessException | InvocationTargetException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }
+//        return "Команда не из кнопки";
     }
 
     private String runCommand(String text)/* throws InvocationTargetException, IllegalAccessException*/ {
@@ -260,17 +284,17 @@ public class Bot extends TelegramLongPollingBot {
     }
 
 
-//    private SendPhoto preparePhotoMessage2(String localPath, String chatId) {
-//        SendPhoto sendPhoto = new SendPhoto();
-//// TODO НАШЁЛ! ЭТА СТРОКА ОТВЕЧАЕТ ЗА СОЗДАНИЕ ТРЁХ КНОПОК в ПРИМЕРЕ СНАЧАЛА 4, ТЕПЕРЬ 6, в методе SendPhoto preparePhotoMessage2
-//        sendPhoto.setReplyMarkup(getKeyboard()); // Это ТРИ кнопки  // TODO в ПРИМЕРЕ СНАЧАЛА 4, ТЕПЕРЬ 6 В методе preparePhotoMessage2. ДА! При комменте три кнопки не создадутся!
-//        sendPhoto.setChatId(chatId);
-//        InputFile newFile = new InputFile();
-//        newFile.setMedia(new java.io.File(localPath)); // TODO Здесь заменил File на java.io.File как в видеоуроке на мин 10 22
-////        newFile.setMedia(new File(localPath)); // TODO Так было изначально
-//        sendPhoto.setPhoto(newFile);
-//        return sendPhoto;
-//    }
+    private SendPhoto preparePhotoMessage2(String localPath, String chatId) {
+        SendPhoto sendPhoto = new SendPhoto();
+// TODO НАШЁЛ! ЭТА СТРОКА ОТВЕЧАЕТ ЗА СОЗДАНИЕ ТРЁХ КНОПОК в ПРИМЕРЕ СНАЧАЛА 4, ТЕПЕРЬ 6, в методе SendPhoto preparePhotoMessage2
+        sendPhoto.setReplyMarkup(getKeyboard()); // Это ТРИ кнопки  // TODO в ПРИМЕРЕ СНАЧАЛА 4, ТЕПЕРЬ 6 В методе preparePhotoMessage2. ДА! При комменте три кнопки не создадутся!
+        sendPhoto.setChatId(chatId);
+        InputFile newFile = new InputFile();
+        newFile.setMedia(new java.io.File(localPath)); // TODO Здесь заменил File на java.io.File как в видеоуроке на мин 10 22
+//        newFile.setMedia(new File(localPath)); // TODO Так было изначально
+        sendPhoto.setPhoto(newFile);
+        return sendPhoto;
+    }
 
 
 //    private SendPhoto preparePhotoMessage(String localFileName, String chatId) {
