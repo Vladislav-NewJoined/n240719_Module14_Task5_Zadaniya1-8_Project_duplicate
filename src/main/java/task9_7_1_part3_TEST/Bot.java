@@ -31,7 +31,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+import static task9_7_1_part3_TEST.utils.PhotoMessageUtils.processingImage;
 
 public class Bot extends TelegramLongPollingBot {
 
@@ -53,7 +53,7 @@ public class Bot extends TelegramLongPollingBot {
         try {
             SendMessage responseTextMessage2 = runCommonCommand(message2);
             if (responseTextMessage2 != null) {
-                execute(responseTextMessage2);
+                execute(responseTextMessage2);     // TODO ОСТАВЛЯЕМ! ответ на кнопки help hello bye, вызываем библиотечный класс SendMessage
                 return;
             }
         } catch (InvocationTargetException | IllegalAccessException | TelegramApiException e) {
@@ -64,7 +64,7 @@ public class Bot extends TelegramLongPollingBot {
         String chatId = message.getChatId().toString();
 
         String response = null;
-        response = runCommand(message.getText());
+        response = runCommand(message.getText());     // TODO ОСТАВЛЯЕМ! возврат изображениий (1-го и 4-х), вызывает метод runCommand
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
         sendMessage.setText(response);
@@ -75,16 +75,16 @@ public class Bot extends TelegramLongPollingBot {
         try {
             final org.telegram.telegrambots.meta.api.objects.File file = execute(new GetFile(fileId));
             final String imageUrl = "https://api.telegram.org/file/bot" + getBotToken() + "/" + file.getFilePath();
-            saveImage(imageUrl, localFileName);
+            saveImage(imageUrl, localFileName);     // TODO ОСТАВЛЯЕМ! ответ на кнопки и возврат изображений и сохранение их, вызов метода saveImage из класса preparePhotoMessage2
         } catch (TelegramApiException | IOException e) {
             throw new RuntimeException(e);
         }
 
-        try {
-            processingImage(localFileName);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            processingImage(localFileName);     // TODO УДАЛЯЕМ из возврата неск. изображений! возврат одного СЕРОГО изображения! без него возвращает цветное изображение, вызов метода processingImage из класса PhotoMessageUtils
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
 
         SendPhoto sendPhoto2 = preparePhotoMessage(localFileName, message.getChatId().toString());
         ///
@@ -98,24 +98,29 @@ public class Bot extends TelegramLongPollingBot {
         sendMessage.setText(response);
 
         try {
-            execute(sendMessage);
+            execute(sendMessage);     // TODO ВНИМАНИЕ: ОСТАВЛЯЕМ, но с оговоркой!  отменило надпись: "Команда не из кнопки" НАДО ПЕРЕНЕСТИ на возврат неск. изображений
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
 
         SendPhoto sendPhoto = preparePhotoMessage2(localFileName, message.getChatId().toString());
         ///
-        sendPhoto.setChatId(message.getChatId().toString());
-        newFile.setMedia(new File(localFileName));
-        sendPhoto.setPhoto(newFile);
-        sendPhoto.setCaption("cloned_image");
+//        sendPhoto.setChatId(message.getChatId().toString());      // TODO УДАЛЯЕМ!
+//        newFile.setMedia(new File(localFileName));      // TODO УДАЛЯЕМ!
+        sendPhoto.setPhoto(newFile);      // TODO ОСТАВЛЯЕМ!
+        sendPhoto.setCaption("cloned_image");      // TODO ПЕРЕНОСИМ ВО ФРАГМЕНТ С ВОЗВРАТОМ НЕСКОЛЬКИХ ИЗОБРАЖЕНИЙ
 
         try {
-            execute(sendPhoto);
+            execute(sendPhoto);     // TODO ВАЖНО: ХОРОШО! УДАЛЯЕМ применит. к неск. изображениям! ЭТО ОБРАЩЕНИЕ К КЛАССУ preparePhotoMessage2 С ДВУМЯ АРГУМЕНТАМИ! Без него не возвращает одно изображение, на кнопки отвечает, кнопки правда НЕ СОЗДАЁТ, возвращает неск. изображений (но без надписи "cloned image), с ним не отвечает на кнопки! без него сохранило, но не вернуло одно ЦВЕТНОЕ изображение, вызов метода preparePhotoMessage с двумя параметрами
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-
+        // TODO После этого:
+        // TODO Возвращает надпись "Команда не из кнопки"
+        // TODO Создаёт 4 кнопки, отвечает на них
+        // TODO Возвращает 4 изображения, сохраняет их
+        // TODO Возвращает надпись "cloned_image"
+        // TODO ОТРИЦАТЕЛЬНЫЙ: Возвращает одно ЦВЕТНОЕ изображение
 
 
 
