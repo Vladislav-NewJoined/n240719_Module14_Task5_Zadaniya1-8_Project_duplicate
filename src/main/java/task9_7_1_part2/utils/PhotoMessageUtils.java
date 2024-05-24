@@ -20,8 +20,9 @@ public class PhotoMessageUtils {
         Random random = new Random();
         ArrayList<String> paths = new ArrayList<>();
         for (File file: files) {
-            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass();
-            final String localFileName = "src/main/java/task9_7_1_part2/" + new Date().getTime() + random.nextLong() + ".jpg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
+            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath(); // TODO Так было в видеоуроке 04 на минуте 20 21 ПОПРОБОВАТЬ ТОЖЕ
+//            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass(); // TODO Так было у меня, почему-то добавлено: + file.getClass()
+            final String localFileName = "src/main/java/task9_7_1_part2/images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
 //            final String localFileName = "images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Так было в видеоуроке
             saveImage(imageUrl, localFileName);
             paths.add(localFileName);
@@ -29,17 +30,17 @@ public class PhotoMessageUtils {
 
 
 
-        // TODO Строки метода из части 1, return такой же
-        Random random2 = new Random();
-        ArrayList<String> paths2 = new ArrayList<>();
-        for (File file: files) {
-            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass();
-            final String localFileName = "src/main/java/task9_7_1_part2/" + new Date().getTime() + random.nextLong() + ".jpg";
-            saveImage(imageUrl, localFileName);
-            paths2.add(localFileName);
-        }
+//        // TODO Строки метода из части 1, return такой же
+//        Random random2 = new Random();
+//        ArrayList<String> paths2 = new ArrayList<>();
+//        for (File file: files) {
+//            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass();
+//            final String localFileName = "src/main/java/task9_7_1_part2/images/" + new Date().getTime() + random.nextLong() + ".jpg";
+//            saveImage(imageUrl, localFileName);
+//            paths2.add(localFileName);
+//        }
 
-        return paths2;
+        return paths;
     }
 
     public static void saveImage(String url, String fileName) throws IOException {
