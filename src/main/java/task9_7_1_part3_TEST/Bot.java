@@ -126,15 +126,15 @@ public class Bot extends TelegramLongPollingBot {
 
 
 // Пишу для 7-го Примера
-        try {
-            SendMediaGroup responseMediaMessage2 = runPhotoFilter(message2);
-            if (responseMediaMessage2 != null) {
-                execute(responseMediaMessage2);
-                return;
-            }
-        } catch (/*InvocationTargetException | IllegalAccessException | */TelegramApiException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            SendMediaGroup responseMediaMessage2 = runPhotoFilter(message2);
+//            if (responseMediaMessage2 != null) {
+//                execute(responseMediaMessage2);     // TODO ООСТАВЛЯЕМ! т.к. без него не возвращает и не сохраняет неск. изображений. Кнопки создаёт, отвечает, НО возвращает ЦВЕТНОЕ изобр.,
+//                return;
+//            }
+//        } catch (/*InvocationTargetException | IllegalAccessException | */TelegramApiException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private String runCommand(String text)/* throws InvocationTargetException, IllegalAccessException*/ {
