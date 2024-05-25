@@ -220,7 +220,7 @@ public class Bot extends TelegramLongPollingBot {
             PhotoMessageUtils.processingImage2(path2, operation2);       //  TODO ОСТАВЛЯЕМ! Без него 4 изображения возвращает, НО НЕ СЕРЫЕ, А ЦВЕТНЫЕ
             inputMedia2.setMedia(new File(path2), "path2");      // TODO Это добавил препод после ПРИМЕРа 7, перед самым концом видеоурока 08
 //            inputMedia2.setNewMediaFile();
-            medias2.add(inputMedia2);
+            medias2.add(inputMedia2);       //  TODO ОСТАВЛЯЕМ!  Без него 4 изображения не возвращает
         }
         mediaGroup2.setMedias(medias2);
         mediaGroup2.setChatId(chatId);
