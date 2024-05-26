@@ -203,16 +203,24 @@ public class Bot extends TelegramLongPollingBot {
         SendMediaGroup mediaGroup2 = new SendMediaGroup();
         ArrayList<InputMedia> medias2 = new ArrayList<>();
         for (String path2 : localPaths2) {
-            InputMedia inputMedia2 = new InputMediaPhoto();       //  TODO ОСТАВЛЯЕМ! Без него 4 изображения не возвращает
-            PhotoMessageUtils.processingImage2(path2, operation2);       //  TODO ОСТАВЛЯЕМ! Без него 4 изображения возвращает, НО НЕ СЕРЫЕ, А ЦВЕТНЫЕ
-            inputMedia2.setMedia(new File(path2), "path2");      // TODO Это добавил препод после ПРИМЕРа 7, перед самым концом видеоурока 08
-//            inputMedia2.setNewMediaFile();
-            medias2.add(inputMedia2);       //  TODO ОСТАВЛЯЕМ!  Без него 4 изображения не возвращает
+            InputMedia inputMedia2 = new InputMediaPhoto();
+            PhotoMessageUtils.processingImage2(path2, operation2);
+            inputMedia2.setMedia(new File(path2), "path2");
+            medias2.add(inputMedia2);
         }
-        mediaGroup2.setMedias(medias2);        //  TODO ОСТАВЛЯЕМ!  Без него 4 изображения не возвращает
-        mediaGroup2.setChatId(chatId);        //  TODO ОСТАВЛЯЕМ!  Без него 4 изображения не возвращает
-        return mediaGroup2;
+        mediaGroup2.setMedias(medias2);
+        mediaGroup2.setChatId(chatId);
 
+        // Отправка группы обработанных изображений
+        execute(mediaGroup2);
+
+        // Отправка текстового сообщения "cloned_image"
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId);
+        sendMessage.setText("cloned_image");
+        execute(sendMessage);
+
+        return mediaGroup2;
     }
 
     private void saveImage(String url, String fileName) throws IOException {
