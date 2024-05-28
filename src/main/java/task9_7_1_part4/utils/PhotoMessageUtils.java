@@ -69,10 +69,13 @@ public class PhotoMessageUtils {
         final task9_7_1_part4.utils.RgbMaster rgbMaster = new RgbMaster(image);
         rgbMaster.changeImage(operation);
         ImageUtils.saveImage(rgbMaster.getImage(), fileName);
-
-
-
 //        rgbMaster.changeImage(FilterOperation::greyScale);
+
+
+
+        // TODO Пишем фрагмент про создание 3-х кнопок (потом удалить)
+        task9_7_1_part3_TEST.utils.ImageUtils.saveImage(rgbMaster.getImage(), fileName);
+
     }
 }
 
