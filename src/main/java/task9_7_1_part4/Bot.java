@@ -374,7 +374,7 @@ public class Bot extends TelegramLongPollingBot {
 //import task9_7_1_part4.utils.PhotoMessageUtils;
 //
 //import java.io.*;
-//import java.lang.reflect.InvocationTargetException;
+//        import java.lang.reflect.InvocationTargetException;
 //import java.lang.reflect.Method;
 //import java.net.URL;
 //import java.util.ArrayList;
