@@ -24,8 +24,9 @@ import task9_7_1_part4.functions.ImageOperation;
 import task9_7_1_part4.utils.PhotoMessageUtils;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
+        import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -292,7 +293,7 @@ public class Bot extends TelegramLongPollingBot {
         // Отправка текстового сообщения "clonedimages"
         SendMessage sendClonedImageMessage = new SendMessage();
         sendClonedImageMessage.setChatId(chatId);
-        sendClonedImageMessage.setText("Отправляю обработанные изображения:");
+        sendClonedImageMessage.setText("Ниже Вам отправлены обработанные изображения:");
         execute(sendClonedImageMessage);
         return mediaGroup2;
     }
@@ -642,7 +643,7 @@ public class Bot extends TelegramLongPollingBot {
 //        // Отправка текстового сообщения "clonedimages"
 //        SendMessage sendClonedImageMessage = new SendMessage();
 //        sendClonedImageMessage.setChatId(chatId);
-//        sendClonedImageMessage.setText("Отправляю обработанные изображения:");
+//        sendClonedImageMessage.setText("Ниже Вам отправлены обработанные изображения:");
 //        execute(sendClonedImageMessage);
 //        return mediaGroup2;
 //    }

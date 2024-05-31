@@ -8,10 +8,7 @@ import task9_7_1_part4.utils.ImageUtils;
 import task9_7_1_part4.utils.RgbMaster;
 
 import java.awt.image.BufferedImage;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,7 +54,6 @@ public class PhotoMessageUtils {
         }
         inputStream.close();
         outputStream.close();
-
     }
 
     // TODO Новый метод создан,с двойкой в названии
