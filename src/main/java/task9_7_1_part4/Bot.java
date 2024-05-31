@@ -1,6 +1,6 @@
 package task9_7_1_part4;
 
-//// ПРИМЕР _ 240531 0000 Пытаюсь вернуть создание трёх кнопок
+//// ПРИМЕР _ 240531 0000 Взято из примера 4. Всё делает, но присылает одно лишнее изображение. Пытаюсь его убрать
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
@@ -24,9 +24,8 @@ import task9_7_1_part4.functions.ImageOperation;
 import task9_7_1_part4.utils.PhotoMessageUtils;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
+        import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,15 +89,15 @@ public class Bot extends TelegramLongPollingBot {
             e.printStackTrace();
         }
 
-//        SendPhoto sendPhoto = preparePhotoMessage2(localFileName, message.getChatId().toString());
-//        ///
-//        sendPhoto.setPhoto(newFile);      // TODO ОСТАВЛЯЕМ!
-//
-//        try {
-//            execute(sendPhoto);     // TODO ВАЖНО: ХОРОШО! УДАЛЯЕМ применит. к неск. изображениям! ЭТО ОБРАЩЕНИЕ К КЛАССУ preparePhotoMessage2 С ДВУМЯ АРГУМЕНТАМИ! Без него не возвращает одно изображение, на кнопки отвечает, кнопки правда НЕ СОЗДАЁТ, возвращает неск. изображений (но без надписи "cloned image), с ним не отвечает на кнопки! без него сохранило, но не вернуло одно ЦВЕТНОЕ изображение, вызов метода preparePhotoMessage с двумя параметрами
-//        } catch (TelegramApiException e) {
-//            e.printStackTrace();
-//        }
+        SendPhoto sendPhoto = preparePhotoMessage2(localFileName, message.getChatId().toString());
+        ///
+        sendPhoto.setPhoto(newFile);      // TODO ОСТАВЛЯЕМ!
+
+        try {
+            execute(sendPhoto);     // TODO ВАЖНО: ХОРОШО! УДАЛЯЕМ применит. к неск. изображениям! ЭТО ОБРАЩЕНИЕ К КЛАССУ preparePhotoMessage2 С ДВУМЯ АРГУМЕНТАМИ! Без него не возвращает одно изображение, на кнопки отвечает, кнопки правда НЕ СОЗДАЁТ, возвращает неск. изображений (но без надписи "cloned image), с ним не отвечает на кнопки! без него сохранило, но не вернуло одно ЦВЕТНОЕ изображение, вызов метода preparePhotoMessage с двумя параметрами
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
         // TODO После этого:
         // TODO Возвращает надпись "Команда не из кнопки"
         // TODO Создаёт 4 кнопки, отвечает на них
@@ -238,8 +237,7 @@ public class Bot extends TelegramLongPollingBot {
     private SendMediaGroup runPhotoFilter(Message message) {
         ImageOperation operation = FilterOperation::greyScale;
         List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(message);       //  TODO ВОЗМОЖНО НАДО СДЕЛАТЬ ПРОСТО File
-
-//        List<File> files = getFilesByMessage(message);
+//        List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(message);
         try {
             List<String> paths = PhotoMessageUtils.savePhotos(files, getBotToken());       //  TODO ОСТАВЛЯЕМ! Без него 4 изображения не возвращает
             String chatId = message.getChatId().toString();       //  TODO ОСТАВЛЯЕМ! Без него 4 изображения не возвращает
