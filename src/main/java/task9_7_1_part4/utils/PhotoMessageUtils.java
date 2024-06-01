@@ -28,18 +28,6 @@ public class PhotoMessageUtils {
             paths.add(localFileName);
         }
 
-
-
-//        // TODO Строки метода из части 1, return такой же
-//        Random random2 = new Random();
-//        ArrayList<String> paths2 = new ArrayList<>();
-//        for (File file: files) {
-//            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass();
-//            final String localFileName = "src/main/java/task9_7_1_part4/images/" + new Date().getTime() + random.nextLong() + ".jpg";
-//            saveImage(imageUrl, localFileName);
-//            paths2.add(localFileName);
-//        }
-
         return paths;
     }
 
@@ -56,13 +44,13 @@ public class PhotoMessageUtils {
         outputStream.close();
     }
 
-    // TODO Новый метод создан,с двойкой в названии
-    public static void processingImage2(String fileName, ImageOperation operation) throws Exception {
-        final BufferedImage image = ImageUtils.getImage(fileName);
-        final RgbMaster rgbMaster = new RgbMaster(image);
-        rgbMaster.changeImage(operation);
-        ImageUtils.saveImage(rgbMaster.getImage(), fileName);
-    }
+//    // TODO Новый метод создан,с двойкой в названии
+//    public static void processingImage2(String fileName, ImageOperation operation) throws Exception {
+//        final BufferedImage image = ImageUtils.getImage(fileName);
+//        final RgbMaster rgbMaster = new RgbMaster(image);
+//        rgbMaster.changeImage(operation);
+//        ImageUtils.saveImage(rgbMaster.getImage(), fileName);
+//    }
 
     // TODO 240529 1438 Здесь искать создание кнопок, Команда не из кнопки, возврат 1-го цветного изображения, cloned_image
     public static void processingImage(String fileName, ImageOperation operation) throws Exception {
@@ -71,27 +59,6 @@ public class PhotoMessageUtils {
         rgbMaster.changeImage(operation);
         ImageUtils.saveImage(rgbMaster.getImage(), fileName);
     }
-
-
-
-
-    // TODO 240529 1142 Ниже - это было до того как начал приводить в порядок ЗАПИСАННОЕ ВСЛЕД ЗА ВИДЕОУРОКОМ. Выше - это добавленное вновь.
-    // TODO ВСЁ ЧТО НИЖЕ ЗАКОММЕНТИРОВАНО, В ИЗНАЧАЛЬНОМ ВАРИАНТЕ БЫЛО РАСКОММЕНТИРОВАНО
-
-    public static void processingImage(String fileName) throws Exception {
-        final BufferedImage image = ImageUtils.getImage(fileName);
-        final RgbMaster rgbMaster = new RgbMaster(image);
-        rgbMaster.changeImage(FilterOperation::greyScale);
-        ImageUtils.saveImage(rgbMaster.getImage(), fileName);
-    }
-
-//    public static void processingImage(String fileName,/*, ImageOperation operation*/ImageOperation operation) throws Exception {
-//        final BufferedImage image = ImageUtils.getImage(fileName);
-//        final RgbMaster rgbMaster = new RgbMaster(image);
-//        rgbMaster.changeImage(FilterOperation::greyScale);
-//        ImageUtils.saveImage(rgbMaster.getImage(), fileName);
-//    }
-
 }
 // КОНЕЦ ПРИМЕРА _
 
