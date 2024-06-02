@@ -1,6 +1,7 @@
 package task9_7_1_part4;
 
 //// ПРИМЕР _ 240531 0000 Взято из примера 4. Всё делает, но присылает одно лишнее изображение. Пытаюсь его убрать
+//// надо менять метод private SendPhoto preparePhotoMessage2(String localPath, String chatId) - с двумя параметрами
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
 import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
@@ -163,28 +164,6 @@ public class Bot extends TelegramLongPollingBot {
 // TODO 240529 1142 Ниже - это было до того как начал приводить в порядок ЗАПИСАННОЕ ВСЛЕД ЗА ВИДЕОУРОКОМ. Выше - это добавленное вновь.
 // TODO ВСЁ ЧТО НИЖЕ ЗАКОММЕНТИРОВАНО, В ИЗНАЧАЛЬНОМ ВАРИАНТЕ БЫЛО РАСКОММЕНТИРОВАНО
 
-//@Override
-//public void onUpdateReceived(Update update) {
-//    Message message = update.getMessage();
-//    try {
-//        SendMessage responseTestMessage = runCommonCommand(message);
-//        if (responseTestMessage != null) {
-//            execute(responseTestMessage);
-//            return;
-//        }
-//    } catch (InvocationTargetException | IllegalAccessException | TelegramApiException e) {
-//        e.printStackTrace();
-//    }
-//    try {
-//        SendMediaGroup responseMediaMessage = runPhotoFilter(message);
-//        if (responseMediaMessage != null) {
-//            execute(responseMediaMessage);
-//            return;
-//        }
-//    } catch (TelegramApiException e) {
-//        e.printStackTrace();
-//    }
-//}
 
     private String runCommand(String text)/* throws InvocationTargetException, IllegalAccessException*/ {
         BotCommonCommands commands = new BotCommonCommands();
@@ -302,30 +281,6 @@ public class Bot extends TelegramLongPollingBot {
         return replyKeyboardMarkup;
     }
 
-//    private ArrayList<KeyboardRow> getKeyboardRows(Class someClass) {
-//        Method[] classMethods = someClass.getDeclaredMethods();
-//        ArrayList<AppBotCommand> commands = new ArrayList<>();
-//        for (Method method : classMethods) {
-//            if (method.isAnnotationPresent(AppBotCommand.class)) {
-//                commands.add(method.getAnnotation(AppBotCommand.class));
-//            }
-//        }
-//        ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
-//        int columnCount = 3;
-//        int rowsCount = commands.size() / columnCount + ((commands.size() % columnCount == 0) ? 0 : 1);
-//        for (int rowIndex = 0; rowIndex < rowsCount; rowIndex++) {
-//            KeyboardRow row = new KeyboardRow();
-//            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
-//                int index = rowIndex * columnCount + columnIndex;
-//                if (index >= commands.size()) continue;
-//                AppBotCommand command = commands.get(rowIndex * columnCount + columnIndex);
-//                KeyboardButton keyboardButton = new KeyboardButton(command.name());
-//                row.add(keyboardButton);
-//            }
-//            keyboardRows.add(row);
-//        }
-//        return keyboardRows;
-//    }
 
     private void saveImage(String url, String fileName) throws IOException {
         URL urlModel = new URL(url);
@@ -508,28 +463,6 @@ public class Bot extends TelegramLongPollingBot {
 //// TODO 240529 1142 Ниже - это было до того как начал приводить в порядок ЗАПИСАННОЕ ВСЛЕД ЗА ВИДЕОУРОКОМ. Выше - это добавленное вновь.
 //// TODO ВСЁ ЧТО НИЖЕ ЗАКОММЕНТИРОВАНО, В ИЗНАЧАЛЬНОМ ВАРИАНТЕ БЫЛО РАСКОММЕНТИРОВАНО
 //
-////@Override
-////public void onUpdateReceived(Update update) {
-////    Message message = update.getMessage();
-////    try {
-////        SendMessage responseTestMessage = runCommonCommand(message);
-////        if (responseTestMessage != null) {
-////            execute(responseTestMessage);
-////            return;
-////        }
-////    } catch (InvocationTargetException | IllegalAccessException | TelegramApiException e) {
-////        e.printStackTrace();
-////    }
-////    try {
-////        SendMediaGroup responseMediaMessage = runPhotoFilter(message);
-////        if (responseMediaMessage != null) {
-////            execute(responseMediaMessage);
-////            return;
-////        }
-////    } catch (TelegramApiException e) {
-////        e.printStackTrace();
-////    }
-////}
 //
 //    private String runCommand(String text)/* throws InvocationTargetException, IllegalAccessException*/ {
 //        BotCommonCommands commands = new BotCommonCommands();
@@ -647,30 +580,6 @@ public class Bot extends TelegramLongPollingBot {
 //        return replyKeyboardMarkup;
 //    }
 //
-////    private ArrayList<KeyboardRow> getKeyboardRows(Class someClass) {
-////        Method[] classMethods = someClass.getDeclaredMethods();
-////        ArrayList<AppBotCommand> commands = new ArrayList<>();
-////        for (Method method : classMethods) {
-////            if (method.isAnnotationPresent(AppBotCommand.class)) {
-////                commands.add(method.getAnnotation(AppBotCommand.class));
-////            }
-////        }
-////        ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
-////        int columnCount = 3;
-////        int rowsCount = commands.size() / columnCount + ((commands.size() % columnCount == 0) ? 0 : 1);
-////        for (int rowIndex = 0; rowIndex < rowsCount; rowIndex++) {
-////            KeyboardRow row = new KeyboardRow();
-////            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
-////                int index = rowIndex * columnCount + columnIndex;
-////                if (index >= commands.size()) continue;
-////                AppBotCommand command = commands.get(rowIndex * columnCount + columnIndex);
-////                KeyboardButton keyboardButton = new KeyboardButton(command.name());
-////                row.add(keyboardButton);
-////            }
-////            keyboardRows.add(row);
-////        }
-////        return keyboardRows;
-////    }
 //
 //    private void saveImage(String url, String fileName) throws IOException {
 //        URL urlModel = new URL(url);
