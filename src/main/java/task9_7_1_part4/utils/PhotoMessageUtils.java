@@ -13,37 +13,6 @@ import java.net.URL;
 import java.util.*;
 
 public class PhotoMessageUtils {
-//    public static List<String> savePhotos(List<File> files, String botToken) throws IOException {
-//        List<String> paths = new ArrayList<>();
-//        for (File file : files) {
-//            String url = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath();
-//            String fileName = "cloned_image_" + UUID.randomUUID().toString() + ".jpg";
-//            saveImage(url, fileName);
-//            paths.add(fileName);
-//        }
-//        return paths;
-//    }
-//
-//    private static void saveImage(String url, String fileName) throws IOException {
-//        URL urlModel = new URL(url);
-//        try (InputStream inputStream = urlModel.openStream();
-//             OutputStream outputStream = new FileOutputStream(fileName)) {
-//            byte[] buffer = new byte[2048];
-//            int length;
-//            while ((length = inputStream.read(buffer)) != -1) {
-//                outputStream.write(buffer, 0, length);
-//            }
-//        }
-//    }
-
-
-
-
-
-
-
-
-    // TODO Было
     public static List<String> savePhotos(List<File> files, String botToken) throws IOException {
         Random random = new Random();
         ArrayList<String> paths = new ArrayList<>();
@@ -444,5 +413,3 @@ public class PhotoMessageUtils {
 //    }
 //}
 //// КОНЕЦ ПРИМЕРА 0
-
-
