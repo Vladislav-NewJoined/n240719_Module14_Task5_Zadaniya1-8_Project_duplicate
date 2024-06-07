@@ -1,4 +1,4 @@
-package task9_7_1;
+package task9_7_1_part5;
 
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.generics.BotSession;
@@ -9,7 +9,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 // userName: @qytewqwww_Bot  или  qytewqwww_Bot
 // token: 7057416920:AAEzJF-2L8i8GdyLnkqMThUyyXk6BQOdoAk
 
-public class Task9_7_1 {
+public class Task9_7_1_part5 {
     public static void main(String[] args) throws Exception {
         System.out.println("""
             Задание:\s
@@ -27,7 +27,6 @@ public class Task9_7_1 {
 
         TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
         BotSession botSession = api.registerBot(new Bot());
-//        BotSession botSession = api.registerBot(new Bot());
 
     }
 }

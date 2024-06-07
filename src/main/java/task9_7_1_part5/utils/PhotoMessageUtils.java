@@ -1,8 +1,11 @@
-package task9_7_1_part4.utils;
+package task9_7_1_part5.utils;
 
 // ПРИМЕР  240529 ____ _ИЗ PACKAGE task9_7_1_part3_TEST
 import org.telegram.telegrambots.meta.api.objects.File;
+import task9_7_1_part4.functions.FilterOperation;
 import task9_7_1_part4.functions.ImageOperation;
+import task9_7_1_part4.utils.ImageUtils;
+import task9_7_1_part4.utils.RgbMaster;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -15,7 +18,7 @@ public class PhotoMessageUtils {
         ArrayList<String> paths = new ArrayList<>();
         for (File file: files) {
             final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath();
-            final String localFileName = "src/main/java/task9_7_1_part4/images/" + new Date().getTime() + random.nextLong() + ".jpeg";
+            final String localFileName = "src/main/java/task9_7_1_part5/images/" + new Date().getTime() + random.nextLong() + ".jpeg";
             saveImage(imageUrl, localFileName);
             paths.add(localFileName);
         }
@@ -29,7 +32,7 @@ public class PhotoMessageUtils {
 //        for (File file: files) {
 //            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath(); // TODO Так было в видеоуроке 04 на минуте 20 21 ПОПРОБОВАТЬ ТОЖЕ
 ////            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass(); // TODO Так было у меня, почему-то добавлено: + file.getClass()
-//            final String localFileName = "src/main/java/task9_7_1_part4/images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
+//            final String localFileName = "src/main/java/task9_7_1_part5/images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
 ////            final String localFileName = "images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Так было в видеоуроке
 //            saveImage(imageUrl, localFileName);
 //            paths.add(localFileName);
@@ -51,7 +54,13 @@ public class PhotoMessageUtils {
         outputStream.close();
     }
 
-//    // TODO Новый мет
+//    // TODO Новый метод создан,с двойкой в названии
+//    public static void processingImage2(String fileName, ImageOperation operation) throws Exception {
+//        final BufferedImage image = ImageUtils.getImage(fileName);
+//        final RgbMaster rgbMaster = new RgbMaster(image);
+//        rgbMaster.changeImage(operation);
+//        ImageUtils.saveImage(rgbMaster.getImage(), fileName);
+//    }
 
     // TODO 240529 1438 Здесь искать создание кнопок, Команда не из кнопки, возврат 1-го цветного изображения, cloned_image
     public static void processingImage(String fileName, ImageOperation operation) throws Exception {
@@ -68,10 +77,10 @@ public class PhotoMessageUtils {
 
 //// ПРИМЕР 4 240530 1311 БРАТЬ КАК ОБРАЗЕЦ _ПЕРЕДВИНУТЬ ВНИЗ НАДПИСЬ "clonedimages" и одно лишнее изображение присылает с подписью "cloned_image" _ИЗ PACKAGE task9_7_1_part3_TEST
 //import org.telegram.telegrambots.meta.api.objects.File;
-//import task9_7_1_part4.functions.FilterOperation;
-//import task9_7_1_part4.functions.ImageOperation;
-//import task9_7_1_part4.utils.ImageUtils;
-//import task9_7_1_part4.utils.RgbMaster;
+//import task9_7_1_part5.functions.FilterOperation;
+//import task9_7_1_part5.functions.ImageOperation;
+//import task9_7_1_part5.utils.ImageUtils;
+//import task9_7_1_part5.utils.RgbMaster;
 //
 //import java.awt.image.BufferedImage;
 //import java.io.FileOutputStream;
@@ -91,7 +100,7 @@ public class PhotoMessageUtils {
 //        for (File file: files) {
 //            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath(); // TODO Так было в видеоуроке 04 на минуте 20 21 ПОПРОБОВАТЬ ТОЖЕ
 ////            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass(); // TODO Так было у меня, почему-то добавлено: + file.getClass()
-//            final String localFileName = "src/main/java/task9_7_1_part4/images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
+//            final String localFileName = "src/main/java/task9_7_1_part5/images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
 ////            final String localFileName = "images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Так было в видеоуроке
 //            saveImage(imageUrl, localFileName);
 //            paths.add(localFileName);
@@ -104,7 +113,7 @@ public class PhotoMessageUtils {
 ////        ArrayList<String> paths2 = new ArrayList<>();
 ////        for (File file: files) {
 ////            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass();
-////            final String localFileName = "src/main/java/task9_7_1_part4/images/" + new Date().getTime() + random.nextLong() + ".jpg";
+////            final String localFileName = "src/main/java/task9_7_1_part5/images/" + new Date().getTime() + random.nextLong() + ".jpg";
 ////            saveImage(imageUrl, localFileName);
 ////            paths2.add(localFileName);
 ////        }
@@ -170,10 +179,10 @@ public class PhotoMessageUtils {
 
 //// ПРИМЕР 3 240530 0845 Пытаюсь удалить возврат одного изображения и переместить надпись "cloned_image"
 //import org.telegram.telegrambots.meta.api.objects.File;
-//import task9_7_1_part4.functions.FilterOperation;
-//import task9_7_1_part4.functions.ImageOperation;
-//import task9_7_1_part4.utils.ImageUtils;
-//import task9_7_1_part4.utils.RgbMaster;
+//import task9_7_1_part5.functions.FilterOperation;
+//import task9_7_1_part5.functions.ImageOperation;
+//import task9_7_1_part5.utils.ImageUtils;
+//import task9_7_1_part5.utils.RgbMaster;
 //
 //import java.awt.image.BufferedImage;
 //import java.io.FileOutputStream;
@@ -193,7 +202,7 @@ public class PhotoMessageUtils {
 //        for (File file: files) {
 //            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath(); // TODO Так было в видеоуроке 04 на минуте 20 21 ПОПРОБОВАТЬ ТОЖЕ
 ////            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass(); // TODO Так было у меня, почему-то добавлено: + file.getClass()
-//            final String localFileName = "src/main/java/task9_7_1_part4/images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
+//            final String localFileName = "src/main/java/task9_7_1_part5/images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
 ////            final String localFileName = "images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Так было в видеоуроке
 //            saveImage(imageUrl, localFileName);
 //            paths.add(localFileName);
@@ -206,7 +215,7 @@ public class PhotoMessageUtils {
 ////        ArrayList<String> paths2 = new ArrayList<>();
 ////        for (File file: files) {
 ////            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass();
-////            final String localFileName = "src/main/java/task9_7_1_part4/images/" + new Date().getTime() + random.nextLong() + ".jpg";
+////            final String localFileName = "src/main/java/task9_7_1_part5/images/" + new Date().getTime() + random.nextLong() + ".jpg";
 ////            saveImage(imageUrl, localFileName);
 ////            paths2.add(localFileName);
 ////        }
@@ -270,10 +279,10 @@ public class PhotoMessageUtils {
 
 //// ПРИМЕР 2 240529 0902 _ИЗ PACKAGE task9_7_1_part3_TEST
 //import org.telegram.telegrambots.meta.api.objects.File;
-//import task9_7_1_part4.functions.FilterOperation;
-//import task9_7_1_part4.functions.ImageOperation;
-//import task9_7_1_part4.utils.ImageUtils;
-//import task9_7_1_part4.utils.RgbMaster;
+//import task9_7_1_part5.functions.FilterOperation;
+//import task9_7_1_part5.functions.ImageOperation;
+//import task9_7_1_part5.utils.ImageUtils;
+//import task9_7_1_part5.utils.RgbMaster;
 //
 //import java.awt.image.BufferedImage;
 //import java.io.FileOutputStream;
@@ -293,7 +302,7 @@ public class PhotoMessageUtils {
 //        for (File file: files) {
 //            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath(); // TODO Так было в видеоуроке 04 на минуте 20 21 ПОПРОБОВАТЬ ТОЖЕ
 ////            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass(); // TODO Так было у меня, почему-то добавлено: + file.getClass()
-//            final String localFileName = "src/main/java/task9_7_1_part4/images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
+//            final String localFileName = "src/main/java/task9_7_1_part5/images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
 ////            final String localFileName = "images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Так было в видеоуроке
 //            saveImage(imageUrl, localFileName);
 //            paths.add(localFileName);
@@ -316,23 +325,23 @@ public class PhotoMessageUtils {
 //
 //    // TODO Новый метод создан,с двойкой в названии
 //    public static void processingImage2(String fileName, ImageOperation operation) throws Exception {
-//        final BufferedImage image = task9_7_1_part4.utils.ImageUtils.getImage(fileName);
-//        final task9_7_1_part4.utils.RgbMaster rgbMaster = new task9_7_1_part4.utils.RgbMaster(image);
+//        final BufferedImage image = task9_7_1_part5.utils.ImageUtils.getImage(fileName);
+//        final task9_7_1_part5.utils.RgbMaster rgbMaster = new task9_7_1_part5.utils.RgbMaster(image);
 //        rgbMaster.changeImage(operation);
-//        task9_7_1_part4.utils.ImageUtils.saveImage(rgbMaster.getImage(), fileName);
+//        task9_7_1_part5.utils.ImageUtils.saveImage(rgbMaster.getImage(), fileName);
 //    }
 //
 //    // TODO ДАЛЕЕ ВСЕ ИЗНАЧАЛЬНЫЕ МЕТОДЫ
 //    public static void processingImage(String fileName) throws Exception {
-//        final BufferedImage image = tasktask9_7_1_part4t4.utils.ImageUtils.getImage(fileName);
-//        final task9_7_1_part4.utils.RgbMaster rgbMaster = new task9_7_1_part4.utils.RgbMaster(image);
+//        final BufferedImage image = task9_7_1_part5.utils.ImageUtils.getImage(fileName);
+//        final task9_7_1_part5.utils.RgbMaster rgbMaster = new task9_7_1_part5.utils.RgbMaster(image);
 //        rgbMaster.changeImage(FilterOperation::greyScale);
-//        task9_7_1_part4.utils.ImageUtils.saveImage(rgbMaster.getImage(), fileName);
+//        task9_7_1_part5.utils.ImageUtils.saveImage(rgbMaster.getImage(), fileName);
 //    }
 //
 //    public static void processingImage(String fileName,/*, ImageOperation operation*/ImageOperation operation) throws Exception {
-//        final BufferedImage image = task9_7_1_part4.utils.ImageUtils.getImage(fileName);
-//        final task9_7_1_part4.utils.RgbMaster rgbMaster = new RgbMaster(image);
+//        final BufferedImage image = task9_7_1_part5.utils.ImageUtils.getImage(fileName);
+//        final task9_7_1_part5.utils.RgbMaster rgbMaster = new RgbMaster(image);
 //        rgbMaster.changeImage(FilterOperation::greyScale);
 //        ImageUtils.saveImage(rgbMaster.getImage(), fileName);
 //    }
@@ -345,10 +354,10 @@ public class PhotoMessageUtils {
 
 //// ПРИМЕР 0 240529 0853 _ПЕРЕПИСАНО В ТОЧНОСТИ КАК В ВИДЕОУРОКАХ 08, 04
 //import org.telegram.telegrambots.meta.api.objects.File;
-//import task9_7_1_part4.functions.FilterOperation;
-//import task9_7_1_part4.functions.ImageOperation;
-//import task9_7_1_part4.utils.ImageUtils;
-//import task9_7_1_part4.utils.RgbMaster;
+//import task9_7_1_part5.functions.FilterOperation;
+//import task9_7_1_part5.functions.ImageOperation;
+//import task9_7_1_part5.utils.ImageUtils;
+//import task9_7_1_part5.utils.RgbMaster;
 //
 //import java.awt.image.BufferedImage;
 //import java.io.FileOutputStream;
@@ -368,7 +377,7 @@ public class PhotoMessageUtils {
 //        for (File file: files) {
 //            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath(); // TODO Так было в видеоуроке 04 на минуте 20 21 ПОПРОБОВАТЬ ТОЖЕ
 ////            final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass(); // TODO Так было у меня, почему-то добавлено: + file.getClass()
-//            final String localFileName = "src/main/java/task9_7_1_part4/images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
+//            final String localFileName = "src/main/java/task9_7_1_part5/images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
 ////            final String localFileName = "images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Так было в видеоуроке
 //            saveImage(imageUrl, localFileName);
 //            paths.add(localFileName);
@@ -391,10 +400,10 @@ public class PhotoMessageUtils {
 //
 ////    // TODO Новый метод создан,с двойкой в названии
 ////    public static void processingImage2(String fileName, ImageOperation operation) throws Exception {
-////        final BufferedImage image = task9_7_1_part4.utils.ImageUtils.getImage(fileName);
-////        final task9_7_1_part4.utils.RgbMaster rgbMaster = new task9_7_1_part4.utils.RgbMaster(image);
+////        final BufferedImage image = task9_7_1_part5.utils.ImageUtils.getImage(fileName);
+////        final task9_7_1_part5.utils.RgbMaster rgbMaster = new task9_7_1_part5.utils.RgbMaster(image);
 ////        rgbMaster.changeImage(operation);
-////        task9_7_1_part4.utils.ImageUtils.saveImage(rgbMaster.getImage(), fileName);
+////        task9_7_1_part5.utils.ImageUtils.saveImage(rgbMaster.getImage(), fileName);
 ////    }
 //
 //
@@ -402,15 +411,15 @@ public class PhotoMessageUtils {
 //
 ////    // TODO ДАЛЕЕ ВСЕ ИЗНАЧАЛЬНЫЕ МЕТОДЫ
 ////    public static void processingImage(String fileName) throws Exception {
-////        final BufferedImage image = task9_7_1_part4.utils.ImageUtils.getImage(fileName);
-////        final task9_7_1_part4.utils.RgbMaster rgbMaster = new task9_7_1_part4.utils.RgbMaster(image);
+////        final BufferedImage image = task9_7_1_part5.utils.ImageUtils.getImage(fileName);
+////        final task9_7_1_part5.utils.RgbMaster rgbMaster = new task9_7_1_part5.utils.RgbMaster(image);
 ////        rgbMaster.changeImage(FilterOperation::greyScale);
-////        task9_7_1_part4.utils.ImageUtils.saveImage(rgbMaster.getImage(), fileName);
+////        task9_7_1_part5.utils.ImageUtils.saveImage(rgbMaster.getImage(), fileName);
 ////    }
 //
 //    public static void processingImage(String fileName,/*, ImageOperation operation*/ImageOperation operation) throws Exception {
-//        final BufferedImage image = task9_7_1_part4.utils.ImageUtils.getImage(fileName);
-//        final task9_7_1_part4.utils.RgbMaster rgbMaster = new RgbMaster(image);
+//        final BufferedImage image = task9_7_1_part5.utils.ImageUtils.getImage(fileName);
+//        final task9_7_1_part5.utils.RgbMaster rgbMaster = new RgbMaster(image);
 //        rgbMaster.changeImage(operation);
 //        ImageUtils.saveImage(rgbMaster.getImage(), fileName);
 ////        rgbMaster.changeImage(FilterOperation::greyScale);

@@ -3,7 +3,7 @@ package task9_7_1_part4;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.generics.BotSession;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-import task9_7_1_part4.Bot;
+//import task9_7_1_part4.Bot;
 
 // Создан Telegram бот:
 // botName: MyTestBot_001
@@ -27,7 +27,7 @@ public class Task9_7_1_part4 {
                 "экрана сохранён в файле 'buttonsInTelegramBot.jpg' в папке: `src/main/java/task9_7_1`.");
 
         TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
-        BotSession botSession = api.registerBot(new Bot());
+//        BotSession botSession = api.registerBot(new Bot());
 
     }
 }

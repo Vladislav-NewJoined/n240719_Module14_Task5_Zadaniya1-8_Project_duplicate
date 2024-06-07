@@ -32,12 +32,12 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "gksdlajgwg_Bot_002_bot"; // Название вашего бота
+        return "lgcyrrerrr_002_bot"; // Название вашего бота
     }
 
     @Override
     public String getBotToken() {
-        return "6417807322:AAFdN_5q5Jt7KdjGBxI41rle_qI-1mn25fY"; // Токен вашего бота
+        return "7042048331:AAFXdhcICubXad5RxZGyItCIi7L6IUwvaJo"; // Токен вашего бота
     }
 
     @Override
@@ -107,6 +107,7 @@ public class Bot extends TelegramLongPollingBot {
 
         try {
             processingImage(localFileName);
+//            processingImage(localFileName);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

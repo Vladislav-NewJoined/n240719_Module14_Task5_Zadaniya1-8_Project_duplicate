@@ -31,7 +31,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+import static task9_7_1_part2.utils.PhotoMessageUtils.processingImage;
 
 public class Bot extends TelegramLongPollingBot {
 

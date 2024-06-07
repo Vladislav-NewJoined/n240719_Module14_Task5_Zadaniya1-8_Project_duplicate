@@ -1,4 +1,4 @@
-package task9_7_1_part4;
+package task9_7_1_part5;
 
 //// ПРИМЕР _ 240531 0000 Взято из примера 4. Всё делает, но присылает одно лишнее изображение. Пытаюсь его убрать
 //// надо менять метод private SendPhoto preparePhotoMessage2(String localPath, String chatId) - с двумя параметрами
@@ -18,11 +18,11 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import task9_7_1_part4.commands.BotCommonCommands;
-import task9_7_1_part4.commands.AppBotCommand;
-import task9_7_1_part4.functions.FilterOperation;
-import task9_7_1_part4.functions.ImageOperation;
-import task9_7_1_part4.utils.PhotoMessageUtils;
+import task9_7_1_part5.commands.BotCommonCommands;
+import task9_7_1_part5.commands.AppBotCommand;
+import task9_7_1_part5.functions.FilterOperation;
+import task9_7_1_part5.functions.ImageOperation;
+import task9_7_1_part5.utils.PhotoMessageUtils;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -66,7 +66,7 @@ public class Bot extends TelegramLongPollingBot {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
         sendMessage.setText(response);
-        final String localFileName = "src/main/java/task9_7_1_part4/" + "cloned_image.jpg";
+        final String localFileName = "src/main/java/task9_7_1_part5/" + "cloned_image.jpg";
         PhotoSize photoSize = message.getPhoto().get(0);
         response = runCommand(message.getText());
         final String fileId = photoSize.getFileId();
@@ -242,23 +242,23 @@ public class Bot extends TelegramLongPollingBot {
     private SendMediaGroup preparePhotoMessage(List<String> localPaths, ImageOperation operation, String chatId) throws Exception {
         SendMediaGroup mediaGroup = new SendMediaGroup();
         ArrayList<InputMedia> medias = new ArrayList<>();
-        for (String path : localPaths) {
-            InputMedia inputMedia = new InputMediaPhoto();
-            PhotoMessageUtils.processingImage(path, operation);
-            inputMedia.setMedia(new java.io.File(path), "path");
-            medias.add(inputMedia);
-        }
+//        for (String path : localPaths) {
+//            InputMedia inputMedia = new InputMediaPhoto();
+//            PhotoMessageUtils.processingImage(path, operation);
+//            inputMedia.setMedia(new java.io.File(path), "path");
+//            medias.add(inputMedia);
+//        }
         mediaGroup.setMedias(medias);
         mediaGroup.setChatId(chatId);
 
         SendMediaGroup mediaGroup2 = new SendMediaGroup();
         ArrayList<InputMedia> medias2 = new ArrayList<>();
-        for (String path : localPaths) {
-            InputMediaPhoto inputMedia = new InputMediaPhoto();
-            PhotoMessageUtils.processingImage(path, operation);
-            inputMedia.setMedia(new File(path), "path");
-            medias2.add(inputMedia);
-        }
+//        for (String path : localPaths) {
+//            InputMediaPhoto inputMedia = new InputMediaPhoto();
+//            PhotoMessageUtils.processingImage(path, operation);
+//            inputMedia.setMedia(new File(path), "path");
+//            medias2.add(inputMedia);
+//        }
         mediaGroup2.setMedias(medias2);
         mediaGroup2.setChatId(chatId);
 
@@ -317,11 +317,11 @@ public class Bot extends TelegramLongPollingBot {
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 //import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-//import task9_7_1_part4.commands.BotCommonCommands;
-//import task9_7_1_part4.commands.AppBotCommand;
-//import task9_7_1_part4.functions.FilterOperation;
-//import task9_7_1_part4.functions.ImageOperation;
-//import task9_7_1_part4.utils.PhotoMessageUtils;
+//import task9_7_1_part5.commands.BotCommonCommands;
+//import task9_7_1_part5.commands.AppBotCommand;
+//import task9_7_1_part5.functions.FilterOperation;
+//import task9_7_1_part5.functions.ImageOperation;
+//import task9_7_1_part5.utils.PhotoMessageUtils;
 //
 //import java.io.*;
 //import java.lang.reflect.InvocationTargetException;
@@ -365,7 +365,7 @@ public class Bot extends TelegramLongPollingBot {
 //        SendMessage sendMessage = new SendMessage();
 //        sendMessage.setChatId(chatId);
 //        sendMessage.setText(response);
-//        final String localFileName = "src/main/java/task9_7_1_part4/" + "cloned_image.jpg";
+//        final String localFileName = "src/main/java/task9_7_1_part5/" + "cloned_image.jpg";
 //        PhotoSize photoSize = message.getPhoto().get(0);
 //        response = runCommand(message.getText());
 //        final String fileId = photoSize.getFileId();
@@ -616,14 +616,14 @@ public class Bot extends TelegramLongPollingBot {
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 //import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-//import task9_7_1_part4.commands.BotCommonCommands;
-//import task9_7_1_part4.commands.AppBotCommand;
-//import task9_7_1_part4.functions.FilterOperation;
-//import task9_7_1_part4.functions.ImageOperation;
-//import task9_7_1_part4.utils.PhotoMessageUtils;
+//import task9_7_1_part5.commands.BotCommonCommands;
+//import task9_7_1_part5.commands.AppBotCommand;
+//import task9_7_1_part5.functions.FilterOperation;
+//import task9_7_1_part5.functions.ImageOperation;
+//import task9_7_1_part5.utils.PhotoMessageUtils;
 //
 //import java.io.*;
-//        import java.lang.reflect.InvocationTargetException;
+//import java.lang.reflect.InvocationTargetException;
 //import java.lang.reflect.Method;
 //import java.net.URI;
 //import java.net.URL;
@@ -665,7 +665,7 @@ public class Bot extends TelegramLongPollingBot {
 //        SendMessage sendMessage = new SendMessage();
 //        sendMessage.setChatId(chatId);
 //        sendMessage.setText(response);
-//        final String localFileName = "src/main/java/task9_7_1_part4/" + "cloned_image.jpg";
+//        final String localFileName = "src/main/java/task9_7_1_part5/" + "cloned_image.jpg";
 //        PhotoSize photoSize = message.getPhoto().get(0);
 //        response = runCommand(message.getText());
 //        final String fileId = photoSize.getFileId();
@@ -923,11 +923,11 @@ public class Bot extends TelegramLongPollingBot {
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 //import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-//import task9_7_1_part4.commands.BotCommonCommands;
-//import task9_7_1_part4.commands.AppBotCommand;
-//import task9_7_1_part4.functions.FilterOperation;
-//import task9_7_1_part4.functions.ImageOperation;
-//import task9_7_1_part4.utils.PhotoMessageUtils;
+//import task9_7_1_part5.commands.BotCommonCommands;
+//import task9_7_1_part5.commands.AppBotCommand;
+//import task9_7_1_part5.functions.FilterOperation;
+//import task9_7_1_part5.functions.ImageOperation;
+//import task9_7_1_part5.utils.PhotoMessageUtils;
 //
 //import java.io.*;
 //        import java.lang.reflect.InvocationTargetException;
@@ -971,7 +971,7 @@ public class Bot extends TelegramLongPollingBot {
 //        SendMessage sendMessage = new SendMessage();
 //        sendMessage.setChatId(chatId);
 //        sendMessage.setText(response);
-//        final String localFileName = "src/main/java/task9_7_1_part4/" + "cloned_image.jpg";
+//        final String localFileName = "src/main/java/task9_7_1_part5/" + "cloned_image.jpg";
 //        PhotoSize photoSize = message.getPhoto().get(0);
 //        response = runCommand(message.getText());
 //        final String fileId = photoSize.getFileId();
@@ -1273,11 +1273,11 @@ public class Bot extends TelegramLongPollingBot {
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 //import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-//import task9_7_1_part4.commands.BotCommonCommands;
-//import task9_7_1_part4.commands.AppBotCommand;
-//import task9_7_1_part4.functions.FilterOperation;
-//import task9_7_1_part4.functions.ImageOperation;
-//import task9_7_1_part4.utils.PhotoMessageUtils;
+//import task9_7_1_part5.commands.BotCommonCommands;
+//import task9_7_1_part5.commands.AppBotCommand;
+//import task9_7_1_part5.functions.FilterOperation;
+//import task9_7_1_part5.functions.ImageOperation;
+//import task9_7_1_part5.utils.PhotoMessageUtils;
 //
 //import java.io.*;
 //import java.lang.reflect.InvocationTargetException;
@@ -1321,7 +1321,7 @@ public class Bot extends TelegramLongPollingBot {
 //        SendMessage sendMessage = new SendMessage();
 //        sendMessage.setChatId(chatId);
 //        sendMessage.setText(response);
-//        final String localFileName = "src/main/java/task9_7_1_part4/" + "cloned_image.jpg";
+//        final String localFileName = "src/main/java/task9_7_1_part5/" + "cloned_image.jpg";
 //        PhotoSize photoSize = message.getPhoto().get(0);
 //        response = runCommand(message.getText());
 //        final String fileId = photoSize.getFileId();
@@ -1605,11 +1605,11 @@ public class Bot extends TelegramLongPollingBot {
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 //import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-//import task9_7_1_part4.commands.BotCommonCommands;
-//import task9_7_1_part4.commands.AppBotCommand;
-//import task9_7_1_part4.functions.FilterOperation;
-//import task9_7_1_part4.functions.ImageOperation;
-//import task9_7_1_part4.utils.PhotoMessageUtils;
+//import task9_7_1_part5.commands.BotCommonCommands;
+//import task9_7_1_part5.commands.AppBotCommand;
+//import task9_7_1_part5.functions.FilterOperation;
+//import task9_7_1_part5.functions.ImageOperation;
+//import task9_7_1_part5.utils.PhotoMessageUtils;
 //
 //import java.io.*;
 //import java.lang.reflect.InvocationTargetException;
@@ -1799,7 +1799,7 @@ public class Bot extends TelegramLongPollingBot {
 
 
 
-////// ПРИМЕР 2 _ДУБЛЬ 3 _Создаём три кнопки путём добавления фрагмента с Button 1 ... 1 июня в 1606
+//// ПРИМЕР 2 _ДУБЛЬ 3 _Создаём три кнопки путём добавления фрагмента с Button 1 ... 1 июня в 1606
 //import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 //import org.telegram.telegrambots.meta.api.methods.GetFile;
 //import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
@@ -1818,7 +1818,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.net.URL;
 //import java.util.ArrayList;
 //
-//import static task9_7_1_part4.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part5.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //
@@ -1834,7 +1834,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //    @Override
 //    public void onUpdateReceived(Update update) {
-//        final String localFileName = "src/main/java/task9_7_1_part4/" + "cloned_image.jpg";
+//        final String localFileName = "src/main/java/task9_7_1_part5/" + "cloned_image.jpg";
 //        Message message = update.getMessage();
 //        PhotoSize photoSize = message.getPhoto().get(0);
 //        final String fileId = photoSize.getFileId();
@@ -1846,11 +1846,12 @@ public class Bot extends TelegramLongPollingBot {
 //            throw new RuntimeException(e);
 //        }
 //
-//        try {
-//            processingImage(localFileName);
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+////        try {
+////            processingImage(localFileName);
+//////            processingImage(localFileName);
+////        } catch (Exception e) {
+////            throw new RuntimeException(e);
+////        }
 //
 //        // TODO Если закомментировать следующий фрагмент кода в Примере 2, до конца метода onUpdateReceived, т.е. до e.printStackTrace(); },
 //        //  то одно изображение не будет возвращаться. ПРОВЕРЕНО! Работает.
@@ -1897,7 +1898,7 @@ public class Bot extends TelegramLongPollingBot {
 //            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
 //                if (rowIndex == 0 && columnIndex == 0) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "greyScale";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -1910,7 +1911,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 0 && columnIndex == 1) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "onlyRed";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -1923,7 +1924,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 0 && columnIndex == 2) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "onlyGreen";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -1936,7 +1937,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 1 && columnIndex == 0) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "onlyBlue";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -1949,7 +1950,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 1 && columnIndex == 1) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "sepia";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2014,7 +2015,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //    @Override
 //    public void onUpdateReceived(Update update) {
-//        final String localFileName = "src/main/java/task9_7_1_part4/" + "cloned_image.jpg";
+//        final String localFileName = "src/main/java/task9_7_1_part5/" + "cloned_image.jpg";
 //        Message message = update.getMessage();
 //        PhotoSize photoSize = message.getPhoto().get(0);
 //        final String fileId = photoSize.getFileId();
@@ -2076,7 +2077,7 @@ public class Bot extends TelegramLongPollingBot {
 //            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
 //                if (rowIndex == 0 && columnIndex == 0) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "greyScale";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2089,7 +2090,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 0 && columnIndex == 1) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "onlyRed";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2102,7 +2103,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 0 && columnIndex == 2) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "onlyGreen";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2115,7 +2116,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 1 && columnIndex == 0) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "onlyBlue";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2128,7 +2129,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 1 && columnIndex == 1) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "sepia";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2193,7 +2194,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //    @Override
 //    public void onUpdateReceived(Update update) {
-//        final String localFileName = "src/main/java/task9_7_1_part4/" + "cloned_image.jpg";
+//        final String localFileName = "src/main/java/task9_7_1_part5/" + "cloned_image.jpg";
 //        Message message = update.getMessage();
 //        PhotoSize photoSize = message.getPhoto().get(0);
 //        final String fileId = photoSize.getFileId();
@@ -2255,7 +2256,7 @@ public class Bot extends TelegramLongPollingBot {
 //            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
 //                if (rowIndex == 0 && columnIndex == 0) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "greyScale";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2268,7 +2269,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 0 && columnIndex == 1) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "onlyRed";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2281,7 +2282,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 0 && columnIndex == 2) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "onlyGreen";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2294,7 +2295,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 1 && columnIndex == 0) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "onlyBlue";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2307,7 +2308,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 1 && columnIndex == 1) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "sepia";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2371,7 +2372,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //    @Override
 //    public void onUpdateReceived(Update update) {
-//        final String localFileName = "src/main/java/task9_7_1_part4/" + "cloned_image.jpg";
+//        final String localFileName = "src/main/java/task9_7_1_part5/" + "cloned_image.jpg";
 //        Message message = update.getMessage();
 //        PhotoSize photoSize = message.getPhoto().get(0);
 //        final String fileId = photoSize.getFileId();
@@ -2433,7 +2434,7 @@ public class Bot extends TelegramLongPollingBot {
 //            for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
 //                if (rowIndex == 0 && columnIndex == 0) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "greyScale";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2446,7 +2447,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 0 && columnIndex == 1) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "onlyRed";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2459,7 +2460,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 0 && columnIndex == 2) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "onlyGreen";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2472,7 +2473,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 1 && columnIndex == 0) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "onlyBlue";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
@@ -2485,7 +2486,7 @@ public class Bot extends TelegramLongPollingBot {
 //
 //                } else if (rowIndex == 1 && columnIndex == 1) {
 //                    try {
-//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part4.functions.FilterOperation");
+//                        Class<?> filterOperationClass = Class.forName("task9_7_1_part5.functions.FilterOperation");
 //                        String methodName = "sepia";
 //                        Method method = filterOperationClass.getDeclaredMethod(methodName, float[].class);
 //                        float[] rgbArray = new float[3]; // Creating an RGB array
