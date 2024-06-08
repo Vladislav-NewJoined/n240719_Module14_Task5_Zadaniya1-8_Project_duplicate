@@ -27,7 +27,7 @@ public class Task9_7_1_part4 {
                 "экрана сохранён в файле 'buttonsInTelegramBot.jpg' в папке: `src/main/java/task9_7_1_part4`.");
 
         TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
-//        BotSession botSession = api.registerBot(new Bot());
+        BotSession botSession = api.registerBot(new Bot());
 
     }
 }
