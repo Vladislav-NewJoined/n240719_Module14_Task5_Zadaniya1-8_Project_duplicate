@@ -20,7 +20,7 @@ public class PhotoMessageUtils {
         ArrayList<String> paths = new ArrayList<>();
         for (File file: files) {
             final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath() + file.getClass();
-            final String localFileName = "src/main/java/task9_7_1/" + new Date().getTime() + random.nextLong() + ".jpg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
+            final String localFileName = "src/main/java/task9_7_1_part1/" + new Date().getTime() + random.nextLong() + ".jpg"; // TODO Это я так изменил, возможно его нужно будет потом удалить
 //            final String localFileName = "images/" + new Date().getTime() + random.nextLong() + ".jpeg"; // TODO Так было в видеоуроке
             saveImage(imageUrl, localFileName);
             paths.add(localFileName);
@@ -53,8 +53,8 @@ public class PhotoMessageUtils {
 
 //// ПРИМЕР 2 _Изначальный, который работает
 //import org.telegram.telegrambots.meta.api.objects.File;
-//import task9_7_1.functions.FilterOperation;
-//import task9_7_1.functions.ImageOperation;
+//import task9_7_1_part1.functions.FilterOperation;
+//import task9_7_1_part1.functions.ImageOperation;
 //
 //import java.awt.image.BufferedImage;
 //import java.io.*;

@@ -326,7 +326,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part2.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //
@@ -622,7 +622,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part2.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //
@@ -917,7 +917,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part2.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //
@@ -1212,7 +1212,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part2.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //
@@ -1493,7 +1493,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part2.utils.PhotoMessageUtils.processingImage;
 //import static task9_7_1_part2.utils.PhotoMessageUtils.processingImage2;
 //
 //public class Bot extends TelegramLongPollingBot {
@@ -1835,7 +1835,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part2.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //
@@ -2172,7 +2172,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part2.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //
@@ -2449,7 +2449,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part2.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //
@@ -2746,7 +2746,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.util.ArrayList;
 //import java.util.List;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part2.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //
@@ -2978,9 +2978,9 @@ public class Bot extends TelegramLongPollingBot {
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 //import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-//import task9_7_1.commands.AppBotCommand;
-//import task9_7_1.commands.BotCommonCommands;
-//import task9_7_1.functions.FilterOperation;
+//import task9_7_1_part2.commands.AppBotCommand;
+//import task9_7_1task9_7_1_part2.commands.BotCommonCommands;
+//import task9_7_1task9_7_1_part2.functions.FilterOperation;
 //
 //import java.io.*;
 //import java.lang.reflect.InvocationTargetException;
@@ -2988,7 +2988,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.net.URL;
 //import java.util.ArrayList;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part2.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //
@@ -3166,7 +3166,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.net.URL;
 //import java.util.ArrayList;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part2.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //

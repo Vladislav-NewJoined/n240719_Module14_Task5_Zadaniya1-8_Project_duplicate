@@ -2,10 +2,10 @@ package task9_7_1_part5.utils;
 
 // ПРИМЕР  240529 ____ _ИЗ PACKAGE task9_7_1_part3_TEST
 import org.telegram.telegrambots.meta.api.objects.File;
-import task9_7_1_part4.functions.FilterOperation;
-import task9_7_1_part4.functions.ImageOperation;
-import task9_7_1_part4.utils.ImageUtils;
-import task9_7_1_part4.utils.RgbMaster;
+import task9_7_1_part5.functions.FilterOperation;
+import task9_7_1_part5.functions.ImageOperation;
+import task9_7_1_part5.utils.ImageUtils;
+import task9_7_1_part5.utils.RgbMaster;
 
 import java.awt.image.BufferedImage;
 import java.io.*;

@@ -1999,7 +1999,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.net.URL;
 //import java.util.ArrayList;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part5.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //
@@ -2178,7 +2178,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.net.URL;
 //import java.util.ArrayList;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part5.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //
@@ -2356,7 +2356,7 @@ public class Bot extends TelegramLongPollingBot {
 //import java.net.URL;
 //import java.util.ArrayList;
 //
-//import static task9_7_1.utils.PhotoMessageUtils.processingImage;
+//import static task9_7_1_part5.utils.PhotoMessageUtils.processingImage;
 //
 //public class Bot extends TelegramLongPollingBot {
 //

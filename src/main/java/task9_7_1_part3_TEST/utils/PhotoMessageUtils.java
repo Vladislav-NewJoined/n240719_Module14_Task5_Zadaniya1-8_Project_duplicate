@@ -92,8 +92,8 @@ public class PhotoMessageUtils {
 
 //// ПРИМЕР 2 _Изначальный, который работает
 //import org.telegram.telegrambots.meta.api.objects.File;
-//import task9_7_1.functions.FilterOperation;
-//import task9_7_1.functions.ImageOperation;
+//import task9_7_1_part3_TEST.functions.FilterOperation;
+//import task9_7_1_part3_TEST.functions.ImageOperation;
 //
 //import java.awt.image.BufferedImage;
 //import java.io.*;
