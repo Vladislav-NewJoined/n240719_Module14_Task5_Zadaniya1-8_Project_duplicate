@@ -240,6 +240,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import static task9_7_1_part7.utils.PhotoMessageUtils.processingImage;
+
 public class Bot extends TelegramLongPollingBot {
 
     Class[] commandClasses = new Class[]{BotCommonCommands.class};
@@ -324,15 +326,35 @@ public class Bot extends TelegramLongPollingBot {
 
     private SendMediaGroup runPhotoFilter(Message message) {
         ImageOperation operation = FilterOperation::greyScale;
-        List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(message);       //  TODO ВОЗМОЖНО НАДО СДЕЛАТЬ ПРОСТО File
-//        List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(message);
+        List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(message);
         try {
-            List<String> paths = PhotoMessageUtils.savePhotos(files, getBotToken());       //  TODO ОСТАВЛЯЕМ! Без него 4 изображения не возвращает
-            String chatId = message.getChatId().toString();       //  TODO ОСТАВЛЯЕМ! Без него 4 изображения не возвращает
-            return preparePhotoMessage(paths, operation, chatId);       //  TODO ОСТАВЛЯЕМ! Без него 4 изображения не возвращает
+            List<String> paths = PhotoMessageUtils.savePhotos(files, getBotToken());
+            String chatId = message.getChatId().toString();
+            for (String path : paths) {
+                processingImage(path, operation); // Обработка каждого сохраненного изображения
+            }
+            return preparePhotoMessage(paths, operation, chatId);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+
+
+
+
+
+// TODO 240610 0931 Нижнее восстановить, верхнее удалить
+//        ImageOperation operation = FilterOperation::greyScale;
+//        List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(message);       //  TODO ВОЗМОЖНО НАДО СДЕЛАТЬ ПРОСТО File
+////        List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(message);
+//        try {
+//            List<String> paths = PhotoMessageUtils.savePhotos(files, getBotToken());       //  TODO ОСТАВЛЯЕМ! Без него 4 изображения не возвращает
+//            String chatId = message.getChatId().toString();       //  TODO ОСТАВЛЯЕМ! Без него 4 изображения не возвращает
+//            return preparePhotoMessage(paths, operation, chatId);       //  TODO ОСТАВЛЯЕМ! Без него 4 изображения не возвращает
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         return null;
     }
 
@@ -357,7 +379,7 @@ public class Bot extends TelegramLongPollingBot {
         ArrayList<InputMedia> medias = new ArrayList<>();
         for (String path : localPaths) {
             InputMedia inputMedia = new InputMediaPhoto();
-            PhotoMessageUtils.processingImage(path, operation);
+            processingImage(path, operation);
 //            inputMedia.setNewMediaFile(new java.io.File(path));
             inputMedia.setMedia(new File(path), "path");
             medias.add(inputMedia);
