@@ -42,15 +42,14 @@ public class PhotoMessageUtils {
 
     public static void saveImage(String url, String fileName) throws IOException {
         URL urlModel = new URL(url);
-        InputStream inputStream = urlModel.openStream();
-        OutputStream outputStream = new FileOutputStream(fileName);
-        byte[] b = new byte[2048];
-        int length;
-        while ((length = inputStream.read(b)) != -1) {
-            outputStream.write(b, 0, length);
+        try (InputStream inputStream = urlModel.openStream();
+             OutputStream outputStream = new FileOutputStream(fileName)) {
+            byte[] b = new byte[2048];
+            int length;
+            while ((length = inputStream.read(b)) != -1) {
+                outputStream.write(b, 0, length);
+            }
         }
-        inputStream.close();
-        outputStream.close();
     }
 
 //    // TODO Новый мет
