@@ -1,6 +1,7 @@
 package task9_7_1_part2.utils;
 
 import task9_7_1_part2.functions.ImageOperation;
+import task9_7_1_part2.utils.ImageUtils;
 
 import java.awt.image.BufferedImage;
 

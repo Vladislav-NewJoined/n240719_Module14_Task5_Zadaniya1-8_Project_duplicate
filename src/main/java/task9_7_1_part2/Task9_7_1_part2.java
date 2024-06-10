@@ -3,11 +3,12 @@ package task9_7_1_part2;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.generics.BotSession;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+import task9_7_1_part2.Bot;
 
 // Создан Telegram бот:
-// botName: MyTestBot_001
-// userName: @qytewqwww_Bot  или  qytewqwww_Bot
-// token: 7057416920:AAEzJF-2L8i8GdyLnkqMThUyyXk6BQOdoAk
+// botName: MyTestBot_002
+// userName: @lgcyrrerrr_002_bot  или  lgcyrrerrr_002_bot
+// token: 7042048331:AAFXdhcICubXad5RxZGyItCIi7L6IUwvaJo
 
 public class Task9_7_1_part2 {
     public static void main(String[] args) throws Exception {
