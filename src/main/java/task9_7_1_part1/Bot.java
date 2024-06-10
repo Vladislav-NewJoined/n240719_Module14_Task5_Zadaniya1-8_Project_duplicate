@@ -1,6 +1,6 @@
 package task9_7_1_part1;
 
-//// ПРИМЕР 1 РАБОТАЕТ. Обрабатывает и сохраняет 1 изображение. Создаёт 9 кнопок (5+4), но не отвечает на них. Взято из task9_5_1
+//// ПРИМЕР 1 РАБОТАЕТ. Обрабатывает и сохраняет 1 изображение. Создаёт 9 кнопок (5+4), но не отвечает на них.
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
@@ -54,22 +54,19 @@ public class Bot extends TelegramLongPollingBot {
             throw new RuntimeException(e);
         }
 
-        // TODO Если закомментировать следующий фрагмент кода в Примере 2, до конца метода onUpdateReceived, т.е. до e.printStackTrace(); },
-        //  то одно изображение не будет возвращаться. ПРОВЕРЕНО! Работает.
-        SendPhoto sendPhoto = preparePhotoMessage(localFileName, message.getChatId().toString()); //  TODO Закомментировать, чтобы не возвращалось одно фото
+        SendPhoto sendPhoto = preparePhotoMessage(localFileName, message.getChatId().toString());
         ///
-        sendPhoto.setChatId(message.getChatId().toString()); //  TODO Закомментировать, чтобы не возвращалось одно фото
-        InputFile newFile = new InputFile(); //  TODO Закомментировать, чтобы не возвращалось одно фото
-        newFile.setMedia(new File(localFileName)); //  TODO Закомментировать, чтобы не возвращалось одно фото
-        sendPhoto.setPhoto(newFile); //  TODO Закомментировать, чтобы не возвращалось одно фото
-        sendPhoto.setCaption("Обработанное изображение"); //  TODO Закомментировать, чтобы не возвращалось одно фото
+        sendPhoto.setChatId(message.getChatId().toString());
+        InputFile newFile = new InputFile();
+        newFile.setMedia(new File(localFileName));
+        sendPhoto.setPhoto(newFile);
+        sendPhoto.setCaption("Обработанное изображение");
 
-// TODO НАШЁЛ! Для невозврата одного фото. В ПРИМЕРЕ 2 Вот ЭТО ЗАКОММЕНТИРОВАТЬ в методе onUpdateReceived(Update update), и не будет возвращать одно изображение
-        try { //  TODO Закомментировать, чтобы не возвращалось одно фото
-            execute(sendPhoto); //  TODO Закомментировать, чтобы не возвращалось одно фото
-        } catch (TelegramApiException e) { //  TODO Закомментировать, чтобы не возвращалось одно фото
-            e.printStackTrace(); //  TODO Закомментировать, чтобы не возвращалось одно фото
-        } //  TODO Закомментировать, чтобы не возвращалось одно фото
+        try {
+            execute(sendPhoto);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
     }
 
     private void saveImage(String url, String fileName) throws IOException {
@@ -85,11 +82,9 @@ public class Bot extends TelegramLongPollingBot {
         outputStream.close();
     }
 
-    // TODO Здесь, в методе preparePhotoMessage, девять кнопок для клавиатуры создаются в двойном цикле,
-    //  где каждая кнопка определяется на основе условий rowIndex и columnIndex
     private SendPhoto preparePhotoMessage(String localPath, String chatId) {
         SendPhoto sendPhoto = new SendPhoto();
-        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();  //  TODO отсюда 240522 12.37 Закомментировать, чтобы 9 кнопок не возвращалось
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
         int rowCount = 3;
         int columnCount = 3;
@@ -169,14 +164,14 @@ public class Bot extends TelegramLongPollingBot {
             keyboardRows.add(row);
         }
         replyKeyboardMarkup.setKeyboard(keyboardRows);
-        replyKeyboardMarkup.setOneTimeKeyboard(true);  //  TODO досюда 240522 12.37 Закомментировать, чтобы 9 кнопок не возвращалось
+        replyKeyboardMarkup.setOneTimeKeyboard(true);
 
-        sendPhoto.setChatId(chatId); //  TODO Закомментировать, чтобы не возвращалось одно фото
-        sendPhoto.setReplyMarkup(replyKeyboardMarkup); //  TODO НАШЁЛ! ИМЕННО ЭТА СТРОКА ОТВЕЧАЕТ ЗА СОЗДАНИЕ 9-ти КНОПОК! Если её закомментировать, 9 кнопок не создадутся!
-        InputFile newFile = new InputFile(); //  TODO Закомментировать, чтобы не возвращалось одно фото
-        newFile.setMedia(new File(localPath)); //  TODO Закомментировать, чтобы не возвращалось одно фото
-        sendPhoto.setPhoto(newFile); //  TODO Закомментировать, чтобы не возвращалось одно фото
-        return sendPhoto; //  TODO ВОЗМОЖНО, А МОЖЕТ И НЕТ! Закомментировать, чтобы не возвращалось одно фото. НЕ НАДО КОММЕНТИРОВАТЬ, ФОТО НЕ ВОЗВРАЩАЕТСЯ
+        sendPhoto.setChatId(chatId);
+        sendPhoto.setReplyMarkup(replyKeyboardMarkup);
+        InputFile newFile = new InputFile();
+        newFile.setMedia(new File(localPath));
+        sendPhoto.setPhoto(newFile);
+        return sendPhoto;
     }
 }
 //// конец ПРИМЕРА 1

@@ -32,7 +32,7 @@ public class Task9_7_1_part1 {
                 "‘task9_7_1_part2’ - обрабатывает несколько изображений\n");
         System.out.println("В Telegram боте созданы кнопки и надписи к ним с использованием механизма 'рефлексия' " +
                 "(reflection). \nОтредактированное изображение сохранено в файле 'cloned_image.jpg' в папке: " +
-                "`src/main/java/task9_7_1_part1`. \nТакже кнопки появились под сообщением в Telegram боте.");
+                "`src/main/java/task9_7_1_part1`. \nТакже кнопки создаются под сообщением в Telegram боте.");
 
         TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
         BotSession botSession = api.registerBot(new Bot());
