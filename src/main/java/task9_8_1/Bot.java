@@ -113,9 +113,9 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     private SendMediaGroup runPhotoFilter(Message message) {
-        final String text = message.getText();
+        final String caption = message.getCaption();
 
-        ImageOperation operation = ImageUtils.getOperation(message.getText());
+        ImageOperation operation = ImageUtils.getOperation(caption);
         if (operation == null) return null;
         List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(message);
         try {
