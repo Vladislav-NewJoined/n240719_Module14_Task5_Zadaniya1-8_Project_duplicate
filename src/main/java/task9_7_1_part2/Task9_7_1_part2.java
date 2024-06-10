@@ -21,11 +21,17 @@ public class Task9_7_1_part2 {
 
             Решение:\s""");
 
-
-        System.out.println("В Telegram боте созданы кнопки и надписи к ним с использованием механизма 'рефлексия' " +
-                "(reflection). \nОтредактированное изображение сохранено в файле 'cloned_image.jpg' в папке: " +
-                "`src/main/java/task9_7_1_part2`. \nА также кнопки появились под сообщением в Telegram боте. Снимок " +
-                "экрана сохранён в файле 'buttonsInTelegramBot.jpg' в папке: `src/main/java/task9_7_1_part2`.");
+        System.out.println("Создан Telegram бот:\n" +
+                "botName: MyTestBot_002\n" +
+                "userName: @lgcyrrerrr_002_bot или lgcyrrerrr_002_bot\n" +
+                "token: 7042048331:AAFXdhcICubXad5RxZGyItCIi7L6IUwvaJo\n" +
+                "\n" +
+                "Предложено два решения:\n" +
+                "-первое в папке package:\n" +
+                "‘task9_7_1_part1’ - обрабатывает одно изображение\n" +
+                "- второе в папке package:\n" +
+                "‘task9_7_1_part2’ - обрабатывает несколько изображений\n");
+        System.out.println("Отредактированные изображения сохраняются в папке `src/main/java/task9_7_1_part2/images`.");
 
         TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
         BotSession botSession = api.registerBot(new Bot());
