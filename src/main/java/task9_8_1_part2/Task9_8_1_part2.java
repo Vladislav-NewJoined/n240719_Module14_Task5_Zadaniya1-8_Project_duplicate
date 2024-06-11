@@ -1,15 +1,16 @@
-package task9_8_1;
+package task9_8_1_part2;
 
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.generics.BotSession;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+import task9_8_1.Bot;
 
 // Создан Telegram бот:
 // botName: MyTestBot_002
 // userName: @lgcyrrerrr_002_bot  или  lgcyrrerrr_002_bot
 // token: 7042048331:AAFXdhcICubXad5RxZGyItCIi7L6IUwvaJo
 
-public class Task9_8_1 {
+public class Task9_8_1_part2 {
     public static void main(String[] args) throws Exception {
         System.out.println("""
             Задание:\s
