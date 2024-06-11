@@ -61,11 +61,15 @@ public class Bot extends TelegramLongPollingBot {
                 execute(responseTestMessage);
                 return;
             }
-//            SendMediaGroup responseMediaMessage = runPhotoFilter(message);
-//            if (responseMediaMessage != null) {
-//                execute(responseMediaMessage);
-//                return;
-//            }
+            Object responseMediaMessage = runPhotoFilter(message);
+            if (responseMediaMessage != null) {
+                if (responseMediaMessage instanceof SendMediaGroup) {
+                    execute((SendMediaGroup) responseMediaMessage);
+                } else if (responseMediaMessage instanceof SendMessage) {
+                    execute((SendMessage) responseMediaMessage);
+                }
+                return;
+            }
         } catch (InvocationTargetException | IllegalAccessException | TelegramApiException e) {
             e.printStackTrace();
         }
@@ -135,18 +139,26 @@ public class Bot extends TelegramLongPollingBot {
         return sendMessage;
     }
 
-    private SendMediaGroup runPhotoFilter(Message message) {
-        final String caption = message.getCaption();
+    private Object runPhotoFilter(Message message) {
+        final String text = message.getText();
 
-        ImageOperation operation = ImageUtils.getOperation(caption);
+        ImageOperation operation = ImageUtils.getOperation(text);
         if (operation == null) return null;
-        List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(message);
-        try {
-            List<String> paths = PhotoMessageUtils.savePhotos(files, getBotToken());
-            String chatId = message.getChatId().toString();
-            return preparePhotoMessage(paths, operation, chatId);
-        } catch (Exception e) {
-            e.printStackTrace();
+        String chatId = message.getChatId().toString();
+        Message photoMessage = messages.get(chatId);
+        if (photoMessage != null) {
+            List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(message);
+            try {
+                List<String> paths = PhotoMessageUtils.savePhotos(files, getBotToken());
+                return preparePhotoMessage(paths, operation, chatId);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            SendMessage sendMessage = new SendMessage();
+            sendMessage.setChatId(chatId);
+            sendMessage.setText("Отправьте фото, чтобы воспользоваться фильтром");
+            return sendMessage;
         }
         return null;
     }
