@@ -9,6 +9,8 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 // userName: @lgcyrrerrr_002_bo  или  lgcyrrerrr_002_bo
 // token: 7042048331:AAFXdhcICubXad5RxZGyItCIi7L6IUwvaJo
 
+// Работает видео кажется 9 (или 10). Обрабатывает и сохраняет 1 изображение. Создаёт 9 кнопок (5+4), но не отвечает на них.
+
 public class Task9_8_1_part1 {
     public static void main(String[] args) throws Exception {
         System.out.println("""

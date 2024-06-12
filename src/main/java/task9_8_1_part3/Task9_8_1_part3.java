@@ -10,6 +10,8 @@ import task9_8_1_part3.Bot;
 // userName: @lgcyrrerrr_002_bot  или  lgcyrrerrr_002_bot
 // token: 7042048331:AAFXdhcICubXad5RxZGyItCIi7L6IUwvaJo
 
+// Работает до 1651 мин видео 10, создает 5 кнопок, присылает надпись "Выберите фильтр" и отвечает на 3 предыдущие команды. Больше ничего не делает.
+
 public class Task9_8_1_part3 {
     public static void main(String[] args) throws Exception {
         System.out.println("""

@@ -9,6 +9,9 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 // userName: @lgcyrrerrr_002_bot  или  lgcyrrerrr_002_bot
 // token: 7042048331:AAFXdhcICubXad5RxZGyItCIi7L6IUwvaJo
 
+// Работает всё в соотв. с заданием до конца видео 10 и соответственно до конца Модуля 9, создает 5
+// кнопок, предлагает выбрать фильтри присылает на него фото разного цвета
+
 public class Task9_8_1_part4 {
     public static void main(String[] args) throws Exception {
         System.out.println("""

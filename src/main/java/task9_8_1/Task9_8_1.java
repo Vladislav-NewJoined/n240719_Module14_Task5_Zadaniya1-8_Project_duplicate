@@ -9,6 +9,9 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 // userName: @lgcyrrerrr_002_bot  или  lgcyrrerrr_002_bot
 // token: 7042048331:AAFXdhcICubXad5RxZGyItCIi7L6IUwvaJo
 
+// Работает видео 10, присыланет фото разного цвета и сохраняет их, например на команду onlyGreen присылает группу фото зелёного цвета,
+// кнопки не создаёт
+
 public class Task9_8_1 {
     public static void main(String[] args) throws Exception {
         System.out.println("""

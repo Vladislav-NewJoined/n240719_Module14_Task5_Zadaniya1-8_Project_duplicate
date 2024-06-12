@@ -139,15 +139,14 @@ public class Bot extends TelegramLongPollingBot {
         return sendMessage;
     }
 
-    private Object runPhotoFilter(Message message) {
-        final String text = message.getText();
-
+    private Object runPhotoFilter(Message newMessage) {
+        final String text = newMessage.getText();
         ImageOperation operation = ImageUtils.getOperation(text);
         if (operation == null) return null;
-        String chatId = message.getChatId().toString();
+        String chatId = newMessage.getChatId().toString();
         Message photoMessage = messages.get(chatId);
         if (photoMessage != null) {
-            List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(message);
+            List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(photoMessage);
             try {
                 List<String> paths = PhotoMessageUtils.savePhotos(files, getBotToken());
                 return preparePhotoMessage(paths, operation, chatId);
@@ -165,6 +164,7 @@ public class Bot extends TelegramLongPollingBot {
 
     private List<org.telegram.telegrambots.meta.api.objects.File> getFilesByMessage(Message message) {
         List<PhotoSize> photoSizes = message.getPhoto();
+        if (photoSizes == null) return new ArrayList<>();
         ArrayList<org.telegram.telegrambots.meta.api.objects.File> files = new ArrayList<>();
         for (PhotoSize photoSize : photoSizes) {
             final String fileId = photoSize.getFileId();
