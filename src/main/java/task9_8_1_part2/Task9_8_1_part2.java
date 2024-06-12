@@ -3,7 +3,7 @@ package task9_8_1_part2;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.generics.BotSession;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-import task9_8_1.Bot;
+import task9_8_1_part2.Bot;
 
 // Создан Telegram бот:
 // botName: MyTestBot_002
@@ -28,10 +28,10 @@ public class Task9_8_1_part2 {
                 "\n" +
                 "Предложено два решения:\n" +
                 "-первое в папке package:\n" +
-                "‘task9_8_1_part1’ - обрабатывает одно изображение\n" +
+                "‘task9_8_1_part2’ - обрабатывает одно изображение\n" +
                 "- второе в папке package:\n" +
-                "‘task9_8_1’ - обрабатывает несколько изображений\n");
-        System.out.println("Отредактированные изображения сохраняются в папке `src/main/java/task9_8_1/images`.");
+                "‘task9_8_1_part2’ - обрабатывает несколько изображений\n");
+        System.out.println("Отредактированные изображения сохраняются в папке `src/main/java/task9_8_1_part2/images`.");
 
         TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
         BotSession botSession = api.registerBot(new Bot());
@@ -46,7 +46,7 @@ public class Task9_8_1_part2 {
 //import org.telegram.telegrambots.meta.TelegramBotsApi;
 //import org.telegram.telegrambots.meta.generics.BotSession;
 //import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-//import task9_8_1.Bot;
+//import task9_8_1_part2.Bot;
 //
 //// Создан Telegram бот:
 //// botName: MyTestBot_002
@@ -71,10 +71,10 @@ public class Task9_8_1_part2 {
 //                "\n" +
 //                "Предложено два решения:\n" +
 //                "-первое в папке package:\n" +
-//                "‘task9_8_1_part1’ - обрабатывает одно изображение\n" +
+//                "‘task9_8_1_part2’ - обрабатывает одно изображение\n" +
 //                "- второе в папке package:\n" +
-//                "‘task9_8_1’ - обрабатывает несколько изображений\n");
-//        System.out.println("Отредактированные изображения сохраняются в папке `src/main/java/task9_8_1/images`.");
+//                "‘task9_8_1task9_8_1_part2’ - обрабатывает несколько изображений\n");
+//        System.out.println("Отредактированные изображения сохраняются в папке `src/main/java/task9_8_1_part2/images`.");
 //
 //        TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
 //        BotSession botSession = api.registerBot(new Bot());
