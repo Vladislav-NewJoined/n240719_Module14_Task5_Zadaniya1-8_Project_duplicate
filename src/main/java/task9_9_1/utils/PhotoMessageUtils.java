@@ -1,14 +1,18 @@
-package task9_8_1.utils;
+package task9_9_1.utils;
 
 import org.telegram.telegrambots.meta.api.objects.File;
-import task9_8_1.functions.ImageOperation;
-import task9_8_1.utils.ImageUtils;
-import task9_8_1.utils.RgbMaster;
+import task9_9_1.functions.ImageOperation;
 
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 public class PhotoMessageUtils {
     public static List<String> savePhotos(List<File> files, String botToken) throws IOException {
@@ -16,7 +20,7 @@ public class PhotoMessageUtils {
         ArrayList<String> paths = new ArrayList<>();
         for (File file: files) {
             final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath();
-            final String localFileName = "src/main/java/task9_8_1/images/" + new Date().getTime() + random.nextLong() + ".jpeg";
+            final String localFileName = "src/main/java/task9_9_1/images/" + new Date().getTime() + random.nextLong() + ".jpeg";
             saveImage(imageUrl, localFileName);
             paths.add(localFileName);
         }

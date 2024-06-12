@@ -1,6 +1,6 @@
-package task9_8_1.functions;
+package task9_9_1.functions;
 
-import task9_8_1.commands.AppBotCommand;
+import task9_9_1.commands.AppBotCommand;
 
 import java.util.Random;
 

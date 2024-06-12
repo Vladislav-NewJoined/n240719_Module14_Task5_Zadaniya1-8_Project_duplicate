@@ -1,8 +1,8 @@
-package task9_8_1.utils;
+package task9_9_1.utils;
 
-import task9_8_1.commands.AppBotCommand;
-import task9_8_1.functions.FilterOperation;
-import task9_8_1.functions.ImageOperation;
+import task9_9_1.commands.AppBotCommand;
+import task9_9_1.functions.ImageOperation;
+import task9_9_1.functions.FilterOperation;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

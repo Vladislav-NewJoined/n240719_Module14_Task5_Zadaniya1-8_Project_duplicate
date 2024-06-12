@@ -1,4 +1,4 @@
-package task9_8_1;
+package task9_9_1;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
@@ -13,12 +13,12 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import task9_8_1.commands.BotCommonCommands;
-import task9_8_1.commands.AppBotCommand;
-import task9_8_1.functions.FilterOperation;
-import task9_8_1.functions.ImageOperation;
-import task9_8_1.utils.ImageUtils;
-import task9_8_1.utils.PhotoMessageUtils;
+import task9_9_1.functions.ImageOperation;
+import task9_9_1.commands.AppBotCommand;
+import task9_9_1.commands.BotCommonCommands;
+import task9_9_1.functions.FilterOperation;
+import task9_9_1.utils.ImageUtils;
+import task9_9_1.utils.PhotoMessageUtils;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -27,8 +27,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static task9_8_1.utils.ImageUtils.getOperation;
 
 public class Bot extends TelegramLongPollingBot {
 
