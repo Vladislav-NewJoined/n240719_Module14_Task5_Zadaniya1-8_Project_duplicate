@@ -1,4 +1,5 @@
-package task9_8_1;
+package task9_8_1_part0;
+
 
 //// ПРИМЕР _Смотрим видеоурок 09.mp4
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -14,26 +15,23 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import task9_8_1.commands.BotCommonCommands;
-import task9_8_1.commands.AppBotCommand;
-import task9_8_1.functions.FilterOperation;
-import task9_8_1.functions.ImageOperation;
-import task9_8_1.utils.ImageUtils;
-import task9_8_1.utils.PhotoMessageUtils;
+import task9_8_1_part0.commands.BotCommonCommands;
+import task9_8_1_part0.commands.AppBotCommand;
+import task9_8_1_part0.functions.FilterOperation;
+import task9_8_1_part0.functions.ImageOperation;
+import task9_8_1_part0.utils.ImageUtils;
+import task9_8_1_part0.utils.PhotoMessageUtils;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import static task9_8_1.utils.ImageUtils.getOperation;
+import static task9_8_1_part0.utils.ImageUtils.getOperation;
 
 public class Bot extends TelegramLongPollingBot {
-
-    HashMap<String, Message> messages = new HashMap<>();
 
     Class[] commandClasses = new Class[]{BotCommonCommands.class};
 
@@ -56,24 +54,18 @@ public class Bot extends TelegramLongPollingBot {
                 execute(responseTestMessage);
                 return;
             }
-            responseTestMessage = runPhotoMessge(message);
-            if (responseTestMessage != null) {
-                execute(responseTestMessage);
-                return;
-            }
-            Object responseMediaMessage = runPhotoFilter(message);
-            if (responseMediaMessage != null) {
-                if (responseMediaMessage instanceof SendMediaGroup) {
-                    execute((SendMediaGroup) responseMediaMessage);
-                } else if (responseMediaMessage instanceof SendMessage) {
-                    execute((SendMessage) responseMediaMessage);
-                }
-                return;
-            }
         } catch (InvocationTargetException | IllegalAccessException | TelegramApiException e) {
             e.printStackTrace();
         }
-
+        try {
+            SendMediaGroup responseMediaMessage = runPhotoFilter(message);
+            if (responseMediaMessage != null) {
+                execute(responseMediaMessage);
+                return;
+            }
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -120,51 +112,24 @@ public class Bot extends TelegramLongPollingBot {
         return null;
     }
 
-    private SendMessage runPhotoMessge(Message message) {
-        List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(message);
-//        List<File> files = getFilesByMessage(message);
-        if (files.isEmpty()) {
-            return null;
-        }
-        String chatId = message.getChatId().toString();
-        messages.put(message.getChatId().toString(), message);
-        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        ArrayList<KeyboardRow> allKeyboardRows = new ArrayList<>(getKeyboardRows(FilterOperation.class));
-        replyKeyboardMarkup.setKeyboard(allKeyboardRows);
-        replyKeyboardMarkup.setOneTimeKeyboard(true);
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setReplyMarkup(replyKeyboardMarkup);
-        sendMessage.setChatId(chatId);
-        sendMessage.setText("Выберите фильтр");
-        return sendMessage;
-    }
+    private SendMediaGroup runPhotoFilter(Message message) {
+        final String caption = message.getCaption();
 
-    private Object runPhotoFilter(Message newMessage) {
-        final String text = newMessage.getText();
-        ImageOperation operation = ImageUtils.getOperation(text);
+        ImageOperation operation = ImageUtils.getOperation(caption);
         if (operation == null) return null;
-        String chatId = newMessage.getChatId().toString();
-        Message photoMessage = messages.get(chatId);
-        if (photoMessage != null) {
-            List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(photoMessage);
-            try {
-                List<String> paths = PhotoMessageUtils.savePhotos(files, getBotToken());
-                return preparePhotoMessage(paths, operation, chatId);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            SendMessage sendMessage = new SendMessage();
-            sendMessage.setChatId(chatId);
-            sendMessage.setText("Отправьте фото, чтобы воспользоваться фильтром");
-            return sendMessage;
+        List<org.telegram.telegrambots.meta.api.objects.File> files = getFilesByMessage(message);
+        try {
+            List<String> paths = PhotoMessageUtils.savePhotos(files, getBotToken());
+            String chatId = message.getChatId().toString();
+            return preparePhotoMessage(paths, operation, chatId);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
 
     private List<org.telegram.telegrambots.meta.api.objects.File> getFilesByMessage(Message message) {
         List<PhotoSize> photoSizes = message.getPhoto();
-        if (photoSizes == null) return new ArrayList<>();
         ArrayList<org.telegram.telegrambots.meta.api.objects.File> files = new ArrayList<>();
         for (PhotoSize photoSize : photoSizes) {
             final String fileId = photoSize.getFileId();
@@ -260,14 +225,14 @@ public class Bot extends TelegramLongPollingBot {
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 //import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 //import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-//import task9_8_1.commands.BotCommonCommands;
-//import task9_8_1.commands.AppBotCommand;
-//import task9_8_1.functions.FilterOperation;
-//import task9_8_1.functions.ImageOperation;
-//import task9_8_1.utils.PhotoMessageUtils;
+//import task9_8_1_part0.commands.BotCommonCommands;
+//import task9_8_1_part0.commands.AppBotCommand;
+//import task9_8_1_part0.functions.FilterOperation;
+//import task9_8_1_part0.functions.ImageOperation;
+//import task9_8_1_part0.utils.PhotoMessageUtils;
 //
 //import java.io.*;
-//import java.lang.reflect.InvocationTargetException;
+//        import java.lang.reflect.InvocationTargetException;
 //import java.lang.reflect.Method;
 //import java.net.URL;
 //import java.util.ArrayList;

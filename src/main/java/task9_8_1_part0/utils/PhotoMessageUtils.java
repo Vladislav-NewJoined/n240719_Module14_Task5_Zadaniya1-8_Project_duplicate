@@ -1,9 +1,9 @@
-package task9_8_1.utils;
+package task9_8_1_part0.utils;
 
 import org.telegram.telegrambots.meta.api.objects.File;
-import task9_8_1.functions.ImageOperation;
-import task9_8_1.utils.ImageUtils;
-import task9_8_1.utils.RgbMaster;
+import task9_8_1_part0.functions.ImageOperation;
+import task9_8_1_part0.utils.ImageUtils;
+import task9_8_1_part0.utils.RgbMaster;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -16,7 +16,7 @@ public class PhotoMessageUtils {
         ArrayList<String> paths = new ArrayList<>();
         for (File file: files) {
             final String imageUrl = "https://api.telegram.org/file/bot" + botToken + "/" + file.getFilePath();
-            final String localFileName = "src/main/java/task9_8_1/images/" + new Date().getTime() + random.nextLong() + ".jpeg";
+            final String localFileName = "src/main/java/task9_8_1_part0/images/" + new Date().getTime() + random.nextLong() + ".jpeg";
             saveImage(imageUrl, localFileName);
             paths.add(localFileName);
         }
@@ -37,8 +37,8 @@ public class PhotoMessageUtils {
     }
 
     public static void processingImage(String fileName, ImageOperation operation) throws Exception {
-        final BufferedImage image = ImageUtils.getImage(fileName);
-        final RgbMaster rgbMaster = new RgbMaster(image);
+        final BufferedImage image = task9_8_1_part0.utils.ImageUtils.getImage(fileName);
+        final task9_8_1_part0.utils.RgbMaster rgbMaster = new RgbMaster(image);
         rgbMaster.changeImage(operation);
         ImageUtils.saveImage(rgbMaster.getImage(), fileName);
     }

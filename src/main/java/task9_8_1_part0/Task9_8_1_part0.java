@@ -1,4 +1,4 @@
-package task9_8_1_part4;
+package task9_8_1_part0;
 
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.generics.BotSession;
@@ -9,10 +9,10 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 // userName: @lgcyrrerrr_002_bot  или  lgcyrrerrr_002_bot
 // token: 7042048331:AAFXdhcICubXad5RxZGyItCIi7L6IUwvaJo
 
-// Работает всё в соотв. с заданием до конца видео 10 и соответственно до конца Модуля 9, создает 5
-// кнопок, предлагает выбрать фильтри присылает на него фото разного цвета
+// Работает видео 10, присыланет фото разного цвета и сохраняет их, например на команду onlyGreen присылает группу фото зелёного цвета,
+// кнопки не создаёт
 
-public class Task9_8_1_part4 {
+public class Task9_8_1_part0 {
     public static void main(String[] args) throws Exception {
         System.out.println("""
             Задание:\s
@@ -30,10 +30,10 @@ public class Task9_8_1_part4 {
                 "\n" +
                 "Предложено два решения:\n" +
                 "-первое в папке package:\n" +
-                "‘task9_8_1_part4’ - обрабатывает одно изображение\n" +
+                "‘task9_8_1_part1’ - обрабатывает одно изображение\n" +
                 "- второе в папке package:\n" +
-                "‘task9_8_1_part4’ - обрабатывает несколько изображений\n");
-        System.out.println("Отредактированные изображения сохраняются в папке `src/main/java/task9_8_1_part4/images`.");
+                "‘task9_8_1’ - обрабатывает несколько изображений\n");
+        System.out.println("Отредактированные изображения сохраняются в папке `src/main/java/task9_8_1_part0/images`.");
 
         TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
         BotSession botSession = api.registerBot(new Bot());
@@ -48,14 +48,14 @@ public class Task9_8_1_part4 {
 //import org.telegram.telegrambots.meta.TelegramBotsApi;
 //import org.telegram.telegrambots.meta.generics.BotSession;
 //import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-//import task9_8_1_part4.Bot;
+//import task9_8_1_part0.Bot;
 //
 //// Создан Telegram бот:
 //// botName: MyTestBot_002
 //// userName: @lgcyrrerrr_002_bot  или  lgcyrrerrr_002_bot
 //// token: 7042048331:AAFXdhcICubXad5RxZGyItCIi7L6IUwvaJo
 //
-//public class Task9_8_1 {
+//public class Task9_8_1_part0 {
 //    public static void main(String[] args) throws Exception {
 //        System.out.println("""
 //            Задание:\s
@@ -73,10 +73,10 @@ public class Task9_8_1_part4 {
 //                "\n" +
 //                "Предложено два решения:\n" +
 //                "-первое в папке package:\n" +
-//                "‘task9_8_1_part4’ - обрабатывает одно изображение\n" +
+//                "‘task9_8_1_part1’ - обрабатывает одно изображение\n" +
 //                "- второе в папке package:\n" +
-//                "‘task9_8_1_part4’ - обрабатывает несколько изображений\n");
-//        System.out.println("Отредактированные изображения сохраняются в папке `src/main/java/task9_8_1_part4/images`.");
+//                "‘task9_8_1’ - обрабатывает несколько изображений\n");
+//        System.out.println("Отредактированные изображения сохраняются в папке `src/main/java/task9_8_1_part0/images`.");
 //
 //        TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
 //        BotSession botSession = api.registerBot(new Bot());

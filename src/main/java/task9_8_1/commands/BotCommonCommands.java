@@ -1,5 +1,7 @@
 package task9_8_1.commands;
 
+import task9_8_1.commands.AppBotCommand;
+
 public class BotCommonCommands {
     @AppBotCommand(name = "/hello", description = "when request hello", showInHelp = true)
 //    @task9_8_1.commands.AppBotCommand(name = "/hello", description = "when request hello", showInHelp = true)
