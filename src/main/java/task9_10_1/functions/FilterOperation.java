@@ -5,6 +5,14 @@ import task9_10_1.commands.AppBotCommand;
 import java.util.Random;
 
 public class FilterOperation {
+    @AppBotCommand(name = "Админ. панель", description = "Админ. панель", showInKeyboard = true)
+    public static float[] onlyBlue2(float[] rgb) {
+
+        rgb[0] = 0;
+        rgb[1] = 0;
+        return rgb;
+    }
+
     @AppBotCommand(name = "greyScale", description = "greyScale filter", showInKeyboard = true)
     public static float[] greyScale(float[] rgb) {
         final float mean = (rgb[0] + rgb[1] + rgb[2]) / 3;
