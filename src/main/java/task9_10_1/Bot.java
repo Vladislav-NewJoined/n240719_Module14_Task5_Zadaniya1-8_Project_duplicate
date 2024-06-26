@@ -21,8 +21,10 @@ import task9_10_1.utils.ImageUtils;
 import task9_10_1.utils.PhotoMessageUtils;
 
 import java.io.*;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,12 +69,40 @@ public class Bot extends TelegramLongPollingBot {
                 }
                 return;
             }
-        } catch (InvocationTargetException | IllegalAccessException | TelegramApiException e) {
+
+            // Добавляем обновление inline клавиатуры с двумя командами
+            if (message.hasText() && message.getText().equals("Админ. панель")) {
+                String token = "6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY";
+                String chatId = message.getChatId().toString();
+                String endpoint = "https://api.telegram.org/bot" + token + "/sendMessage";
+
+                String keyboard = "{\"inline_keyboard\":[[{\"text\":\"/users_list\", \"callback_data\":\"users_list\"},{\"text\":\"/on_off_bot\", \"callback_data\":\"on_off_bot\"}]]}";
+
+                URL url = new URL(endpoint);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+
+                String params = "chat_id=" + chatId + "&text=Choose a command:&reply_markup=" + keyboard;
+                OutputStream out = connection.getOutputStream();
+                out.write(params.getBytes());
+                out.flush();
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuffer response = new StringBuffer();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+
+                reader.close();
+                connection.disconnect();
+            }
+
+        } catch (InvocationTargetException | IllegalAccessException | TelegramApiException | IOException e) {
             e.printStackTrace();
         }
-
     }
-
 
     private String runCommand(String text) {
         BotCommonCommands commands = new BotCommonCommands();
@@ -206,6 +236,50 @@ public class Bot extends TelegramLongPollingBot {
                 commands.add(method.getAnnotation(AppBotCommand.class));
             }
         }
+
+        // Добавляем новую кнопку "Админ. панель" на клавиатуру
+        commands.add(new AppBotCommand() {
+            /**
+             * Returns the annotation interface of this annotation.
+             *
+             * @return the annotation interface of this annotation
+             * @apiNote Implementation-dependent classes are used to provide
+             * the implementations of annotations. Therefore, calling {@link
+             * Object#getClass getClass} on an annotation will return an
+             * implementation-dependent class. In contrast, this method will
+             * reliably return the annotation interface of the annotation.
+             * @see Enum#getDeclaringClass
+             */
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return null;
+            }
+
+            @Override
+            public String name() {
+                return "Админ. панель";
+            }
+
+            @Override
+            public String description() {
+                return "Админ. панель";
+            }
+
+//            /**
+//             * @return
+//             */
+            @Override
+            public boolean showInHelp() {
+                return false;
+            }
+
+            @Override
+            public boolean showInKeyboard() {
+                return true;
+            }
+        });
+
+        // Добавляем код формирования клавиатуры, включая новую кнопку
         ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
         int columnCount = 3;
         int rowsCount = commands.size() / columnCount + ((commands.size() % columnCount == 0) ? 0 : 1);
@@ -214,7 +288,7 @@ public class Bot extends TelegramLongPollingBot {
             for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
                 int index = rowIndex * columnCount + columnIndex;
                 if (index >= commands.size()) continue;
-                AppBotCommand command = commands.get(rowIndex * columnCount + columnIndex);
+                AppBotCommand command = commands.get(index);
                 KeyboardButton keyboardButton = new KeyboardButton(command.name());
                 row.add(keyboardButton);
             }
