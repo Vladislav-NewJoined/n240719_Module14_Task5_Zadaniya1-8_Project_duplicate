@@ -9,6 +9,8 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 // kkkllll_005_bot
 // 6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY
 
+// С этого проекта создаётся Админ. панель. Но ещё не работает.
+
 public class Task9_10_1 {
     public static void main(String[] args) throws Exception {
         System.out.println("""
