@@ -323,5 +323,35 @@ public class Bot extends TelegramLongPollingBot {
         } catch (InvocationTargetException | IllegalAccessException | TelegramApiException | IOException e) {
             e.printStackTrace();
         }
+        if (message != null && message.hasText()) {
+            String text = message.getText();
+            if (text.equals("/users_list")) {
+                // Обработка команды /users_list и отправка списка пользователей
+                SendMessage response = getUsersList();
+                try {
+                    execute(response);
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
+            } else if (text.equals("/on_off_bot")) {
+                // Другие действия при нажатии кнопки /on_off_bot
+            }
+        }
+
     }
+
+    // Метод для обработки команды /users_list
+    private SendMessage getUsersList() {
+        StringBuilder responseText = new StringBuilder();
+        for (Message storedMessage : messages.values()) {
+            User user = storedMessage.getFrom();
+            responseText.append("User ID: ").append(user.getId()).append(", Username: ").append(user.getUserName()).append("\n");
+        }
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(5799431854L); // Укажите нужный chatId для отправки сообщения
+        sendMessage.setText(responseText.toString());
+        return sendMessage;
+    }
+
+
 }
