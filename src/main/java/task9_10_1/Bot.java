@@ -7,6 +7,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.PhotoSize;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
@@ -46,63 +47,6 @@ public class Bot extends TelegramLongPollingBot {
         return "6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY"; // Токен вашего бота
     }
 
-    @Override
-    public void onUpdateReceived(Update update) {
-        Message message = update.getMessage();
-        try {
-            SendMessage responseTestMessage = runCommonCommand(message);
-            if (responseTestMessage != null) {
-                execute(responseTestMessage);
-                return;
-            }
-            responseTestMessage = runPhotoMessge(message);
-            if (responseTestMessage != null) {
-                execute(responseTestMessage);
-                return;
-            }
-            Object responseMediaMessage = runPhotoFilter(message);
-            if (responseMediaMessage != null) {
-                if (responseMediaMessage instanceof SendMediaGroup) {
-                    execute((SendMediaGroup) responseMediaMessage);
-                } else if (responseMediaMessage instanceof SendMessage) {
-                    execute((SendMessage) responseMediaMessage);
-                }
-                return;
-            }
-
-            // Добавляем обновление inline клавиатуры с двумя командами
-            if (message.hasText() && message.getText().equals("Админ. панель")) {
-                String token = "6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY";
-                String chatId = message.getChatId().toString();
-                String endpoint = "https://api.telegram.org/bot" + token + "/sendMessage";
-
-                String keyboard = "{\"inline_keyboard\":[[{\"text\":\"/users_list\", \"callback_data\":\"users_list\"},{\"text\":\"/on_off_bot\", \"callback_data\":\"on_off_bot\"}]]}";
-
-                URL url = new URL(endpoint);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("POST");
-                connection.setDoOutput(true);
-
-                String params = "chat_id=" + chatId + "&text=Choose a command:&reply_markup=" + keyboard;
-                OutputStream out = connection.getOutputStream();
-                out.write(params.getBytes());
-                out.flush();
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuffer response = new StringBuffer();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
-                }
-
-                reader.close();
-                connection.disconnect();
-            }
-
-        } catch (InvocationTargetException | IllegalAccessException | TelegramApiException | IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private String runCommand(String text) {
         BotCommonCommands commands = new BotCommonCommands();
@@ -308,5 +252,76 @@ public class Bot extends TelegramLongPollingBot {
         }
         inputStream.close();
         outputStream.close();
+    }
+
+    private void printUserInfo(User user) {
+        System.out.println("User ID: " + user.getId() + ", Username: " + user.getUserName());
+    }
+
+    @Override
+    public void onUpdateReceived(Update update) {
+        Message message = update.getMessage();
+
+        if (message != null) {
+            User user = message.getFrom();
+            if (user != null && user.getId().equals(5799431854L)) {
+                printUserInfo(user);
+            }
+        }
+
+
+        try {
+            SendMessage responseTestMessage = runCommonCommand(message);
+            if (responseTestMessage != null) {
+                execute(responseTestMessage);
+                return;
+            }
+            responseTestMessage = runPhotoMessge(message);
+            if (responseTestMessage != null) {
+                execute(responseTestMessage);
+                return;
+            }
+            Object responseMediaMessage = runPhotoFilter(message);
+            if (responseMediaMessage != null) {
+                if (responseMediaMessage instanceof SendMediaGroup) {
+                    execute((SendMediaGroup) responseMediaMessage);
+                } else if (responseMediaMessage instanceof SendMessage) {
+                    execute((SendMessage) responseMediaMessage);
+                }
+                return;
+            }
+
+            // Добавляем обновление inline клавиатуры с двумя командами
+            if (message.hasText() && message.getText().equals("Админ. панель")) {
+                String token = "6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY";
+                String chatId = message.getChatId().toString();
+                String endpoint = "https://api.telegram.org/bot" + token + "/sendMessage";
+
+                String keyboard = "{\"inline_keyboard\":[[{\"text\":\"/users_list\", \"callback_data\":\"users_list\"},{\"text\":\"/on_off_bot\", \"callback_data\":\"on_off_bot\"}]]}";
+
+                URL url = new URL(endpoint);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+
+                String params = "chat_id=" + chatId + "&text=Choose a command:&reply_markup=" + keyboard;
+                OutputStream out = connection.getOutputStream();
+                out.write(params.getBytes());
+                out.flush();
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuffer response = new StringBuffer();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+
+                reader.close();
+                connection.disconnect();
+            }
+
+        } catch (InvocationTargetException | IllegalAccessException | TelegramApiException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }

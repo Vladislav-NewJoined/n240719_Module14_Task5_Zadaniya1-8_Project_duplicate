@@ -9,7 +9,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 // kkkllll_005_bot
 // 6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY
 
-// С этого проекта, Draft_Module9_Task10_Zadaniya1-10_Project_part2, создаётся Админ. панель. Но ещё не работает.
+// С этого проекта, Draft_Module9_Task10_Zadaniya1-10_Project_part11 выводится в консоль список пользователе
 
 public class Task9_10_1 {
     public static void main(String[] args) throws Exception {
