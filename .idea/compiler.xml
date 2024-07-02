@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Draft_Module9_Task10_Zadaniya1-10_Project_part13" />
         <module name="n240612_Module9_Task9_Zadaniye1" />
         <module name="Draft_Module9_Task10_Zadaniya1-10_Project_part2" />
+        <module name="Draft_Module9_Task10_Zadaniya1-10_Project_part14" />
       </profile>
     </annotationProcessing>
   </component>
