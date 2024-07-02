@@ -253,9 +253,35 @@ public class Bot extends TelegramLongPollingBot {
         outputStream.close();
     }
 
+
+
+
+
+
     private void printUserInfo(User user) {
         System.out.println("User ID: " + user.getId() + ", Username: " + user.getUserName());
     }
+
+
+
+
+    private boolean botEnabled = true; // Флаг состояния бота (по умолчанию включен)
+
+
+
+    // Метод для определения состояния бота (включен или выключен)
+//    private boolean isBotEnabled() {
+//        // Реализуйте логику проверки состояния бота (включен или выключен)
+//        // Здесь может использоваться флаг или другие механизмы для определения состояния
+//        // В данном примере по умолчанию возвращается true (бот включен)
+//        return true;
+//    }
+
+    private boolean isBotEnabled() {
+        return botEnabled;
+    }
+
+
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -360,8 +386,39 @@ public class Bot extends TelegramLongPollingBot {
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
                 }
-            } else if (text.equals("/on_off_bot")) {
-                // Другие действия при нажатии кнопки /on_off_bot
+
+
+
+
+
+
+
+
+
+            }
+            else if (text.equals("/on_off_bot")) {
+
+
+                // Включить или выключить бота
+                botEnabled = !botEnabled; // Переключаем состояние бота
+                // Включить или выключить бота
+                boolean botEnabled = !isBotEnabled(); // Переключаем состояние бота
+
+                // Отправить сообщение в чат об изменении состояния бота
+                SendMessage response = new SendMessage();
+                response.setChatId(message.getChatId());
+
+                if (botEnabled) {
+                    response.setText("Бот включен");
+                } else {
+                    response.setText("Бот выключен");
+                }
+
+                try {
+                    execute(response);
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
