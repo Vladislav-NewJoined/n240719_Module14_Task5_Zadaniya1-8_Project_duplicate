@@ -337,7 +337,6 @@ public class Bot extends TelegramLongPollingBot {
                 // Другие действия при нажатии кнопки /on_off_bot
             }
         }
-
     }
 
     // Метод для обработки команды /users_list
