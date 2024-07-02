@@ -307,7 +307,40 @@ public class Bot extends TelegramLongPollingBot {
                 e.printStackTrace();
             }
         }
+        if (update.hasCallbackQuery()) {
+            CallbackQuery callbackQuery = update.getCallbackQuery();
+            String data = callbackQuery.getData();
 
+            if (data.equals("on_off_bot")) {
+                // Изменить состояние бота (включить или выключить)
+                botEnabled = !botEnabled;
+
+                SendMessage response = new SendMessage();
+                response.setChatId(callbackQuery.getMessage().getChatId().toString());
+
+                // Установить текст сообщения в зависимости от состояния бота
+                if (botEnabled) {
+                    response.setText("Бот включен");
+                } else {
+                    response.setText("Бот выключен");
+                }
+
+                try {
+                    execute(response);
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
+
+                // Отправить ответ на нажатие кнопки
+                AnswerCallbackQuery answerCallbackQuery = new AnswerCallbackQuery();
+                answerCallbackQuery.setCallbackQueryId(callbackQuery.getId());
+                try {
+                    execute(answerCallbackQuery);
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
 
 
