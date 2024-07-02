@@ -9,8 +9,9 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 // kkkllll_005_bot
 // 6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY
 
-// С этого проекта, Draft_Module9_Task10_Zadaniya1-10_Project_part12, выводит в Telegram боте список пользователей в
-// таком вмде: User ID: 5799431854, Username: tess_SV
+// С этого проекта, Draft_Module9_Task10_Zadaniya1-10_Project_part14, ВЫВОДИТ ПРАВИЛЬНО в Telegram боте ОБЕ КНОПКИ И
+// список пользователей в таком вмде: User ID: 5799431854, Username: tess_SV _ осталось устранить маленькую ошибку
+// при отправке команды не из кнопки.
 
 public class Task9_10_1 {
     public static void main(String[] args) throws Exception {
