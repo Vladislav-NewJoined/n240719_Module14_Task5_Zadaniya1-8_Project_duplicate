@@ -25,7 +25,6 @@ public class ImageUtils {
     static float[] rgbIntToArray(int pixel) {
         Color color = new Color(pixel);
         return color.getRGBComponents(null);
-
     }
 
     static int arrayToRgbInt(float[] pixel) throws Exception {
