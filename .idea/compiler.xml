@@ -8,8 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="n240612_Module9_Task9_Zadaniye1" />
         <module name="Draft_Module9_Task10_Zadaniya1-10_Project_part15" />
+        <module name="Draft_Module9_Task10_Zadaniya1-10_Project_part17" />
         <module name="Draft_Module9_Task10_Zadaniya1-10_Project_part2" />
-        <module name="Draft_Module9_Task10_Zadaniya1-10_Project_part16" />
       </profile>
     </annotationProcessing>
   </component>

@@ -9,8 +9,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 // kkkllll_005_bot
 // 6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY
 
-// С этого проекта, Draft_Module9_Task10_Zadaniya1-10_Project_part16, все ЗАРАБОТАЛО ПРАВИЛЬНО!
-// осталось переписать на чистовик
+// Это КРАЙНИЙ МЕТОД, Draft_Module9_Task10_Zadaniya1-10_Project_part17, ПЕРЕД ПЕРЕПИСКОЙ НА ЧИСТОВИК
 
 public class Task9_10_1 {
     public static void main(String[] args) throws Exception {
@@ -38,7 +37,7 @@ public class Task9_10_1 {
 
                 Решение:\s""");
 
-        System.out.println("Для этого проекта cоздан Telegram бот:\n" +
+        System.out.println("Для этого проекта cоздан тестовый Telegram бот:\n" +
                 "botName: TestBot_005\n" +
                 "userName: @kkkllll_005_bot или kkkllll_005_bot\n" +
                 "token: 6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY\n");
