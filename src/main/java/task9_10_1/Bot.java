@@ -444,13 +444,20 @@ public class Bot extends TelegramLongPollingBot {
     // Метод для обработки команды /users_list
     private SendMessage getUsersList() {
         StringBuilder responseText = new StringBuilder();
-        for (Message storedMessage : messages.values()) {
-            User user = storedMessage.getFrom();
-            responseText.append("User ID: ").append(user.getId()).append(", Username: ").append(user.getUserName()).append("\n");
+
+        if(messages.isEmpty()) {
+            responseText.append("Список пользователей пуст");
+        } else {
+            for (Message storedMessage : messages.values()) {
+                User user = storedMessage.getFrom();
+                responseText.append("User ID: ").append(user.getId()).append(", Username: ").append(user.getUserName()).append("\n");
+            }
         }
+
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(5799431854L); // Укажите нужный chatId для отправки сообщения
         sendMessage.setText(responseText.toString());
+
         return sendMessage;
     }
 
