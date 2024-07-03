@@ -46,7 +46,6 @@ public class Bot extends TelegramLongPollingBot {
         return "6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY"; // Токен вашего бота
     }
 
-
     private String runCommand(String text) {
         BotCommonCommands commands = new BotCommonCommands();
         Method[] classMethods = commands.getClass().getDeclaredMethods();
@@ -66,7 +65,6 @@ public class Bot extends TelegramLongPollingBot {
         }
         return "Команда не из кнопки";
     }
-
 
     private SendMessage runCommonCommand(Message message) throws InvocationTargetException, IllegalAccessException {
         String text = message.getText();
@@ -208,9 +206,6 @@ public class Bot extends TelegramLongPollingBot {
                 return "Админ. панель";
             }
 
-//            /**
-//             * @return
-//             */
             @Override
             public boolean showInHelp() {
                 return false;
@@ -252,11 +247,6 @@ public class Bot extends TelegramLongPollingBot {
         inputStream.close();
         outputStream.close();
     }
-
-
-
-
-
 
     private void printUserInfo(User user) {
         System.out.println("User ID: " + user.getId() + ", Username: " + user.getUserName());
@@ -327,10 +317,6 @@ public class Bot extends TelegramLongPollingBot {
             }
         }
 
-
-
-
-
         Message message = update.getMessage();
 
         if (message != null) {
@@ -339,7 +325,6 @@ public class Bot extends TelegramLongPollingBot {
                 printUserInfo(user);
             }
         }
-
 
         try {
             SendMessage responseTestMessage = runCommonCommand(message);
@@ -404,15 +389,6 @@ public class Bot extends TelegramLongPollingBot {
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
                 }
-
-
-
-
-
-
-
-
-
             }
             else if (text.equals("/on_off_bot")) {
 
@@ -460,6 +436,4 @@ public class Bot extends TelegramLongPollingBot {
 
         return sendMessage;
     }
-
-
 }
