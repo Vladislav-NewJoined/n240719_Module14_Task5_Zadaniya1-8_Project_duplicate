@@ -262,26 +262,11 @@ public class Bot extends TelegramLongPollingBot {
         System.out.println("User ID: " + user.getId() + ", Username: " + user.getUserName());
     }
 
-
-
-
     private boolean botEnabled = true; // Флаг состояния бота (по умолчанию включен)
-
-
-
-    // Метод для определения состояния бота (включен или выключен)
-//    private boolean isBotEnabled() {
-//        // Реализуйте логику проверки состояния бота (включен или выключен)
-//        // Здесь может использоваться флаг или другие механизмы для определения состояния
-//        // В данном примере по умолчанию возвращается true (бот включен)
-//        return true;
-//    }
 
     private boolean isBotEnabled() {
         return botEnabled;
     }
-
-
 
     @Override
     public void onUpdateReceived(Update update) {
