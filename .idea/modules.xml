@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Draft_Module9_Task10_Zadaniya1-10_Project_part15.iml" filepath="$PROJECT_DIR$/Draft_Module9_Task10_Zadaniya1-10_Project_part15.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Draft_Module9_Task10_Zadaniya1-10_Project_part2.iml" filepath="$PROJECT_DIR$/Draft_Module9_Task10_Zadaniya1-10_Project_part2.iml" />
       <module fileurl="file://$PROJECT_DIR$/n240703_Module9_Task10_Zadaniya1-10_Project_part2.iml" filepath="$PROJECT_DIR$/n240703_Module9_Task10_Zadaniya1-10_Project_part2.iml" />
     </modules>
   </component>
