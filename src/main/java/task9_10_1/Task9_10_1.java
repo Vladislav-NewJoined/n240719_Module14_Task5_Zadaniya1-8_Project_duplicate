@@ -9,8 +9,6 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 // kkkllll_005_bot
 // 6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY
 
-// Это КРАЙНИЙ МЕТОД, Draft_Module9_Task10_Zadaniya1-10_Project_part17, ПЕРЕД ПЕРЕПИСКОЙ НА ЧИСТОВИК
-
 public class Task9_10_1 {
     public static void main(String[] args) throws Exception {
         System.out.println("""
@@ -41,9 +39,9 @@ public class Task9_10_1 {
                 "botName: TestBot_005\n" +
                 "userName: @kkkllll_005_bot или kkkllll_005_bot\n" +
                 "token: 6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY\n");
-        System.out.println("Пояснение к работе Telegram бота: Inline-клавиатура появляется после отправки в чат изображения." +
-                "Меню 'Админ. панель' (это одна из кнпок внизу в inline-клавиатуре) с двумя кнопками текстовых команд: " +
-                "'/users_list' и '/on_off_bot', появляется также после отправки в чат изображения." +
+        System.out.println("Пояснение к работе Telegram бота: Inline-клавиатура появляется после отправки в чат изображения.\n" +
+                "Меню 'Админ. панель' (это одна из кнпок внизу в inline-клавиатуре) с двумя кнопками текстовых команд: \n" +
+                "'/users_list' и '/on_off_bot', появляется также после отправки в чат изображения.\n" +
                 "Отредактированные изображения сохраняются в папке `src/main/java/task9_10_1/images`.");
 
         System.out.println("Ваша программа начинает выполнение...");
