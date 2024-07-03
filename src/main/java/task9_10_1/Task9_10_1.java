@@ -9,9 +9,8 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 // kkkllll_005_bot
 // 6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY
 
-// С этого проекта, Draft_Module9_Task10_Zadaniya1-10_Project_part14, ВЫВОДИТ ПРАВИЛЬНО в Telegram боте ОБЕ КНОПКИ И
-// список пользователей в таком вмде: User ID: 5799431854, Username: tess_SV _ осталось устранить маленькую ошибку
-// при отправке команды не из кнопки.
+// С этого проекта, Draft_Module9_Task10_Zadaniya1-10_Project_part16, все ЗАРАБОТАЛО ПРАВИЛЬНО!
+// осталось переписать на чистовик
 
 public class Task9_10_1 {
     public static void main(String[] args) throws Exception {
@@ -39,13 +38,14 @@ public class Task9_10_1 {
 
                 Решение:\s""");
 
-        System.out.println("Создан Telegram бот:\n" +
+        System.out.println("Для этого проекта cоздан Telegram бот:\n" +
                 "botName: TestBot_005\n" +
                 "userName: @kkkllll_005_bot или kkkllll_005_bot\n" +
                 "token: 6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY\n");
-        System.out.println("В соответствии с заданием нужно выбрать фильтр 'onlyRed', но Bot также " +
-                "перекрашивает и в другие цвета. Отредактированные изображения сохраняются в папке " +
-                "`src/main/java/task9_10_1/images`.");
+        System.out.println("Пояснение к работе Telegram бота: Inline-клавиатура появляется после отправки в чат изображения." +
+                "Меню 'Админ. панель' (это одна из кнпок внизу в inline-клавиатуре) с двумя кнопками текстовых команд: " +
+                "'/users_list' и '/on_off_bot', появляется также после отправки в чат изображения." +
+                "Отредактированные изображения сохраняются в папке `src/main/java/task9_10_1/images`.");
 
         System.out.println("Ваша программа начинает выполнение...");
 
