@@ -44,7 +44,7 @@ public class Task9_10_1 {
                 "'/users_list' и '/on_off_bot', появляется также после отправки в чат изображения.\n" +
                 "Отредактированные изображения сохраняются в папке `src/main/java/task9_10_1/images`.");
 
-        System.out.println("Ваша программа начинает выполнение...");
+        System.out.println("\nВаша программа начинает выполнение...");
 
         TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
         BotSession botSession = api.registerBot(new Bot());
