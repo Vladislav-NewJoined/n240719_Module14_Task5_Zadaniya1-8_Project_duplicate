@@ -43,6 +43,6 @@ public class SimpleTelegramBot extends TelegramLongPollingBot {
 
     public static void main(String[] args) {
         SimpleTelegramBot bot = new SimpleTelegramBot();
-        bot.run();
+        bot.startPolling();
     }
 }
