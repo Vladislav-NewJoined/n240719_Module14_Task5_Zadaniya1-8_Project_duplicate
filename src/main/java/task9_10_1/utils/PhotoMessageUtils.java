@@ -1,7 +1,7 @@
 package task9_10_1.utils;
 
 import org.telegram.telegrambots.meta.api.objects.File;
-import task9_10_1.functions.ImageOperation;
+//import task9_10_1.functions.ImageOperation;
 
 import java.awt.image.BufferedImage;
 import java.io.FileOutputStream;
@@ -40,10 +40,10 @@ public class PhotoMessageUtils {
         outputStream.close();
     }
 
-    public static void processingImage(String fileName, ImageOperation operation) throws Exception {
-        final BufferedImage image = ImageUtils.getImage(fileName);
-        final RgbMaster rgbMaster = new RgbMaster(image);
-        rgbMaster.changeImage(operation);
-        ImageUtils.saveImage(rgbMaster.getImage(), fileName);
-    }
+//    public static void processingImage(String fileName, ImageOperation operation) throws Exception {
+//        final BufferedImage image = ImageUtils.getImage(fileName);
+//        final RgbMaster rgbMaster = new RgbMaster(image);
+//        rgbMaster.changeImage(operation);
+//        ImageUtils.saveImage(rgbMaster.getImage(), fileName);
+//    }
 }

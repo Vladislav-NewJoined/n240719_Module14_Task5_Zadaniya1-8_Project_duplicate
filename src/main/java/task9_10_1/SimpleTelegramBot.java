@@ -45,7 +45,7 @@ public class SimpleTelegramBot extends TelegramLongPollingBot {
         SimpleTelegramBot bot = new SimpleTelegramBot();
         SendMessage message = new SendMessage();
         message.setText("Bot started");
-        message.setChatId("yourChatId"); // Укажите chatId для отправки сообщения о запуске бота
+        message.setChatId("5799431854"); // Укажите chatId для отправки сообщения о запуске бота
         try {
             bot.execute(message);
         } catch (TelegramApiException e) {
