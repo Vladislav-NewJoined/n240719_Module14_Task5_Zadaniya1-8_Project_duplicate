@@ -1,4 +1,4 @@
-package task9_10_1.commands;
+package task9_10_1;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -43,6 +43,13 @@ public class SimpleTelegramBot extends TelegramLongPollingBot {
 
     public static void main(String[] args) {
         SimpleTelegramBot bot = new SimpleTelegramBot();
-        bot.startPolling();
+        SendMessage message = new SendMessage();
+        message.setText("Bot started");
+        message.setChatId("yourChatId"); // Укажите chatId для отправки сообщения о запуске бота
+        try {
+            bot.execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
     }
 }
