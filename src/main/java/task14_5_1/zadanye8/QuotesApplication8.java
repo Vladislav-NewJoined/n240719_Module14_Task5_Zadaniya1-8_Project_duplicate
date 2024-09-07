@@ -8,15 +8,14 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.User;
-import javax.annotation.PostConstruct;
 
 @SpringBootApplication
-public class QuotesApplication3 extends TelegramLongPollingBot {
+public class QuotesApplication8 extends TelegramLongPollingBot {
 
     public static void main(String[] args) {
-        SpringApplication.run(QuotesApplication3.class, args);
+        SpringApplication.run(QuotesApplication8.class, args);
 
-        QuotesApplication3 bot = new QuotesApplication3();
+        QuotesApplication8 bot = new QuotesApplication8();
         SendMessage message = new SendMessage();
         message.setText("Bot started");
         message.setChatId("5799431854"); // Укажите chatId для отправки сообщения о запуске бота
