@@ -1,5 +1,7 @@
 package task14_5_1.zadanye8;
 
+//import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -7,9 +9,12 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.User;
 
+//@SpringBootApplication
 public class QuotesApplication3 extends TelegramLongPollingBot {
 
     public static void main(String[] args) {
+//        SpringApplication.run(QuotesApplication3.class, args);
+
         QuotesApplication3 bot = new QuotesApplication3();
         SendMessage message = new SendMessage();
         message.setText("Bot started");
