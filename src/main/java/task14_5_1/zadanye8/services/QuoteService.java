@@ -44,12 +44,12 @@ public class QuoteService {
         var existingQuote = repository.findByQuoteidEquals(id);
         if (existingQuote.isPresent())
             return existingQuote.get();
-        var quoteEntry = parser.getById(id);
-        if (quoteEntry == null) return null;
-        var newQuote = new Quote();
-        newQuote.setQuoteid(quoteEntry.getKey());
-        newQuote.setText(quoteEntry.getValue());
-        return repository.save(newQuote);
+            var quoteEntry = parser.getById(id);
+            if (quoteEntry == null) return null;
+            var newQuote = new Quote();
+            newQuote.setQuoteid(quoteEntry.getKey());
+            newQuote.setText(quoteEntry.getValue());
+            return repository.save(newQuote);
     }
 
     public Quote getRandom() {
