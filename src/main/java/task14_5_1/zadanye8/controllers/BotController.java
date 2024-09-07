@@ -70,7 +70,14 @@ public class BotController {
         long chatId = update.message().chat().id();
         var rawChat = chatRepository.findByChatIdEquals(chatId);
         Chat chat;
-        if (rawChat.isEmpty()) {
+
+
+
+
+
+
+
+        if (rawChat.isPresent()) { // Проверка на присутствие значения
             chat = rawChat.get();
         } else {
             var _chat = new Chat();
@@ -90,13 +97,8 @@ public class BotController {
                 sendRandom(chat);
                 break;
         }
-
-//        if (text.equals("/getquote")) {
-//            Map.Entry<Integer, String> randomQuote = bashParser.getRandom();
-//            sendText(chatId, randomQuote.getValue());
-//        }
-
     }
+
     private void sendNextQuote(Chat chat) {
         Quote quote = null;
         int newId = chat.getLastId();
