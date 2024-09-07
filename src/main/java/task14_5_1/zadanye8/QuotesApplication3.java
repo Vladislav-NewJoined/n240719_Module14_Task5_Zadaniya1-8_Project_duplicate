@@ -1,4 +1,4 @@
-package task9_10_1;
+package task14_5_1.zadanye8;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -7,7 +7,19 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.User;
 
-public class SimpleTelegramBot extends TelegramLongPollingBot {
+public class QuotesApplication3 extends TelegramLongPollingBot {
+
+    public static void main(String[] args) {
+        QuotesApplication3 bot = new QuotesApplication3();
+        SendMessage message = new SendMessage();
+        message.setText("Bot started");
+        message.setChatId("5799431854"); // Укажите chatId для отправки сообщения о запуске бота
+        try {
+            bot.execute(message);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -41,15 +53,4 @@ public class SimpleTelegramBot extends TelegramLongPollingBot {
         return "6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY"; // замените на token вашего бота
     }
 
-    public static void main(String[] args) {
-        SimpleTelegramBot bot = new SimpleTelegramBot();
-        SendMessage message = new SendMessage();
-        message.setText("Bot started");
-        message.setChatId("5799431854"); // Укажите chatId для отправки сообщения о запуске бота
-        try {
-            bot.execute(message);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-    }
 }

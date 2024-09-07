@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId> <!-- Здесь можно указать другой корректный groupId -->
-    <artifactId>Draft_Module14_Task5_Zadaniya1-8_project_part17_test_proverka_bota</artifactId>
+    <artifactId>Draft_Module14_Task5_Zadaniya1-8_project_part20</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -36,8 +36,13 @@
             <version>3.8.1</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.16.1</version>
+        </dependency>
     </dependencies>
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
