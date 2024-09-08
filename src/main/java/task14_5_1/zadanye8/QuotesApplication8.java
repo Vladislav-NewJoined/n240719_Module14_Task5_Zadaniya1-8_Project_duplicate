@@ -10,6 +10,30 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.User;
 
+// Здесь выполнять инициализацию проекта: https://start.spring.io/
+
+// Здесь инструкции, как работать с Postman:
+// https://www.youtube.com/watch?v=S142sn__F_0
+// https://www.youtube.com/watch?v=A_jGdrGRLd0
+
+//Данные для Postman
+//https://www.youtube.com/watch?v=S142sn__F_0
+//Ссылка на скачивание Postman - https://www.postman.com/downloads/
+//Ссылка на скачивание кода API - https://github.com/bestLessons/postma...
+//sozin.vladislav@mail.ru
+//sozinvladislav
+//пароль 1234567
+
+// В качестве тестовой используется эта база данных 'Postgress':
+// Сначала нужно подключить Docker
+// В Docker'е подключение (контейнер) называется:
+// postgresTest2
+// 3dfb0f477632946d5dde15a0728bfadbd431bc14431e59e0caca68c468241cf0
+// База данных в приложении DBeaver: somedbPGtest2
+// URL базы данных: jdbc:postgresql://localhost:5432/somedbPGtest2
+// Пользователь: someuser
+// Пароль: 123
+
 @SpringBootApplication
 public class QuotesApplication8 implements CommandLineRunner {
 
