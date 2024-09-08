@@ -39,8 +39,6 @@ public class QuotesApplication2_7 implements CommandLineRunner {
 
 	@Autowired
     QuoteService service;
-//    BashParser parser;
-
 
 	public static void main(String[] args) {
 		System.out.println("""
@@ -147,5 +145,4 @@ public class QuotesApplication2_7 implements CommandLineRunner {
 		var index = service.getIndex();
 		System.out.println(index);
 	}
-
 }
