@@ -66,34 +66,3 @@ public class QuoteService {
         return repository.save(newQuote);
     }
 }
-//    @PersistenceContext
-//    private EntityManager entityManager;
-//
-//    @Transactional
-//    public void initDb() {
-//        try {
-//            String createQuotesTableQuery = "DROP TABLE IF EXISTS Quotes2;" +
-//                    "CREATE TABLE IF NOT EXISTS Quotes2 (" +
-//                    "id SERIAL PRIMARY KEY," +
-//                    "text TEXT NOT NULL," +
-//                    "quoteid INT NOT NULL" +
-//                    ");";
-//
-//            String createChatsTableQuery = "DROP TABLE IF EXISTS Chats2;" +
-//                    "CREATE TABLE IF NOT EXISTS Chats2 (" +
-//                    "id BIGSERIAL PRIMARY KEY," +
-//                    "chatId BIGINT NOT NULL," +
-//                    "lastId INT NOT NULL" +
-//                    ");";
-//
-//            entityManager.createNativeQuery(createQuotesTableQuery).executeUpdate();
-//            entityManager.createNativeQuery(createChatsTableQuery).executeUpdate();
-//            // Добавление других таблиц
-//
-//            System.out.println("Tables 'Quotes2' and 'Chats2' created successfully.");
-//        } catch (Exception e) {
-//            System.out.println("Error creating tables in the database: " + e.getMessage());
-//            e.printStackTrace();
-//        }
-//    }
-//}

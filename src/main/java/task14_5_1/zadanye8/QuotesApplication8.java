@@ -14,125 +14,103 @@ import org.telegram.telegrambots.meta.api.objects.User;
 public class QuotesApplication8 implements CommandLineRunner {
 
     public static void main(String[] args) {
+        System.out.println("""
+            Модуль 14. Spring. Задание №5. Проект:\s
+                Задания:
+                8. Написание контроллера бота Telegram с сохранением юзера в соответствующую таблицу, методы
+                   итерирования “вперед”/”назад” по цитатам в интерфейсе бота.
+
+                Решение:\s""");
+
+        System.out.println("""
+           Цитаты берём с этого сайта: http://ibash.org.ru/\n""");
+
+        System.out.println("""
+           При помощи следующей команды в терминале IntelliJ IDEA:
+           docker run --name postgresTest2 -d -p 5432:5432 -e POSTGRES_DB=somedbPGtest2 -e POSTGRES_USER=someuser -e POSTGRES_PASSWORD=123 postgres:alpine
+           Создан контейнер в Docker Desktop:
+           Имя контейнера: postgresTest2
+           ID контейнера: 3dfb0f477632946d5dde15a0728bfadbd431bc14431e59e0caca68c468241cf0
+           Также создана база данных PostgreSQL в DBeaver:
+           Имя базы данных: somedbPGtest2
+           URL базы данных: jdbc:postgresql://localhost:5432/somedbPGtest2
+           Пользователь: someuser
+           Пароль: 123
+           IMAGE базы данных: postgres:alpine
+           В DB Browser в проекте в IntelliJ IDEA создано подключение к этой базе данных.
+           \s""");
+
+        System.out.println("""
+           Данные для Postman
+           почта при регистрации: sozin.vladislav@mail.ru
+           имя пользователя: sozinvladislav
+           пароль 1234567\n""");
+
+        System.out.println("""
+           Для данного проекта cоздан тестовый Telegram бот:
+           botName: TestBot_005
+           userName: @kkkllll_005_bot или kkkllll_005_bot
+           token: 6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY
+           ChatId бота: "5799431854",\n
+           \s""");
+
+        System.out.println("""
+           Для проверки создания таблиц,
+           создаём и выполняем в приложении Dbeaver в окне 'Редактор SQL' или 'Script'
+           следующие запросы:\s
+
+           -- Удаление таблицы "Quotes2" при ее существовании
+           DROP TABLE IF EXISTS "Quotes2";
+           
+           -- Создание таблицы "Quotes2" с колонкой "quoteid"
+           CREATE TABLE "Quotes2" (
+               id SERIAL PRIMARY KEY,
+               "text" TEXT NOT NULL,
+               "quoteid" INT4 NOT NULL  -- Добавлена колонка "quoteid" типа int4
+           );
+           
+           -- Удаление таблицы "Chats2" при ее существовании
+           DROP TABLE IF EXISTS "Chats2";
+           
+           -- Создание таблицы "Chats2"
+           CREATE TABLE "Chats2" (
+               id BIGSERIAL PRIMARY KEY,
+               "chatId" BIGINT NOT NULL,
+               "lastId" INT NOT NULL
+           );
+           
+           -- Удаление таблицы "Users" при ее существовании
+           DROP TABLE IF EXISTS "Users";
+           
+           -- Создание таблицы "Users"
+           CREATE TABLE "Users" (
+               id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+               name VARCHAR(20) NOT NULL
+           );
+           
+           -- Удаление таблицы "Contacts" при ее существовании
+           DROP TABLE IF EXISTS "Contacts";
+           
+           -- Создание таблицы "Contacts"
+           CREATE TABLE "Contacts" (
+               id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+               "customerId" INT,
+               "contactName" VARCHAR(255) NOT NULL,
+               phone VARCHAR(15),
+               email VARCHAR(100)
+           );
+           );\s""");
+
+        System.out.println("""
+           Чтобы бот начал свою работу, открываем его и отправляем команду "/start".
+           Впоследствии можем отправлять команды: "/next", /prev", "/rand".
+           \s""");
+
+
         SpringApplication.run(QuotesApplication8.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
     }
-//
-//        QuotesApplication8 bot = new QuotesApplication8();
-//        SendMessage message = new SendMessage();
-//        message.setText("Bot started");
-//        message.setChatId("5799431854"); // Укажите chatId для отправки сообщения о запуске бота
-//        try {
-//            bot.execute(message);
-//        } catch (TelegramApiException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @Override
-//    public void onUpdateReceived(Update update) {
-//        Message message = update.getMessage();
-//        User user = message.getFrom();
-//
-//        if (message.hasText()) {
-//            String text = message.getText();
-//
-//            if ("/hello".equals(text)) {
-//                SendMessage response = new SendMessage();
-//                response.setChatId(message.getChatId().toString());
-//                response.setText("Hello, " + user.getFirstName() + "!");
-//
-//                try {
-//                    execute(response);
-//                } catch (TelegramApiException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
-//
-//    @Override
-//    public String getBotUsername() {
-//        return "kkkllll_005_bot"; // замените на username вашего бота
-//    }
-//
-//    @Override
-//    public String getBotToken() {
-//        return "6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY"; // замените на token вашего бота
-//    }
-//
 }
-
-
-
-
-
-
-
-
-
-
-//package task14_5_1.zadanye8;
-//
-//import org.springframework.boot.SpringApplication;
-//import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-//import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-//import org.telegram.telegrambots.meta.api.objects.Update;
-//import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-//import org.telegram.telegrambots.meta.api.objects.Message;
-//import org.telegram.telegrambots.meta.api.objects.User;
-//
-//@SpringBootApplication
-//public class QuotesApplication8 extends TelegramLongPollingBot {
-//
-//    public static void main(String[] args) {
-//        SpringApplication.run(QuotesApplication8.class, args);
-//
-//        QuotesApplication8 bot = new QuotesApplication8();
-//        SendMessage message = new SendMessage();
-//        message.setText("Bot started");
-//        message.setChatId("5799431854"); // Укажите chatId для отправки сообщения о запуске бота
-//        try {
-//            bot.execute(message);
-//        } catch (TelegramApiException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @Override
-//    public void onUpdateReceived(Update update) {
-//        Message message = update.getMessage();
-//        User user = message.getFrom();
-//
-//        if (message.hasText()) {
-//            String text = message.getText();
-//
-//            if ("/hello".equals(text)) {
-//                SendMessage response = new SendMessage();
-//                response.setChatId(message.getChatId().toString());
-//                response.setText("Hello, " + user.getFirstName() + "!");
-//
-//                try {
-//                    execute(response);
-//                } catch (TelegramApiException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//    }
-//
-//    @Override
-//    public String getBotUsername() {
-//        return "kkkllll_005_bot"; // замените на username вашего бота
-//    }
-//
-//    @Override
-//    public String getBotToken() {
-//        return "6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY"; // замените на token вашего бота
-//    }
-//
-//}

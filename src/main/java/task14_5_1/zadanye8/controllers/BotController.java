@@ -37,31 +37,6 @@ public class BotController {
                 handleUpdate(update);
             }
             return UpdatesListener.CONFIRMED_UPDATES_ALL;
-
-
-
-
-
-//    @Autowired
-//    private BashParser bashParser;
-//
-//    @Autowired
-////    private TelegramBot bot;
-
-
-
-
-
-// Create Exception Handler
-//        }, e -> {
-//            if (e.response() != null) {
-//                // got bad response from telegram
-//                e.response().errorCode();
-//                e.response().description();
-//            } else {
-//                // probably network error
-//                e.printStackTrace();
-//            }
         });
     }
 
@@ -70,12 +45,6 @@ public class BotController {
         long chatId = update.message().chat().id();
         var rawChat = chatRepository.findByChatIdEquals(chatId);
         Chat chat;
-
-
-
-
-
-
 
         if (rawChat.isPresent()) { // Проверка на присутствие значения
             chat = rawChat.get();
