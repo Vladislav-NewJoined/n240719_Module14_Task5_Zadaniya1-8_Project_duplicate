@@ -2,6 +2,7 @@ package task14_5_1.zadanye8.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class ApiController {
     private QuoteRepository repository;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Quote>> getAll(RequestParam(required = false, defaultValue = "1") String page) {
+    public ResponseEntity<List<Quote>> getAll(@RequestParam(required = false, defaultValue = "1") String page) {
         int _page = 1;
         try {
             _page = Integer.parseInt(page);
@@ -34,7 +35,7 @@ public class ApiController {
     }
 
     @GetMapping("/page")
-    public ResponseEntity<List<Quote>> getAll(RequestParam(required = false, defaultValue = "1") String page) {
+    public ResponseEntity<List<Quote>> getPage(@RequestParam(required = false, defaultValue = "1") String page) {
         int _page = 1;
         try {
             _page = Integer.parseInt(page);
@@ -42,5 +43,27 @@ public class ApiController {
         }
         var res = service.getPage(_page);
         return new ResponseEntity<>(res, HttpStatus.OK);
+    }
 
-}
+    @GetMapping("/{id}")
+    public ResponseEntity<Quote> getById(@PathVariable("id") int id) {
+        var res = service.getById(id);
+        if (res == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/random")
+    public ResponseEntity<Quote> getRandom(@PathVariable("id") int id) {
+        var res = service.getRandom();
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/randomList")
+    public ResponseEntity<List<Quote>> getRandomList(@PathVariable("id") int id) {
+        var res = repository.findAll(Sort.by("random()"));
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+
+    }
