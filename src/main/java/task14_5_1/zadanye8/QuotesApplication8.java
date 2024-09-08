@@ -51,7 +51,7 @@ public class QuotesApplication8 implements CommandLineRunner {
            botName: TestBot_005
            userName: @kkkllll_005_bot или kkkllll_005_bot
            token: 6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY
-           ChatId бота: "5799431854",\n
+           ChatId бота: "5799431854".
            \s""");
 
         System.out.println("""
