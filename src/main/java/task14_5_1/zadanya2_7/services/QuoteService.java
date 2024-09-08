@@ -1,9 +1,9 @@
-package task14_5_1.zadanya2_72.services;
+package task14_5_1.zadanya2_7.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import task14_5_1.zadanya2_72.models.Quote;
-import task14_5_1.zadanya2_72.repositories.QuoteRepository;
+import task14_5_1.zadanya2_7.models.Quote;
+import task14_5_1.zadanya2_7.repositories.QuoteRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;

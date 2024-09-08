@@ -1,4 +1,4 @@
-package task14_5_1.zadanya2_72;
+package task14_5_1.zadanya2_7;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
-import task14_5_1.zadanya2_72.services.QuoteService;
+import task14_5_1.zadanya2_7.services.QuoteService;
 
 // Здесь выполнять инициализацию проекта: https://start.spring.io/
 
@@ -33,9 +33,9 @@ import task14_5_1.zadanya2_72.services.QuoteService;
 // Пароль: 123
 
 @SpringBootApplication
-@EntityScan(basePackages = "task14_5_1.zadanya2_72.models")
-@ComponentScan(basePackages = {"task14_5_1.zadanya2_72.services", "task14_5_1.zadanya2_72.repositories"})
-public class QuotesApplication2 implements CommandLineRunner {
+@EntityScan(basePackages = "task14_5_1.zadanya2_7.models")
+@ComponentScan(basePackages = {"task14_5_1.zadanya2_7.services", "task14_5_1.zadanya2_7.repositories"})
+public class QuotesApplication2_7 implements CommandLineRunner {
 
 	@Autowired
     QuoteService service;
@@ -46,8 +46,14 @@ public class QuotesApplication2 implements CommandLineRunner {
 		System.out.println("""
             Модуль 14. Spring. Задание №5. Проект:\s
                 Задания:
+                2. Расширение возможностей парсера для получение конкретной страницы выдачи, а также конкретной
+                   цитаты.
                 3. Продумывание структуры проекта.
-            
+                4. Создание контейнеров базы данных.
+                5. Создание конфигов подключения к базе вместе со слоем данных.
+                6. Создание сервиса для управления данными.
+                7. Написание контроллера для свободного получения цитат по странице, конкретную по id.
+
                 Решение:\s""");
 
 		System.out.println("""
@@ -78,7 +84,8 @@ public class QuotesApplication2 implements CommandLineRunner {
            Для данного проекта cоздан тестовый Telegram бот:
            botName: TestBot_005
            userName: @kkkllll_005_bot или kkkllll_005_bot
-           token: 6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY\n
+           token: 6882256834:AAH5Fg-wUdKw7Rdqj8s9kXDgVt0R08tDnlY
+           ChatId бота: "5799431854".
            \s""");
 
 		System.out.println("""
@@ -125,14 +132,14 @@ public class QuotesApplication2 implements CommandLineRunner {
                "contactName" VARCHAR(255) NOT NULL,
                phone VARCHAR(15),
                email VARCHAR(100)
-           );\s""");
+           );
+           );\n\s""");
 
 		System.out.println("""
-           Для проверки работы кода, запускаем debug этого main класса с точкой breakpoint
-           на строке 'System.out.println(index);'
+           Результаты данного класса (т.е. цитаты) сохранены в таблице "Quotes2".
            \s""");
 
-		SpringApplication.run(QuotesApplication2.class, args);
+		SpringApplication.run(QuotesApplication2_7.class, args);
 	}
 
 	@Override

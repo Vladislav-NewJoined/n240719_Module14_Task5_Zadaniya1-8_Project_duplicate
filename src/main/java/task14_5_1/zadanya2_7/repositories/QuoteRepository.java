@@ -1,7 +1,7 @@
-package task14_5_1.zadanya2_72.repositories;
+package task14_5_1.zadanya2_7.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import task14_5_1.zadanya2_72.models.Quote;
+import task14_5_1.zadanya2_7.models.Quote;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package task14_5_1.zadanya2_72.services;
+package task14_5_1.zadanya2_7.services;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

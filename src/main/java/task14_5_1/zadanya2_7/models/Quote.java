@@ -1,4 +1,4 @@
-package task14_5_1.zadanya2_72.models;
+package task14_5_1.zadanya2_7.models;
 
 import jakarta.persistence.*;
 
