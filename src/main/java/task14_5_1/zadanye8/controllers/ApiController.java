@@ -64,6 +64,4 @@ public class ApiController {
         var res = repository.findAll(Sort.by("random()"));
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
-
-
-    }
+}
